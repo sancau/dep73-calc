@@ -1,0 +1,21 @@
+18.02.2016
+==========
+DONE 1. Implement a directive for numeric input
+
+19.02.2016
+==========
+
+DONE 2. Implement validation for the string input directive
+
+20.02.2016
+==========
+
+DONE 3. Implement validation for all the input directives
+
+4. Implement routing structure as follows: 		
+
+	- all calculations list as index view route
+	- new calculation view route
+	- settings view route
+
+

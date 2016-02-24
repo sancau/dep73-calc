@@ -1,0 +1,104 @@
+/* Removes accordion header outline
+  Probably this should be done in a more elegant way */
+html * {outline: 0 !important;}
+
+body{
+  background: -webkit-linear-gradient(90deg, #606c88 10%, #3f4c6b 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #606c88 10%, #3f4c6b 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #606c88 10%, #3f4c6b 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #606c88 10%, #3f4c6b 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #606c88 10%, #3f4c6b 90%); /* W3C */
+  color:white;
+  margin: 10px;
+}
+
+h1{
+  font-weight:300;
+  font-size:1.8em;
+  margin-bottom:30px;
+}
+h2{
+  font-weight:300;
+  font-size:1.4em;
+  margin-bottom:20px;
+}
+
+p{
+  color:#ced3e0;
+  max-width:400px;
+}
+p.example{
+  margin-bottom: 30px;
+}
+
+p.green-like {
+  color: #32a9d0;
+}
+
+p.gray-like {
+  color: #606c88;
+}
+
+span.black-content {
+  color: black;
+}
+
+header{
+  background-color:#444;
+  color:white;
+  max-height:80px;
+  padding:5px;
+  padding-left: 20px;
+  text-align:left;
+  border-radius: 5px;
+}
+nav{
+  margin-top: 10px;
+  background-color:#eeeeee;
+  color:#606c88;
+  float:right;
+  line-height:30px;
+  padding:10px;
+  padding-left: 20px;
+  width:50%;
+  border-radius: 5px;
+  border-bottom-right-radius: 0px;
+}
+section{
+  padding:10px;
+  padding-left: 0px;
+  width:50%;
+}
+section a{
+  color:#c0ffee;
+}
+section a:hover{
+  text-decoration:underline;
+}
+[ng-click] {
+  cursor:pointer;
+}
+.ng-sticky-behaviour{
+  border-right:10px solid #3f4c6b;
+  overflow-y:auto;
+  position:fixed;
+  right:0;
+  margin-top: 0px;
+  top:0;
+  width:50%;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+form {
+  color: black;
+  font-size: 95%;
+}
+
+.black {
+  color: black;
+}
+
+.form-control {
+  background-color: #eeeeee;
+}

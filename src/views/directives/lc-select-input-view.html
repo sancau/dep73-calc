@@ -1,0 +1,37 @@
+<div 
+    class="form-group" 
+	ng-class="{ 'has-error': !inputObject.$valid && (!inputObject.$pristine || submitted), 
+                'has-success': inputObject.$valid && !inputObject.$pristine }">
+    
+    <label 
+        for="{{ inputId }}" 
+        class="control-label">
+    	
+    	{{ label }}
+
+    </label>
+
+	<select 
+		id="{{ inputId }}"
+		class="form-control" 
+		name="{{ inputId }}" 
+		ng-model="selectedOption"
+		ng-required="required">
+    
+    	<option value="{{ option.value }}" ng-repeat="option in options">
+
+    		{{ option.label }}
+    	
+    	</option>
+  	
+  	</select>    
+
+    <p 
+        class="help-block" 
+        ng-show="inputObject.$error.required && (!inputObject.$pristine || submitted)">    
+
+        Это поле не может быть пустым
+           
+    </p>
+
+</div>

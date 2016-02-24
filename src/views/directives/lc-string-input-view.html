@@ -1,0 +1,30 @@
+<div 
+    class="form-group" 
+	ng-class="{ 'has-error': !inputObject.$valid && (!inputObject.$pristine || submitted), 
+                'has-success': inputObject.$valid && !inputObject.$pristine }">
+    
+    <label 
+        for="{{ inputId }}" 
+        class="control-label">
+    	
+    	{{ label }}
+    
+    </label>
+    
+    <input 
+        type="text"
+        id="{{ inputId }}" 
+        class="form-control"  
+        name="{{ inputId }}"
+        ng-model="modelData"
+        ng-required="required">
+
+    <p 
+        class="help-block" 
+        ng-show="inputObject.$error.required && (!inputObject.$pristine || submitted)">    
+
+        Это поле не может быть пустым
+    
+    </p>
+
+</div>

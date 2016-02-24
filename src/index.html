@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  <meta charset="utf-8">
+  <title>ЦНИИ РТК</title>
+
+  <!-- Bootstrap CDN -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+
+  <!-- Icons CDN -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  <!-- Local Stylesheet -->
+  <link rel="stylesheet" href="css/styles-minimal.css">
+
+</head>
+
+<body ng-app="app">
+
+  <!-- PAGE HEADER -->
+  <header id="header">
+    <h1>Расчёт трудоёмкости испытаний</h1>
+  </header>
+  
+  <!-- CALCULATION STATUS SECTION -->
+  <section 
+      id="status-panel" 
+      sticky-nav="ng-sticky-behaviour" 
+      ignore-element-size>
+    
+    <h2>Ход расчёта</h2>
+    <p>Данные о расчёте будут обновляться по ходу заполнения</p>
+    <p><i class="fa fa-arrow-right"></i>&nbsp;Что-то 1</p>
+    <p><i class="fa fa-info-circle"></i>&nbsp;Что-то 2</p>
+    <p><i class="fa fa-eye"></i>&nbsp;Что-то 3</p>       
+  
+  </section>
+
+  <!-- USER DATA INPUTS SECTION -->
+  <section id="forms-panel">
+
+    <uib-accordion close-others="true">
+      
+      <!-- General information inputs -->
+      <uib-accordion-group heading="Общая информация" is-open="false" is-disabled="false">        
+        <div ng-include="'views/general-partial.html'"></div>
+      </uib-accordion-group>
+
+      <!-- Climatic tests information inputs -->
+      <uib-accordion-group heading="Климатические испытания" is-open="false" is-disabled="false">        
+        <div ng-include="'views/climatic-partial.html'"></div>
+      </uib-accordion-group>
+
+      <!-- Mechanical tests information inputs -->
+      <uib-accordion-group heading="Механические испытания" is-open="false" is-disabled="false">
+        <p>Форма для механических испытаний</p>
+      </uib-accordion-group>
+
+    <uib-accordion>
+
+  </section>
+
+  <!-- Angular 1.4.9 CDN -->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
+
+  <!-- Angular Animate CDN -->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.js"></script>
+
+  <!-- AngularUI UIBootstrap CDN -->
+  <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.1.2.js"></script>
+
+  <!-- Ng-Sticky script -->
+  <script src="external/ng-sticky/ng-sticky.js"></script>
+
+  <!-- DIRECTIVES ============================================================== -->
+  
+  <!-- Directives module -->
+  <script src="directives/lc-directives.js"></script>
+
+  <!-- String input directive -->
+  <script src="directives/lc-string-input.js"></script>
+
+  <!-- Select input directive -->
+  <script src="directives/lc-select-input.js"></script>
+
+  <!-- Text area input directive -->
+  <script src="directives/lc-text-input.js"></script>
+
+  <!-- Numeric input directive -->
+  <script src="directives/lc-numeric-input.js"></script>
+
+  <!-- END OF DIRECTIVES ======================================================= -->
+
+  <!-- The Application -->
+  <script src="js/app.js"></script>
+     
+</body>
+</html>

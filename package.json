@@ -1,13 +1,18 @@
-{
-  "name": "DB73_Calc",
+﻿{
+  "name": "dep73-calc",
   "version": "0.0.1",
   "description": "An AngularJS application for labour calculations in test department of @rtc.ru. Created by Alexander Tatchin @ github.com/sancau.",
+  "author": "Alexander Tatchin <sancau@mail.ru>",
   "main": "index.html",
+  "readme": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sancau/dep73-calc"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Alexander Tatchin",
-  "license": "GPL",
+  "license": "MIT",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-concat": "^0.5.1",

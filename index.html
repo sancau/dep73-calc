@@ -5,14 +5,22 @@
   <meta charset="utf-8">
   <title>ЦНИИ РТК</title>
 
-  <!-- Bootstrap CDN -->
+  <!-- Bootstrap CDN 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+  -->
 
-  <!-- Icons CDN -->
+  <!-- Bootstrap local -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+  <!-- Font Awesome CDN 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  -->
 
-  <!-- Local Stylesheet -->
-  <link rel="stylesheet" href="css/styles-minimal.css">
+  <!-- Font Awesome local -->
+  <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.min.css">
+
+  <!-- Local Application Stylesheet -->
+  <link rel="stylesheet" href="assets/css/styles-minimal.css">
 
 </head>
 
@@ -44,12 +52,12 @@
       
       <!-- General information inputs -->
       <uib-accordion-group heading="Общая информация" is-open="false" is-disabled="false">        
-        <div ng-include="'views/general-partial.html'"></div>
+        <div ng-include="'calculation/views/general-partial/general-partial.html'"></div>
       </uib-accordion-group>
 
       <!-- Climatic tests information inputs -->
       <uib-accordion-group heading="Климатические испытания" is-open="false" is-disabled="false">        
-        <div ng-include="'views/climatic-partial.html'"></div>
+        <div ng-include="'calculation/views/climatic-partial/climatic-partial.html'"></div>
       </uib-accordion-group>
 
       <!-- Mechanical tests information inputs -->
@@ -61,39 +69,58 @@
 
   </section>
 
-  <!-- Angular 1.4.9 CDN -->
+  <!-- Angular 1.4.9 CDN
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
+  -->
 
-  <!-- Angular Animate CDN -->
+  <!-- Angular 1.4.9 local -->
+  <script src="bower_components/angular/angular.min.js"></script>
+
+  <!-- Angular Animate CDN 
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.js"></script>
+  -->
 
-  <!-- AngularUI UIBootstrap CDN -->
+  <!-- Angular Animate local -->
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+
+  <!-- AngularUI UIBootstrap CDN 
   <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.1.2.js"></script>
+  -->
+
+  <!-- AngularUI local -->
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 
   <!-- Ng-Sticky script -->
-  <script src="external/ng-sticky/ng-sticky.js"></script>
-
+  <script src="assets/libs/ng-sticky/ng-sticky.js"></script>
+  
   <!-- DIRECTIVES ============================================================== -->
   
   <!-- Directives module -->
   <script src="directives/lc-directives.js"></script>
 
   <!-- String input directive -->
-  <script src="directives/lc-string-input.js"></script>
+  <script src="directives/lc-string-input/lc-string-input.js"></script>
 
   <!-- Select input directive -->
-  <script src="directives/lc-select-input.js"></script>
+  <script src="directives/lc-select-input/lc-select-input.js"></script>
 
   <!-- Text area input directive -->
-  <script src="directives/lc-text-input.js"></script>
+  <script src="directives/lc-text-input/lc-text-input.js"></script>
 
   <!-- Numeric input directive -->
-  <script src="directives/lc-numeric-input.js"></script>
+  <script src="directives/lc-numeric-input/lc-numeric-input.js"></script>
 
   <!-- END OF DIRECTIVES ======================================================= -->
 
   <!-- The Application -->
-  <script src="js/app.js"></script>
+  <script src="app.js"></script>
+
+  <!-- GeneralCtrl -->
+  <script src="calculation/controllers/general-ctrl.js"></script>
+
+  <!-- ClimaticCtrl -->
+  <script src="calculation/controllers/climatic-ctrl.js"></script>
+
      
 </body>
 </html>

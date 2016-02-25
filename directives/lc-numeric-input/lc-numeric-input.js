@@ -15,7 +15,7 @@ angular.module('lc.directives').directive('lcNumericInput', function(){
 			max: '@',
 			step: '@',
 		},
-		templateUrl: 'views/directives/lc-numeric-input-view.html',
+		templateUrl: 'directives/lc-numeric-input/lc-numeric-input-view.html',
 		link: function(scope) {}
 	};
 });

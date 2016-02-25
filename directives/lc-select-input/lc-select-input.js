@@ -13,7 +13,7 @@ angular.module('lc.directives').directive('lcSelectInput', function(){
 			required: '=',
 			submitted: '=',
 		},
-		templateUrl: 'views/directives/lc-select-input-view.html',
+		templateUrl: 'directives/lc-select-input/lc-select-input-view.html',
 		link: function(scope) {}
 	};
 });

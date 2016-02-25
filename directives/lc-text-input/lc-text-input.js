@@ -12,7 +12,7 @@ angular.module('lc.directives').directive('lcTextInput', function(){
 			inputObject: '=',
 			submitted: '=',
 		},
-		templateUrl: 'views/directives/lc-text-input-view.html',
+		templateUrl: 'directives/lc-text-input/lc-text-input-view.html',
 		link: function(scope) {}
 	};
 });

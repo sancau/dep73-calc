@@ -11,7 +11,7 @@ angular.module('lc.directives').directive('lcStringInput', function(){
 			inputObject: '=',
 			submitted: '=',
 		},
-		templateUrl: 'views/directives/lc-string-input-view.html',
+		templateUrl: 'directives/lc-string-input/lc-string-input-view.html',
 		link: function(scope) {}
 	};
 });

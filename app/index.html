@@ -3,7 +3,7 @@
 <head>
 
   <meta charset="utf-8">
-  <title>ЦНИИ РТК</title>
+  <title ng-bind="pageTitle"></title>
 
   <!-- Bootstrap CDN 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
@@ -24,50 +24,17 @@
 
 </head>
 
-<body ng-app="app">
+<body ng-app="app" ng-controller="AppCtrl">
 
   <!-- PAGE HEADER -->
   <header id="header">
     <h1>Расчёт трудоёмкости испытаний</h1>
+     <a href ui-sref="calculation"> Новый расчёт </a>
+     <a href ui-sref="listview"> История расчётов </a>
   </header>
   
-  <!-- CALCULATION STATUS SECTION -->
-  <section 
-      id="status-panel" 
-      sticky-nav="ng-sticky-behaviour" 
-      ignore-element-size>
-    
-    <h2>Ход расчёта</h2>
-    <p>Данные о расчёте будут обновляться по ходу заполнения</p>
-    <p><i class="fa fa-arrow-right"></i>&nbsp;Что-то 1</p>
-    <p><i class="fa fa-info-circle"></i>&nbsp;Что-то 2</p>
-    <p><i class="fa fa-eye"></i>&nbsp;Что-то 3</p>       
-  
-  </section>
-
-  <!-- USER DATA INPUTS SECTION -->
-  <section id="forms-panel">
-
-    <uib-accordion close-others="true">
-      
-      <!-- General information inputs -->
-      <uib-accordion-group heading="Общая информация" is-open="false" is-disabled="false">        
-        <div ng-include="'calculation/views/general-partial/general-partial.html'"></div>
-      </uib-accordion-group>
-
-      <!-- Climatic tests information inputs -->
-      <uib-accordion-group heading="Климатические испытания" is-open="false" is-disabled="false">        
-        <div ng-include="'calculation/views/climatic-partial/climatic-partial.html'"></div>
-      </uib-accordion-group>
-
-      <!-- Mechanical tests information inputs -->
-      <uib-accordion-group heading="Механические испытания" is-open="false" is-disabled="false">
-        <p>Форма для механических испытаний</p>
-      </uib-accordion-group>
-
-    <uib-accordion>
-
-  </section>
+  <!-- State view -->
+  <div ui-view="main"></div>
 
   <!-- Angular 1.4.9 CDN
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
@@ -89,6 +56,9 @@
 
   <!-- AngularUI local -->
   <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+  <!-- Angular UI Router -->
+  <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>  
 
   <!-- Ng-Sticky script -->
   <script src="assets/libs/ng-sticky/ng-sticky.js"></script>
@@ -114,6 +84,9 @@
 
   <!-- The Application -->
   <script src="app.js"></script>
+
+  <!-- Calculation -->
+  <script src="calculation/calculation.js"></script>
 
   <!-- GeneralCtrl -->
   <script src="calculation/controllers/general-ctrl.js"></script>

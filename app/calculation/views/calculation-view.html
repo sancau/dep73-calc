@@ -1,0 +1,37 @@
+<!-- CALCULATION STATUS SECTION -->
+  <section 
+      id="status-panel" 
+      sticky-nav="ng-sticky-behaviour" 
+      ignore-element-size>
+    
+    <h2>Ход расчёта</h2>
+    <p>Данные о расчёте будут обновляться по ходу заполнения</p>
+    <p><i class="fa fa-arrow-right"></i>&nbsp;Что-то 1</p>
+    <p><i class="fa fa-info-circle"></i>&nbsp;Что-то 2</p>
+    <p><i class="fa fa-eye"></i>&nbsp;Что-то 3</p>       
+  
+  </section>
+
+  <!-- USER DATA INPUTS SECTION -->
+  <section id="forms-panel">
+
+    <uib-accordion close-others="true">
+      
+      <!-- General information inputs -->
+      <uib-accordion-group heading="Общая информация" is-open="false" is-disabled="false">        
+        <div ng-include="'calculation/views/general-partial/general-partial.html'"></div>
+      </uib-accordion-group>
+
+      <!-- Climatic tests information inputs -->
+      <uib-accordion-group heading="Климатические испытания" is-open="false" is-disabled="false">        
+        <div ng-include="'calculation/views/climatic-partial/climatic-partial.html'"></div>
+      </uib-accordion-group>
+
+      <!-- Mechanical tests information inputs -->
+      <uib-accordion-group heading="Механические испытания" is-open="false" is-disabled="false">
+        <p>Форма для механических испытаний</p>
+      </uib-accordion-group>
+
+    <uib-accordion>
+
+  </section>

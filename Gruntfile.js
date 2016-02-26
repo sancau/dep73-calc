@@ -5,7 +5,7 @@ module.exports = function(grunt) {
                 livereload: true
             },
             scripts: {
-                files: ['js/*.js', 'directives/*.js'],
+                files: ['app/**/*.js'],
                 tasks: ['process']
             },
             all: {
@@ -14,7 +14,7 @@ module.exports = function(grunt) {
         },
         concat: {
             dist: {
-                src: ['js/*.js', 'directives/*.js'],
+                src: ['app/**/*.js'],
                 dest: 'dist/js/all.js'
             }
         },

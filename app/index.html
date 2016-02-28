@@ -20,7 +20,8 @@
   <!-- Font Awesome local -->
   <link rel="stylesheet" href="../bower_components/components-font-awesome/css/font-awesome.min.css">
 
-  <!-- Application Stylesheet -->
+  <!-- Application Stylesheets 
+  -->
   <link rel="stylesheet" href="assets/css/styles-minimal.css">
 
 </head>
@@ -34,7 +35,7 @@
   
     <a href ui-sref="calculation"> Новый расчёт </a>
   
-    <a href ui-sref="listview"> История расчётов </a>
+    <a href ui-sref="list"> История расчётов </a>
   
   </header>
   
@@ -52,7 +53,8 @@
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.js"></script>
   -->
 
-  <!-- Angular Animate local -->
+  <!-- Angular Animate local 
+  -->
   <script src="../bower_components/angular-animate/angular-animate.min.js"></script>
 
   <!-- AngularUI UIBootstrap CDN 
@@ -65,56 +67,54 @@
   <!-- Angular UI Router -->
   <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>  
 
-  
-  <!-- CONCATENATED APPLICATION =============================================
+  <!-- THIRD PARTY ============================================================= -->
+  <!-- Ng-Sticky  
+  -->
+  <script src="assets/libs/ng-sticky/ng-sticky.js"></script> 
+
+  <!-- CONCATENATED / MINIFIED APPLICATION =============================================
+  <script src="../dist/js/all.js"></script>
   -->
   <script src="../dist/js/all.min.js"></script>
 
-
-  <!-- THIRD PARTY ============================================================= -->
-
-  <!-- Ng-Sticky script 
-  <script src="assets/libs/ng-sticky/ng-sticky.js"></script>
-  -->
-  
   <!-- DIRECTIVES ============================================================== -->
   
   <!-- Directives module 
-  <script src="directives/lc-directives.js"></script>
+  <script src="../js/lc-directives.js"></script>
   -->
 
   <!-- String input directive 
-  <script src="directives/lc-string-input/lc-string-input.js"></script>
+  <script src="../js/lc-string-input/lc-string-input.js"></script>
   -->
 
   <!-- Select input directive 
-  <script src="directives/lc-select-input/lc-select-input.js"></script>
+  <script src="../js/lc-select-input/lc-select-input.js"></script>
   -->
 
   <!-- Text area input directive 
-  <script src="directives/lc-text-input/lc-text-input.js"></script>
+  <script src="../js/lc-text-input/lc-text-input.js"></script>
   -->
 
   <!-- Numeric input directive 
-  <script src="directives/lc-numeric-input/lc-numeric-input.js"></script>
+  <script src="../js/lc-numeric-input/lc-numeric-input.js"></script>
   -->
 
   <!-- APPLICATION SCRIPTS ==================================================== -->
 
   <!-- The Application 
-  <script src="app.js"></script>
+  <script src="../js/app.js"></script>
   -->
 
   <!-- Calculation 
-  <script src="calculation/calculation.js"></script>
+  <script src="../js/calculation.js"></script>
   -->
 
   <!-- GeneralCtrl 
-  <script src="calculation/controllers/general-ctrl.js"></script>
+  <script src="../js/general-ctrl.js"></script>
   -->
 
   <!-- ClimaticCtrl 
-  <script src="calculation/controllers/climatic-ctrl.js"></script>
+  <script src="../js/climatic-ctrl.js"></script>
   -->
      
 </body>

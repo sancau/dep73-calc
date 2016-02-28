@@ -5,16 +5,31 @@ module.exports = function(grunt) {
                 livereload: true
             },
             scripts: {
-                files: ['app/**/*.js'],
+                files: ['app/**/*.coffee'],
                 tasks: ['process']
             },
             all: {
-                files: ['*.*']
+                files: ['app/*.*']
+            }
+        },
+        coffee: {
+            scripts: {
+                expand: true,
+                flatten: true,
+                cwd: 'app/',
+                src: ['**/*.coffee'],
+                dest: 'js/',
+                ext: '.js'
             }
         },
         concat: {
             dist: {
-                src: ['app/**/*.js'],
+                src: [
+                    'js/app.js',
+                    'js/calculation.js',
+                    'js/list.js', 
+                    'js/*.js',
+                ],
                 dest: 'dist/js/all.js'
             }
         },
@@ -24,7 +39,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 options: {
-                    banner: '/* github.com/sancau */ '
+                    banner: '/* dep73-calc | github.com/sancau */ '
                 },
                 files: {
                     'dist/js/all.min.js' : ['dist/js/all.js']
@@ -44,14 +59,15 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-coffee')
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-express');
     
-    grunt.registerTask('process', ['concat', 'uglify']);
+    grunt.registerTask('process', ['newer:coffee', 'concat', 'uglify']);
     grunt.registerTask(
         'default', 
-        ['concat', 'uglify', 'express', 'watch']
+        ['coffee', 'concat', 'uglify', 'express', 'watch']
     );
 };

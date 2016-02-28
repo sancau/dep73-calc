@@ -29,16 +29,13 @@ angular.module 'app.calculation'
             # If form structure changed after submit attempt the state resets
             $scope.submitted = off
 
-            # If 0 blocks will remain after deletion 
-            # then a new blank block should be populated after deletion
-            populateBlank = on if $scope.blocks.length is 1
-
             # Delete field group by index
             index = $scope.blocks.indexOf block
             $scope.blocks.splice index, 1
 
-            # Populate a new blank field group if need
-            $scope.blocks.push {} if populateBlank
+            # If 0 blocks remains after deletion 
+            # then a new blank block should be populated after deletion
+            $scope.blocks.push {} if $scope.blocks.length is 0
 
         # TODO >> should get select options from the configuration in DB
         # For now it's hardcoded

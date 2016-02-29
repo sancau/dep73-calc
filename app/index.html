@@ -29,14 +29,19 @@
 <body>
 
   <!-- HEADER AND NAVIGATION -->
-  <header id="header">
+  <header id="header" ng-hide="uiState.current.name == 'auth'">
     
+    <!--
+    some header content 
     <h1>Расчёт трудоёмкости испытаний</h1>
+     -->
+    
+    <a href ui-sref="list"><button class="btn btn-nav">Расчёты</button></a>
   
-    <a href ui-sref="calculation"> Новый расчёт </a>
-  
-    <a href ui-sref="list"> История расчётов </a>
-  
+    <a href ui-sref="settings"><button class="btn btn-nav">Настройки</button></a>
+
+    <a href ui-sref="auth"><button class="btn btn-nav">Выйти</button></a>
+
   </header>
   
   <!-- MAIN CONTENT -->

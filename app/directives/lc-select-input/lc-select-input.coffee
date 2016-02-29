@@ -5,17 +5,21 @@
     Author: Alexander Tatchin | github.com/sancau
 ###
 
+# directive function
+lcSelectInput = () ->
+    replace: on
+    restrict: 'E'
+    scope: 
+        label: '@'
+        inputId: '@'
+        required: '='
+        inputObject: '='
+        options: '='
+        selectedOption: '='
+        submitted: '='
+    templateUrl: 'directives/lc-select-input/lc-select-input-view.html'
+    link: (scope) ->    
+
+# directive registration
 angular.module 'lc.directives'
-.directive 'lcSelectInput', () ->
-	replace: on
-	restrict: 'E'
-	scope: 
-		label: '@'
-		inputId: '@'
-		required: '='
-		inputObject: '='
-		options: '='
-		selectedOption: '='
-		submitted: '='
-	templateUrl: 'directives/lc-select-input/lc-select-input-view.html'
-	link: (scope) ->
+    .directive 'lcSelectInput', lcSelectInput

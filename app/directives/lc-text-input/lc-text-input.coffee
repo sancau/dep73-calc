@@ -5,16 +5,20 @@
     Author: Alexander Tatchin | github.com/sancau
 ###
 
+# directive function
+lcTextInput = () ->
+    replace: on
+    restrict: 'E'
+    scope: 
+        label: '@'
+        rows: '@'
+        inputId: '@'
+        required: '='
+        inputObject: '='
+        submitted: '='
+    templateUrl: 'directives/lc-text-input/lc-text-input-view.html'
+    link: (scope) ->
+
+# directive registration
 angular.module 'lc.directives'
-.directive 'lcTextInput', () ->
-	replace: on
-	restrict: 'E'
-	scope: 
-		label: '@'
-		rows: '@'
-		inputId: '@'
-		required: '='
-		inputObject: '='
-		submitted: '='
-	templateUrl: 'directives/lc-text-input/lc-text-input-view.html'
-	link: (scope) ->
+    .directive 'lcTextInput', lcTextInput

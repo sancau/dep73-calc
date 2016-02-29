@@ -1,23 +1,25 @@
 ###
- 	Source: app.coffee 
- 	Project: dep73-calc
- 	Description: Main application module
- 	Author: Alexander Tatchin | github.com/sancau
+    Source: app.coffee 
+    Project: dep73-calc
+    Description: Main application module
+    Author: Alexander Tatchin | github.com/sancau
 ###
 
 angular.module 'app', [
-	'dm.stickyNav'
-	'ngAnimate'
-	'ui.bootstrap'
-	'lc.directives'
-	'app.calculation'
-	'app.list'
-	'ui.router'
+    'ui.bootstrap'
+    'ui.router'
+    'ngAnimate'
+    'dm.stickyNav'
+    'lc.directives'
+    'app.auth'
+    'app.list'
+    'app.calculation'
+    'app.settings'
 ]
 .config [
-	'$stateProvider'
-	'$urlRouterProvider'
-
-	($stateProvider, $urlRouterProvider) ->
-		$urlRouterProvider.otherwise '/'
+    '$stateProvider'
+    '$urlRouterProvider'
+    
+    ($stateProvider, $urlRouterProvider) ->
+        $urlRouterProvider.otherwise '/'
 ]

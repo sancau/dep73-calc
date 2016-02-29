@@ -5,15 +5,19 @@
     Author: Alexander Tatchin | github.com/sancau
 ###
 
+# directive function
+lcStringInput = () ->
+    replace: on
+    restrict: 'E'
+    scope: 
+        label: '@'
+        inputId: '@'
+        required: '='
+        inputObject: '='
+        submitted: '='
+    templateUrl: 'directives/lc-string-input/lc-string-input-view.html'
+    link: (scope) ->    
+
+# directive registration
 angular.module 'lc.directives'
-.directive 'lcStringInput', () ->
-	replace: on
-	restrict: 'E'
-	scope: 
-		label: '@'
-		inputId: '@'
-		required: '='
-		inputObject: '='
-		submitted: '='
-	templateUrl: 'directives/lc-string-input/lc-string-input-view.html'
-	link: (scope) ->
+    .directive 'lcStringInput', lcStringInput

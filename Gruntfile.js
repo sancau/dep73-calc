@@ -27,7 +27,9 @@ module.exports = function(grunt) {
                 src: [
                     'js/app.js',
                     'js/calculation.js',
-                    'js/list.js', 
+                    'js/list.js',
+                    'js/settings.js',
+                    'js/auth.js', 
                     'js/*.js',
                 ],
                 dest: 'dist/js/all.js'

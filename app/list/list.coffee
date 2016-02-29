@@ -7,7 +7,6 @@
 
 angular.module 'app.list', [
     'ui.router'
-    'ui.bootstrap'
 ]
 
 .config [
@@ -15,7 +14,7 @@ angular.module 'app.list', [
 
     ($stateProvider) ->
         $stateProvider.state 'list',
-            url: '/'
+            url: '/list'
             views: 
                 'main':
                     controller: 'ListCtrl'

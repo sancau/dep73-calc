@@ -12,6 +12,6 @@ angular.module 'app.auth'
 
     ($scope, $state) ->
         
-    	$scope.login = () ->
-    		$state.go('list')
+        $scope.login = () ->
+            $state.go('list')
 ]

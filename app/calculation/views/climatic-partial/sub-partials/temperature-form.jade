@@ -1,0 +1,49 @@
+//-
+    Source: calculation/views/climatic-partials/sub-partials/temperature-form.jade 
+    Project: dep73-calc
+    Description: The form for humidity test calculation 
+    Author: Alexander Tatchin | github.com/sancau
+
+.temperature
+    
+    lc-numeric-input(
+        required="true",
+        label="Рабочая температура",
+        min="-70",
+        max="180",
+        step="1",    
+        input-id="wtemp",
+        input-object="$parent.climaticForm.wtemp",
+        submitted="$parent.submitted"
+    )
+
+    lc-numeric-input(
+        required="true",
+        label="Количество часов (рабочая температура)",
+        min="0",
+        step="0.1", 
+        input-id="wtime",
+        input-object="$parent.climaticForm.wtime",
+        submitted="$parent.submitted"
+    )
+
+    lc-numeric-input(
+        required="true",
+        label="Предельная температура",
+        min="-70",
+        max="180",
+        step="1",   
+        input-id="etemp",
+        input-object="$parent.climaticForm.etemp",
+        submitted="$parent.submitted"
+    )
+
+    lc-numeric-input(
+        required="true",
+        label="Количество часов (предельная температура)",
+        min="0",
+        step="0.1", 
+        input-id="etime",
+        input-object="$parent.climaticForm.etime",
+        submitted="$parent.submitted"
+    )

@@ -1,0 +1,15 @@
+//-
+    Source: list/views/list-view.jade 
+    Project: dep73-calc
+    Description: Main view for the list module 
+    Author: Alexander Tatchin | github.com/sancau
+
+.well(ng-controller="ListCtrl")
+    a(ui-sref="calculation")
+        button.btn Новый расчёт
+    h5 TODO:
+    ul
+        li List view of all the calculation in the DB
+        li User can proceed to a certain calculation view by clicking it's row in the list view
+        li User can clone existing calculation to use it as the base for a new one
+        li User can delete existing calculation

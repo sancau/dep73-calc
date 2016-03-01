@@ -1,0 +1,44 @@
+//-
+    Source: calculation/views/climatic-partial/climatic-partial.jade 
+    Project: dep73-calc
+    Description: Partial view for climatic data inputs 
+    Author: Alexander Tatchin | github.com/sancau
+
+#climatic-controls(ng-controller="ClimaticCtrl")
+
+    #blocks(ng-repeat="block in blocks")
+
+        //- An empty line becomes invisible if a block type selected
+        hr(ng-hide="selectedOption")
+
+        //- Form for a block of inputs
+        form(role="form", 
+             name="climaticForm", 
+             novalidate="novalidate", 
+             ng-model="climaticForm")
+                
+            //- Visible only if the block type is already chosen
+            #block-verbose-name(ng-hide="!selectedOption")
+                hr
+                h4 {{ getName($index + 1) }} ({{ selectedOption.name }})
+                hr
+                
+            //- Allows user to select type for the block
+            #type-selector.form-group
+                label(for="type") Вид испытаний
+                
+                select(ng-model="selectedOption",
+                       ng-options="option as option.name for option in options")
+                             
+            //- Includes the appropriate form view depending on the block's type
+            #form-include(ng-include="selectedOption.formView")
+
+        //- Delete block button
+        button(ng-click="delete(block)") Удалить блок
+        hr
+
+        //- Submit button
+        button(ng-click="OnSubmit()") Далее
+        
+        //- Clone block button
+        button(ng-click="clone()") Добавить блок

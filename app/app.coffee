@@ -9,8 +9,11 @@ angular.module 'app', [
     'ui.bootstrap'
     'ui.router'
     'ngAnimate'
-    'dm.stickyNav'
+    'dm.stickyNav' #move this dependency to calculation module?
+
     'lc.directives'
+
+    'app.views'
     'app.auth'
     'app.list'
     'app.calculation'

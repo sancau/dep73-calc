@@ -1,0 +1,16 @@
+//-
+    Source: auth/views/auth-view.jade 
+    Project: dep73-calc
+    Description: View for app.auth
+    Author: Alexander Tatchin | github.com/sancau
+
+.well
+    h2 Аутентификация 
+    h5 TODO:  
+    ul
+        li Get user data from from (username / password)
+        li Request server for login (via LoginService)
+        li On success $state.go("list") / add user info to UserData constant
+        li On error - notify user
+    a
+        button.btn(ng-click="login()") Вход

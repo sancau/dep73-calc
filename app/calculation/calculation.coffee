@@ -19,7 +19,7 @@ angular.module 'app.calculation', [
             views: 
                 'main':
                     controller: 'ClimaticCtrl'
-                    templateUrl: 'calculation/views/calculation-view.html'
+                    templateUrl: 'calculation/views/calculation-view.jade'
             data:
                 pageTitle: 'Расчёт трудоёмкости'
 ]

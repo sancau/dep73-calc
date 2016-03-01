@@ -19,7 +19,7 @@ lcNumericInput = () ->
         min: '@'
         max: '@'
         step: '@'
-    templateUrl: 'directives/lc-numeric-input/lc-numeric-input-view.html'
+    templateUrl: 'directives/lc-numeric-input/lc-numeric-input-view.jade'
     link: (scope) ->
 
 

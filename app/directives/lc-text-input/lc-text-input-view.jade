@@ -1,0 +1,24 @@
+//-
+    Source: directives/lc-text-input/lc-text-input-view.jade 
+    Project: dep73-calc
+    Description: lc-text-input directive view
+    Author: Alexander Tatchin | github.com/sancau
+
+.form-group(
+    ng-class!="{ 'has-error': !inputObject.$valid && (!inputObject.$pristine || submitted), \
+                'has-success': inputObject.$valid && !inputObject.$pristine }"
+)
+
+    label.control-label(for="{{ inputId }}") {{ label }}
+        
+    textarea.form-control(
+        id="{{ inputId }}",
+        name="{{ inputId }}",
+        rows="{{ rows }}",
+        ng-model="modelData",
+        ng-required="required"
+    )
+
+    p.help-block(
+        ng-show!="inputObject.$error.required && (!inputObject.$pristine || submitted"
+    )   Это поле не может быть пустым

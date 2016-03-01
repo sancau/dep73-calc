@@ -15,7 +15,7 @@ lcStringInput = () ->
         required: '='
         inputObject: '='
         submitted: '='
-    templateUrl: 'directives/lc-string-input/lc-string-input-view.html'
+    templateUrl: 'directives/lc-string-input/lc-string-input-view.jade'
     link: (scope) ->    
 
 # directive registration

@@ -10,5 +10,5 @@ angular.module 'app.list'
     '$scope',
 
     ($scope) ->
-    	$scope.testvar = "История расчётов"
+        $scope.testvar = "История расчётов"
 ]

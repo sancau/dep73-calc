@@ -1,0 +1,28 @@
+//-
+    Source: directives/lc-select-input/lc-select-input-view.jade 
+    Project: dep73-calc
+    Description: lc-select-input directive view
+    Author: Alexander Tatchin | github.com/sancau
+
+.form-group(
+    ng-class!="{ 'has-error': !inputObject.$valid && (!inputObject.$pristine || submitted), \
+                'has-success': inputObject.$valid && !inputObject.$pristine }"
+)
+
+    label.control-label(for="{{ inputId }}") {{ label }}
+        
+    select.form-control(
+        id="{{ inputId }}",
+        name="{{ inputId}}",
+        ng-model="selectedOption",
+        ng-required="required"
+    )
+
+        option(
+            value="{{ option.value}}",
+            ng-repeat="option in options"               
+        ) {{ option.label }}
+
+    p.help-block(
+        ng-show!="inputObject.$error.required && (!inputObject.$pristine || submitted"
+    )   Это поле не может быть пустым

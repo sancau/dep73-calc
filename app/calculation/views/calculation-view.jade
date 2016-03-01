@@ -1,0 +1,46 @@
+//-
+    Source: calculation/views/calculation-view.jade 
+    Project: dep73-calc
+    Description: Main view for the calculation module 
+    Author: Alexander Tatchin | github.com/sancau
+
+//- Calculation status section
+section#status-panel(
+    sticky-nav="ng-sticky-behaviour",
+    ignore-element-size
+)
+    h2 Ход расчёта
+    p Данные о расчёте будут обновляться по ходу заполнения
+
+//- Calculation data inputs section
+section#forms-panel
+    //- Accordion
+    uib-accordion(close-others="true")
+
+        //- General information inputs host
+        uib-accordion-group(
+            heading="Общая информация",
+            is-open="false",
+            is-disabled="false"
+        )
+            #general-partial(
+                ng-include="'calculation/views/general-partial/general-partial.jade'"
+            )
+        
+        //- Climatic information inputs host
+        uib-accordion-group(
+            heading="Климатические испытания",
+            is-open="false",
+            is-disabled="false"
+        )
+            #climatic-partial(
+                ng-include="'calculation/views/climatic-partial/climatic-partial.jade'"
+            )
+        
+        //- Mechanical tests | NOT IMPLEMENTED YET 
+        uib-accordion-group(
+            heading="Механические испытания",
+            is-open="false",
+            is-disabled="false"
+        )
+            p Форма для механических испытаний

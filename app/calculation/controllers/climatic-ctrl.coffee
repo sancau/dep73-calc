@@ -41,22 +41,22 @@ ClimaticCtrl = ($scope) ->
         {   
             id: 1 
             name: 'Повышенная температура' 
-            formView: 'calculation/views/climatic-partial/sub-partials/temperature-form.html'
+            formView: 'calculation/views/climatic-partial/sub-partials/temperature-form.jade'
         }
         { 
             id: 2 
             name: 'Пониженная температура' 
-            formView: 'calculation/views/climatic-partial/sub-partials/temperature-form.html'
+            formView: 'calculation/views/climatic-partial/sub-partials/temperature-form.jade'
         }
         { 
             id: 3 
             name: 'Пониженная влажность' 
-            formView: 'calculation/views/climatic-partial/sub-partials/humidity-form.html'
+            formView: 'calculation/views/climatic-partial/sub-partials/humidity-form.jade'
         }
         { 
             id: 4 
             name: 'Повышенная влажность' 
-            formView: 'calculation/views/climatic-partial/sub-partials/humidity-form.html' 
+            formView: 'calculation/views/climatic-partial/sub-partials/humidity-form.jade' 
         }
     ]
 

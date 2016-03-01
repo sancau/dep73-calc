@@ -17,7 +17,7 @@ lcSelectInput = () ->
         options: '='
         selectedOption: '='
         submitted: '='
-    templateUrl: 'directives/lc-select-input/lc-select-input-view.html'
+    templateUrl: 'directives/lc-select-input/lc-select-input-view.jade'
     link: (scope) ->    
 
 # directive registration

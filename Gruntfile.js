@@ -1,11 +1,12 @@
 module.exports = function(grunt) {
+    
     grunt.initConfig({
         watch: {
             options: {
                 livereload: true
             },
             scripts: {
-                files: ['app/**/*.coffee'],
+                files: ['app/**/*.coffee', 'app/**/*.jade'],
                 tasks: ['process']
             },
             all: {
@@ -22,6 +23,16 @@ module.exports = function(grunt) {
                 ext: '.js'
             }
         },
+        html2js: {
+            main: {
+                options: {
+                    base: 'app',
+                    module: 'app.views'
+                },
+                src: ['app/**/*.jade'],
+                dest: 'js/views.js'
+            }
+        },
         concat: {
             dist: {
                 src: [
@@ -29,7 +40,8 @@ module.exports = function(grunt) {
                     'js/calculation.js',
                     'js/list.js',
                     'js/settings.js',
-                    'js/auth.js', 
+                    'js/auth.js',
+                    'js/views.js', 
                     'js/*.js',
                 ],
                 dest: 'dist/js/all.js'
@@ -66,10 +78,16 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-express');
+    grunt.loadNpmTasks('grunt-html2js');
     
-    grunt.registerTask('process', ['newer:coffee', 'concat', 'uglify']);
     grunt.registerTask(
-        'default', 
-        ['coffee', 'concat', 'uglify', 'express', 'watch']
+        'process', 
+
+        ['newer:coffee', 'newer:html2js', 'concat', 'uglify']);
+
+    grunt.registerTask(
+        'default',
+
+        ['coffee', 'html2js', 'concat', 'uglify', 'express', 'watch']
     );
 };

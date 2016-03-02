@@ -8,8 +8,8 @@
 # controller function
 AuthCtrl = ($scope, $state) ->
 
-	$scope.login = () ->
-        $state.go('list')	
+    $scope.login = () ->
+        $state.go('list')   
 
 
 # controller registration 

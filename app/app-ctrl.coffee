@@ -18,6 +18,10 @@ AppCtrl = ($scope, $location, $state) ->
         if angular.isDefined toState.data.pageTitle
             $scope.pageTitle = "#{toState.data.pageTitle} | ЦНИИ РТК"
 
+    # active CSS class handler
+    $scope.isActive = (viewLocation) ->
+        viewLocation is (do $location.path)
+
 # controller registration
 angular.module 'app'
     .controller 'AppCtrl', [

@@ -3,6 +3,10 @@
   outline: 0 !important;
 }
 
+a {
+  color: inherit;
+}
+
 /* Defines cursor view for AngularJS controls */
 [ng-click] {
   cursor:pointer;
@@ -32,5 +36,24 @@
   width:50%;
 }
 
+/* List view styles */
 
+#list-view tr:hover {
+  background-color: #efefef; 
+}
 
+/* General buttons style */
+
+.btn:hover {
+  background-color: #cfcfcf;
+}
+
+/* Header styles */
+#header {
+  margin-top: 10px;
+}
+
+/* Main container styles */
+#main-content {
+  margin-top: 10px;
+}

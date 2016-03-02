@@ -27,25 +27,29 @@
 </head>
 
 <body>
-
-  <!-- HEADER AND NAVIGATION -->
-  <header id="header" ng-hide="uiState.current.name == 'auth'">
-    
-    <!--
-    some header content 
-    <h1>Расчёт трудоёмкости испытаний</h1>
-     -->
-    
-    <a ui-sref="list"><button class="btn btn-nav">Расчёты</button></a>
   
-    <a ui-sref="settings"><button class="btn btn-nav">Настройки</button></a>
+  <div class="container">
+    
+    <!-- HEADER AND NAVIGATION -->
+    <header id="header" ng-hide="uiState.current.name == 'auth'">
+      
+      <!--
+      some header content 
+      <h1>Расчёт трудоёмкости испытаний</h1>
+       -->
+      
+      <a ui-sref="list"><button class="btn btn-nav" ng-class="{active: isActive('/list')}">Расчёты</button></a>
+    
+      <a ui-sref="settings"><button class="btn btn-nav" ng-class="{active: isActive('/settings')}">Настройки</button></a>
 
-    <a ui-sref="auth"><button class="btn btn-nav">Выйти</button></a>
+      <a class="pull-right" ui-sref="auth"><button class="btn btn-nav">Выйти</button></a>
 
-  </header>
-  
-  <!-- MAIN CONTENT -->
-  <div ui-view="main"></div>
+    </header>
+    
+    <!-- MAIN CONTENT -->
+    <div id="main-content" ui-view="main"></div>
+
+  </div>
 
   <!-- Angular 1.4.9 CDN
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>

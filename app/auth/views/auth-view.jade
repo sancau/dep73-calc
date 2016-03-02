@@ -5,12 +5,16 @@
     Author: Alexander Tatchin | github.com/sancau
 
 .well
-    h2 Аутентификация 
+    h3 Аутентификация
+
+    hr 
     h5 TODO:  
     ul
         li Get user data from from (username / password)
         li Request server for login (via LoginService)
         li On success $state.go("list") / add user info to UserData constant
         li On error - notify user
+    hr
+
     a
         button.btn(ng-click="login()") Вход

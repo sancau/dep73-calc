@@ -5,10 +5,14 @@
     Author: Alexander Tatchin | github.com/sancau
 ###
 
+# controller function
+ListCtrl = ($scope) ->
+	$scope.testvar = "История расчётов"
+
+# controller registration
 angular.module 'app.list'
 .controller 'ListCtrl', [
-    '$scope',
+    '$scope'
 
-    ($scope) ->
-        $scope.testvar = "История расчётов"
+    ListCtrl
 ]

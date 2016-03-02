@@ -5,9 +5,14 @@
     Author: Alexander Tatchin | github.com/sancau
 ###
 
+# controller function
+SettingsCtrl = ($scope) ->
+
+
+# controller definition
 angular.module 'app.settings'
 .controller 'SettingsCtrl', [
-    '$scope',
-
-    ($scope) ->
+    '$scope'
+    
+    SettingsCtrl
 ]

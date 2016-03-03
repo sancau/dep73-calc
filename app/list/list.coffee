@@ -14,7 +14,7 @@ angular.module 'app.list', [
 
     ($stateProvider) ->
         $stateProvider.state 'list',
-            url: '/list'
+            url: '/'
             views: 
                 'main':
                     controller: 'ListCtrl'

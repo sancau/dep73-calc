@@ -14,7 +14,7 @@ angular.module 'app.auth', [
 
     ($stateProvider) ->
         $stateProvider.state 'auth',
-            url: '/'
+            url: '/login'
             views: 
                 'main':
                     controller: 'AuthCtrl'

@@ -27,14 +27,14 @@
         ng-show!="inputObject.$error.required && (!inputObject.$pristine || submitted)"
     ) Это поле не может быть пустым
 
-    p.help.block(
+    p.help-block(
         ng-show!="inputObject.$error.min && (!inputObject.$pristine || submitted)"
     ) Значение не может быть меньше {{ min }}
 
-    p.help.block(
+    p.help-block(
         ng-show!="inputObject.$error.max && (!inputObject.$pristine || submitted)"
     ) Значение не может быть больше {{ max }}
 
-    p.help.block(
+    p.help-block(
         ng-show!="inputObject.$error.number && (!inputObject.$pristine || submitted)"
     ) Значение должно быть целым или вещественным числом

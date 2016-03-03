@@ -1,0 +1,17 @@
+//-
+    Source: calculation/views/climatic-partials/sub-partials/operation-form.jade 
+    Project: dep73-calc
+    Description: The form for a tech operation info
+    Author: Alexander Tatchin | github.com/sancau
+
+.operation
+    
+    lc-numeric-input(
+        required="true",
+        label="Время на операцию (часов)",
+        min="0",
+        step="0.25",    
+        input-id="operationTime",
+        input-object="$parent.climaticForm.operationTime",
+        submitted="$parent.submitted"
+    )

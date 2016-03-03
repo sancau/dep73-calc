@@ -58,6 +58,11 @@ ClimaticCtrl = ($scope) ->
             name: 'Повышенная влажность' 
             formView: 'calculation/views/climatic-partial/sub-partials/humidity-form.jade' 
         }
+        { 
+            id: 5 
+            name: 'Технологическая операция' 
+            formView: 'calculation/views/climatic-partial/sub-partials/operation-form.jade' 
+        }
     ]
 
     # Logic on climatic data submission

@@ -83,5 +83,6 @@ ClimaticCtrl = ($scope) ->
 angular.module 'app.calculation'
     .controller 'ClimaticCtrl', [
         '$scope'
+
         ClimaticCtrl
     ]

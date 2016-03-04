@@ -6,7 +6,7 @@
 ###
 
 # controller function
-ListCtrl = ($scope) ->
+ListCtrl = ($scope, $state) ->
 
     # test stub. shoulc use service to call the API and 
     # return the list
@@ -40,13 +40,16 @@ ListCtrl = ($scope) ->
     # logic on listview row click
     # goes to the certain calculation view state
     $scope.showCalculation = (calculation) ->
-        window.alert calculation.name
+        console.log "going to #{calculation.name} page"
+
+        $state.go('calculation')
 
 
 # controller registration
 angular.module 'app.list'
 .controller 'ListCtrl', [
     '$scope'
+    '$state'
 
     ListCtrl
 ]

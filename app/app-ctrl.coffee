@@ -27,7 +27,8 @@ angular.module 'app'
     .controller 'AppCtrl', [
         '$scope' 
         '$location'
-        '$state' 
+        '$state'
+         
         AppCtrl
     ]
     

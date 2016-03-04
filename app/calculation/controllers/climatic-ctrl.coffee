@@ -8,6 +8,11 @@
 # controller function
 ClimaticCtrl = ($scope) ->
 
+    ###
+        TODO 
+        addBlock BTN and deleteBlock BTN visibility logic
+    ###
+
     # Initial array of field groups contains 1 blank block
     $scope.blocks = [{}]
 
@@ -17,6 +22,14 @@ ClimaticCtrl = ($scope) ->
 
     # Add block logic
     $scope.clone = () ->
+
+        # if no data entered in existing block user cant add another 
+        hasEmptyBlock = no
+        for block in $scope.blocks
+            if not block.selectedOption
+                hasEmptyBlock = yes
+        if hasEmptyBlock then return console.log "there's an empty block to use | ClimaticCtrl clone()"
+
         # If form structure changed after submit attempt the state resets
         $scope.submitted = off
         $scope.blocks.push {}
@@ -66,18 +79,25 @@ ClimaticCtrl = ($scope) ->
     ]
 
     # Logic on climatic data submission
-    $scope.OnSubmit = () ->
+    $scope.saveChangesButtonContent = 'Сохранить' 
+    $scope.saveChanges = () ->
+
+        # flag signals that form was submitted by the user
         $scope.submitted = on
 
-        ###
-            General info should be already submitted
-            Else cance submission of climatic and notify user
+        # check each block of form to be valid 
+        dataValid = yes
+        for block in $scope.blocks 
+            if not block.climaticForm.$valid
+                dataValid = no
 
-            If report object exists
-            Save progress in db
-            
-            Update status panel
-        ###
+        # depending on the validation status perform proper logic
+        if dataValid
+            # TODO save changes logic
+            console.log "Save changes logic to go | ClimaticCtrl.saveChanges()"
+        else
+            # TODO handle the validation error
+            console.log "Form is invalid | ClimaticCtrl.saveChanges()"
 
 # controller registration
 angular.module 'app.calculation'

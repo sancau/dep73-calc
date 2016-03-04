@@ -14,12 +14,26 @@ angular.module 'app.calculation', [
     '$stateProvider'
 
     ($stateProvider) ->
-        $stateProvider.state 'calculation',
-            url: '/calculation'
-            views: 
-                'main':
-                    controller: 'ClimaticCtrl'
-                    templateUrl: 'calculation/views/calculation-view.jade'
-            data:
-                pageTitle: 'Расчёт трудоёмкости'
-]
+
+        $stateProvider
+        
+            #state for an existing calculation
+            .state 'calculation',
+                url: '/calculation'
+                views: 
+                    'main':
+                        controller: 'CalculationCtrl'
+                        templateUrl: 'calculation/views/calculation-view.jade'
+                data:
+                    pageTitle: 'Расчёт трудоёмкости'
+
+            #state for a new calculation
+            .state 'calculation-new',
+                url: '/calculation/new'
+                views:
+                    'main':
+                        controller: 'GeneralCtrl'
+                        templateUrl: 'calculation/views/calculation-new-view.jade'
+                data:
+                    pageTitle: 'Новый расчёт трудоёмкости'
+]                        

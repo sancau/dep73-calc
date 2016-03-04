@@ -1,7 +1,7 @@
 //-
     Source: calculation/views/calculation-view.jade 
     Project: dep73-calc
-    Description: Main view for the calculation module 
+    Description: View for the calculation module / state: calculation 
     Author: Alexander Tatchin | github.com/sancau
 
 //- Calculation status section
@@ -9,10 +9,7 @@ section#status-panel(
     sticky-nav="ng-sticky-behaviour",
     ignore-element-size,
 )
-    #status-content(ng-controller="StatusCtrl")
-        h2 Ход расчёта
-        p Данные о расчёте будут обновляться по ходу заполнения
-
+    h4 Информация о расчёте
 
 //- Calculation data inputs section
 section#forms-panel
@@ -23,27 +20,33 @@ section#forms-panel
         //- General information inputs host
         uib-accordion-group(
             heading="Общая информация",
-            is-open="false",
-            is-disabled="false"
+            is-open="generalOpen",
+            is-disabled="generalDisabled"
         )
             #general-partial(
-                ng-include="'calculation/views/general-partial/general-partial.jade'"
+                ng-controller="GeneralCtrl"
             )
+                #general-form(
+                    ng-include="'calculation/views/general-partial/general-form.jade'"
+                )
+
+                //- Save general info changes (logic on GeneralCrtl)
+                button(ng-click="saveChanges()") {{ saveChangesButtonContent }}
         
         //- Climatic information inputs host
         uib-accordion-group(
             heading="Климатические испытания",
-            is-open="false",
-            is-disabled="false"
+            is-open="climaticOpen",
+            is-disabled="climaticDisabled"
         )
             #climatic-partial(
                 ng-include="'calculation/views/climatic-partial/climatic-partial.jade'"
             )
         
-        //- Mechanical tests | NOT IMPLEMENTED YET 
-        uib-accordion-group(
-            heading="Механические испытания",
-            is-open="false",
-            is-disabled="false"
-        )
-            p Форма для механических испытаний
+        //- Mechanical tests | NOT IMPLEMENTED  
+        //- uib-accordion-group(
+        //-     heading="Механические испытания",
+        //-     is-open="mechanicalOpen",
+        //-     is-disabled="mechanicalDisabled"
+        //- )
+        //-     p Форма для механических испытаний

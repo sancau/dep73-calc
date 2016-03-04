@@ -6,17 +6,13 @@
 ###
 
 # controller function
-StatusCtrl = ($scope, CalculationObject) ->
-
-    # Reference to the shared calculation object via service
-    $scope.calculation = CalculationObject
+StatusCtrl = ($scope) ->
 
 
 # controller registration
 angular.module 'app.calculation'
     .controller 'StatusCtrl', [
         '$scope'
-        'CalculationObject'
 
         StatusCtrl
     ] 

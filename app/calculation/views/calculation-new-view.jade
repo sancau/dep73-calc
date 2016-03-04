@@ -1,0 +1,15 @@
+//-
+    Source: calculation/views/calculation-view.jade 
+    Project: dep73-calc
+    Description: View for the new calculation / state: new-calculation
+    Author: Alexander Tatchin | github.com/sancau
+
+h3 Новый расчёт трудоёмкости
+hr 
+
+#general-form(
+    ng-include="'calculation/views/general-partial/general-form.jade'"
+)
+
+//- Create report logic on click
+button(ng-click="createCalculation()") {{ createCalculationButtonContent }}

@@ -22,7 +22,6 @@ angular.module 'app.calculation', [
                 url: '/calculation'
                 views: 
                     'main':
-                        controller: 'CalculationCtrl'
                         templateUrl: 'calculation/views/calculation-view.jade'
                 data:
                     pageTitle: 'Расчёт трудоёмкости'

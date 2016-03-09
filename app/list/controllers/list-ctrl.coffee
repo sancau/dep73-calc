@@ -6,36 +6,11 @@
 ###
 
 # controller function
-ListCtrl = ($scope, $state) ->
+ListCtrl = ($scope, $state, CalculationResource) ->
 
-    # test stub. shoulc use service to call the API and 
-    # return the list
-    $scope.listCollection = [
-        {
-            name: "Кактус 2В"
-            type: "Типовые"
-            author: "Ксенофонтов Б.А."
-            edited: "14.04.2015"
-        }
-        {
-            name: "Шакал"
-            type: "Периодические"
-            author: "Кандлин Л.А."
-            edited: "25.02.2016"            
-        }
-        {
-            name: "Теодолит"
-            type: "Периодические"
-            author: "Беляев Н.Н."
-            edited: "21.12.2015"
-        }
-        {
-            name: "Стример"
-            type: "Пуско-наладочные"
-            author: "Комаров С.В."
-            edited: "02.03.2016"
-        }       
-    ]
+    # gets list of calculations from the CalculationResource service
+    # and attaches the date to the controller scope 
+    $scope.listCollection =  CalculationResource.query()
 
     # logic on listview row click
     # goes to the certain calculation view state
@@ -50,6 +25,7 @@ angular.module 'app.list'
 .controller 'ListCtrl', [
     '$scope'
     '$state'
+    'CalculationResource'
 
     ListCtrl
 ]

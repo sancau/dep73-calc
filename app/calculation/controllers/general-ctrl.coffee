@@ -6,7 +6,10 @@
 ###
 
 # controller function
-GeneralCtrl = ($scope) ->
+GeneralCtrl = ($scope, ActiveCalculation) ->
+
+    # shared data object reference
+    $scope.activeCalculation = ActiveCalculation
 
     # TODO >> Should get select options from the configuration in DB
     # For now it's hardcoded
@@ -60,6 +63,7 @@ GeneralCtrl = ($scope) ->
     # Create new calculation logic
     $scope.createCalculationButtonContent = "Создать расчёт"
     $scope.createCalculation = () ->
+
         $scope.submitted = on
 
         if $scope.generalInfoForm.$valid
@@ -71,6 +75,7 @@ GeneralCtrl = ($scope) ->
 angular.module 'app.calculation'
     .controller 'GeneralCtrl', [
         '$scope'
+        'ActiveCalculation'
 
         GeneralCtrl
     ]

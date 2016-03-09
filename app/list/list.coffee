@@ -7,6 +7,7 @@
 
 angular.module 'app.list', [
     'ui.router'
+
 ]
 
 .config [

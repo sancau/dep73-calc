@@ -4,7 +4,7 @@
     Description: Main view for the list module 
     Author: Alexander Tatchin | github.com/sancau
 
-.well(ng-controller="ListCtrl")
+.well
     
     a(ui-sref="calculation-new")
         button.btn Новый расчёт
@@ -39,3 +39,10 @@
         li User can clone existing calculation to use it as the base for a new one
         li User can delete existing calculation
     
+    hr
+    pre 
+        pre.alert-warning 1. "Controller as"
+        pre.alert-success 2. "Calculation object to share beetween ctrls" 
+        pre.alert-warning 3. "Calculation resource to feed calculation object"
+        pre.alert-warning 4. "GeneralCtrl, ClimaticCtrl and StatusCtrl a binded to the CalculationObject feeded with CalculationResource"
+        pre.alert-warning 5. "OnSaveChanges() from above mentioned ctrls forces CalculationObject to update and therefore updating the other ctrls on the calculation page" 

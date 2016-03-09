@@ -8,6 +8,8 @@
 angular.module 'app.calculation', [
     'ui.router'
     'ui.bootstrap'
+    
+    'dm.stickyNav' 
 ]
 
 .config [

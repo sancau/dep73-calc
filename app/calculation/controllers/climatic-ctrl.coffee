@@ -6,7 +6,10 @@
 ###
 
 # controller function
-ClimaticCtrl = ($scope) ->
+ClimaticCtrl = ($scope, ActiveCalculation) ->
+
+    # shared data object reference
+    $scope.activeCalculation = ActiveCalculation
 
     ###
         TODO 
@@ -103,6 +106,7 @@ ClimaticCtrl = ($scope) ->
 angular.module 'app.calculation'
     .controller 'ClimaticCtrl', [
         '$scope'
+        'ActiveCalculation'
 
         ClimaticCtrl
     ]

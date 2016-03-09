@@ -6,13 +6,16 @@
 ###
 
 # controller function
-StatusCtrl = ($scope) ->
+StatusCtrl = ($scope, ActiveCalculation) ->
 
+    # shared data object reference
+    $scope.activeCalculation = ActiveCalculation
 
 # controller registration
 angular.module 'app.calculation'
     .controller 'StatusCtrl', [
         '$scope'
+        'ActiveCalculation'
 
         StatusCtrl
     ] 

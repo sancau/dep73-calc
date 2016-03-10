@@ -30,9 +30,7 @@ section#forms-panel
             )
                 #general-form(
                     ng-include="'calculation/views/general-partial/general-form.jade'"
-                )
-
-                pre {{ activeCalculation.data }} 
+                ) 
                 
                 //- Save general info changes (logic on GeneralCrtl)
                 button(ng-click="saveChanges()") {{ saveChangesButtonContent }}

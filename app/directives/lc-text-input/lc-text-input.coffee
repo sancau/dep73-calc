@@ -15,6 +15,7 @@ lcTextInput = () ->
         inputId: '@'
         required: '='
         inputObject: '='
+        model: '='
         submitted: '='
     templateUrl: 'directives/lc-text-input/lc-text-input-view.jade'
     link: (scope) ->

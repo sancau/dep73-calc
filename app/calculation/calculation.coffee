@@ -31,10 +31,10 @@ angular.module 'app.calculation', [
 
             #state for a new calculation
             .state 'calculation-new',
-                url: '/calculation-new'
+                url: '/calculation'
                 views:
                     'main':
-                        controller: 'GeneralCtrl'
+                        controller: 'NewCalculationCtrl'
                         templateUrl: 'calculation/views/calculation-new-view.jade'
                 data:
                     pageTitle: 'Новый расчёт трудоёмкости'

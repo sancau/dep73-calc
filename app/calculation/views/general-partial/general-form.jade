@@ -17,6 +17,7 @@ form(
         label="Наименование изделия",
         input-id="name",
         input-object="generalInfoForm.name",
+        model="activeCalculation.data.general.name",
         submitted="submitted"
     )
 
@@ -25,8 +26,8 @@ form(
         label="Вид испытаний",
         input-id="type",
         input-object="generalInfoForm.type",
-        options="options",
-        selected-option="selectedType",
+        options="activeCalculation.typeOptions",
+        selected-option="activeCalculation.data.general.type.code",
         submitted="submitted"
     )
 
@@ -35,6 +36,7 @@ form(
         label="Руководящий документ", 
         input-id="doc", 
         input-object="generalInfoForm.doc",
+        model="activeCalculation.data.general.document",
         submitted="submitted"
     )
 
@@ -44,5 +46,6 @@ form(
         rows="5", 
         input-id="comment",
         input-object="generalInfoForm.comment",
+        model="activeCalculation.data.general.comment",
         submitted="submitted"
     )

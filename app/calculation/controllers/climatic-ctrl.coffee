@@ -50,8 +50,7 @@ ClimaticCtrl = ($scope, ActiveCalculation) ->
         # then a new blank block should be populated after deletion
         $scope.blocks.push {} if $scope.blocks.length is 0
 
-    # TODO >> should get select options from the configuration in DB
-    # For now it's hardcoded
+    # form block type options
     $scope.options = 
     [
         {   

@@ -12,6 +12,7 @@ lcStringInput = () ->
     scope: 
         label: '@'
         inputId: '@'
+        model: '='
         required: '='
         inputObject: '='
         submitted: '='

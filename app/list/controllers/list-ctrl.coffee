@@ -10,14 +10,14 @@ ListCtrl = ($scope, $state, CalculationResource) ->
 
     # gets list of calculations from the CalculationResource service
     # and attaches the date to the controller scope 
-    $scope.listCollection =  CalculationResource.query()
+    $scope.calculationsList =  CalculationResource.query()
 
     # logic on listview row click
     # goes to the certain calculation view state
     $scope.showCalculation = (calculation) ->
-        console.log "going to #{calculation.name} page"
+        console.log "going to #{calculation.general.name} page"
 
-        $state.go('calculation')
+        $state.go 'calculation', { calculationID: calculation.id }
 
 
 # controller registration

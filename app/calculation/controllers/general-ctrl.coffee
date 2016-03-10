@@ -11,6 +11,9 @@ GeneralCtrl = ($scope, ActiveCalculation) ->
     # shared data object reference
     $scope.activeCalculation = ActiveCalculation
 
+    # initialize form fields with ActiveCalculation values
+    #$scope.generalInfoForm.name.$modelValue = "ИМЯ"
+
     # TODO >> Should get select options from the configuration in DB
     # For now it's hardcoded
     $scope.options = [
@@ -47,18 +50,13 @@ GeneralCtrl = ($scope, ActiveCalculation) ->
     # Save changes logic 
     $scope.saveChangesButtonContent = 'Сохранить' 
     $scope.saveChanges = () ->
+
         $scope.submitted = on
 
         if $scope.generalInfoForm.$valid
             console.log 'VALID FORM general ctrl saveChanges()'
         else
             console.log 'INVALID FORM general ctrl saveChanges()'
-
-        # if $scope.generalInfoForm.$valid
-        #     CalculationObject.name = $scope.generalInfoForm.name.$modelValue
-        #     CalculationObject.type = $scope.generalInfoForm.type.$modelValue
-        #     CalculationObject.doc = $scope.generalInfoForm.doc.$modelValue
-        #     CalculationObject.comment = $scope.generalInfoForm.comment.$modelValue
 
     # Create new calculation logic
     $scope.createCalculationButtonContent = "Создать расчёт"

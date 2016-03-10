@@ -11,7 +11,7 @@ section#status-panel(
 )
     div(ng-controller="StatusCtrl")
         h4 Информация о расчёте
-        pre {{ activeCalculation.name }}
+        pre {{ activeCalculation.data.general.name }}
 
 //- Calculation data inputs section
 section#forms-panel
@@ -32,7 +32,7 @@ section#forms-panel
                     ng-include="'calculation/views/general-partial/general-form.jade'"
                 )
 
-                pre {{ activeCalculation.name }} 
+                pre {{ activeCalculation.data }} 
                 
                 //- Save general info changes (logic on GeneralCrtl)
                 button(ng-click="saveChanges()") {{ saveChangesButtonContent }}

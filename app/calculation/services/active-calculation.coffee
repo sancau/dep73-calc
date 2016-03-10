@@ -11,7 +11,6 @@
 angular.module 'app.calculation'
 
 .factory 'ActiveCalculation', () ->
-    name: "ActiveCalculation"
-    purpose: "DataSharing"
+	data: ''
 
 

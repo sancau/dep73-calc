@@ -21,16 +21,17 @@ angular.module 'app.calculation', [
         
             #state for an existing calculation
             .state 'calculation',
-                url: '/calculation'
+                url: '/calculation/:calculationID'
                 views: 
                     'main':
+                        controller: 'CalculationCtrl'
                         templateUrl: 'calculation/views/calculation-view.jade'
                 data:
                     pageTitle: 'Расчёт трудоёмкости'
 
             #state for a new calculation
             .state 'calculation-new',
-                url: '/calculation/new'
+                url: '/calculation-new'
                 views:
                     'main':
                         controller: 'GeneralCtrl'

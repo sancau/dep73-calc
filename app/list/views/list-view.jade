@@ -23,13 +23,13 @@
         tbody
 
         tr(
-            ng-repeat="calculation in listCollection",
+            ng-repeat="calculation in calculationsList",
             ng-click="showCalculation(calculation)"
         )
-            td {{ calculation.name }}
-            td {{ calculation.type }}
-            td {{ calculation.author }}
-            td {{ calculation.edited }}
+            td {{ calculation.general.name }}
+            td {{ calculation.general.type }}
+            td {{ calculation.meta.author }}
+            td {{ calculation.meta.edited }}
 
     hr
     h5 TODO:

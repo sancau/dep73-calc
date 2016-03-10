@@ -12,13 +12,13 @@ angular.module 'app', [
     'ngResource'
 
     'lc.directives' # custom application directives
-
-    'app.views' # cached templates module 
+    
+    'app.list' # depricate / merge with app.calculation?   
 
     'app.auth' # user athentication and authorization
-    'app.list' # depricate / merge with app.calculation?   
     'app.calculation' # calculations list / view / create / manage
     'app.settings' # calculation settings preset manager
+    'app.views' # cached templates module 
 ]
 .config [
     '$stateProvider'

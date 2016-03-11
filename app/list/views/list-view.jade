@@ -23,26 +23,26 @@
         tbody
 
         tr(
-            ng-repeat="calculation in calculationsList",
-            ng-click="showCalculation(calculation)"
+            ng-repeat="calculation in list.calculationsList",
+            ng-click="list.showCalculation(calculation)"
         )
             td {{ calculation.general.name }}
             td {{ calculation.general.type.label }}
             td {{ calculation.meta.author }}
             td {{ calculation.meta.edited }}
 
-    hr
-    h5 TODO:
-    ul
-        li List view of all the calculation in the DB
-        li User can proceed to a certain calculation view by clicking it's row in the list view
-        li User can clone existing calculation to use it as the base for a new one
-        li User can delete existing calculation
+    //- hr
+    //- h5 TODO:
+    //- ul
+    //-     li List view of all the calculation in the DB
+    //-     li User can proceed to a certain calculation view by clicking it's row in the list view
+    //-     li User can clone existing calculation to use it as the base for a new one
+    //-     li User can delete existing calculation
     
-    hr
-    pre 
-        pre.alert-warning 1. "Controller as"
-        pre.alert-success 2. "Calculation object to share beetween ctrls" 
-        pre.alert-warning 3. "Calculation resource to feed calculation object"
-        pre.alert-warning 4. "GeneralCtrl, ClimaticCtrl and StatusCtrl a binded to the CalculationObject feeded with CalculationResource"
-        pre.alert-warning 5. "OnSaveChanges() from above mentioned ctrls forces CalculationObject to update and therefore updating the other ctrls on the calculation page" 
+    //- hr
+    //- pre 
+    //-     pre.alert-warning 1. "Controller as"
+    //-     pre.alert-success 2. "Calculation object to share beetween ctrls" 
+    //-     pre.alert-warning 3. "Calculation resource to feed calculation object"
+    //-     pre.alert-warning 4. "GeneralCtrl, ClimaticCtrl and StatusCtrl a binded to the CalculationObject feeded with CalculationResource"
+    //-     pre.alert-warning 5. "OnSaveChanges() from above mentioned ctrls forces CalculationObject to update and therefore updating the other ctrls on the calculation page" 

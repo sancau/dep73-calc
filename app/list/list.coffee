@@ -18,7 +18,7 @@ angular.module 'app.list', [
             url: '/'
             views: 
                 'main':
-                    controller: 'ListCtrl'
+                    controller: 'ListCtrl as list'
                     templateUrl: 'list/views/list-view.jade'
             data:
                 pageTitle: 'История расчётов'

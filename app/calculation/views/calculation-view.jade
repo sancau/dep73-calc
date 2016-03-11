@@ -10,8 +10,26 @@ section#status-panel(
     ignore-element-size,
 )
     div(ng-controller="StatusCtrl")
-        h4 Информация о расчёте
-        pre {{ activeCalculation.data.general.name }}
+        h3 Текущий расчёт
+        hr
+        
+        table.table
+            thead 
+                th.info Общая информация
+                th.success ЗАПОЛНЕНА
+            tbody
+                tr
+                    td.info Изделие:
+                    td.success {{ activeCalculation.data.general.name }}
+                tr
+                    td.info Вид испытаний:
+                    td.success {{ activeCalculation.data.general.type.label }}
+                tr
+                    td.info Руководящий документ:
+                    td.success {{ activeCalculation.data.general.document }}
+                tr
+                    td.info Комментарий:
+                    td.success {{ activeCalculation.data.general.comment }}
 
 //- Calculation data inputs section
 section#forms-panel

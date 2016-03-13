@@ -24,8 +24,8 @@ angular.module 'app.calculation', [
                 url: '/calculation/:calculationID'
                 views: 
                     'main':
-                        controller: 'CalculationCtrl'
                         templateUrl: 'calculation/views/calculation-view.jade'
+                        resolve: calculationPreload
                 data:
                     pageTitle: 'Расчёт трудоёмкости'
 
@@ -38,4 +38,33 @@ angular.module 'app.calculation', [
                         templateUrl: 'calculation/views/calculation-new-view.jade'
                 data:
                     pageTitle: 'Новый расчёт трудоёмкости'
-]                        
+]
+
+# this preloads calculation data to feed ActiveCalculation object 
+# before calculation page is even loaded
+calculationPreload = 
+    preload: [
+        'CalculationResource'
+        'ActiveCalculation'
+        '$stateParams'
+
+        (CalculationResource, ActiveCalculation, $stateParams) ->
+
+            id = parseInt $stateParams.calculationID
+
+            # Storing the calculation in activeCalculation
+            # TEMP use get instead with the real API
+            CalculationResource.query()
+                .$promise.then(
+                    # success
+                    (data) ->
+                        calculation = (i for i in data when i.id is id)[0]
+                        ActiveCalculation.data = calculation
+
+                        console.log "Caclulation Data Preloaded"
+
+                    # error
+                    (error) ->
+                        console.log error
+                )
+    ]

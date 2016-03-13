@@ -8,6 +8,10 @@
 # controller function
 GeneralCtrl = ($scope, ActiveCalculation) ->
 
+    console.log 'GeneralCtrl loaded'
+
+    $scope.test = ActiveCalculation.data
+
     # shared data object reference
     $scope.activeCalculation = ActiveCalculation
 

@@ -7,7 +7,7 @@
 #climatic-controls(ng-controller="ClimaticCtrl")
 
     #blocks(ng-repeat="block in blocks")   
-   
+        
         //- Form for a block of inputs
         form(role="form", 
              name="block.climaticForm", 
@@ -15,19 +15,19 @@
              ng-model="block.climaticFormModel")
                 
             //- Visible only if the block type is already chosen
-            #block-verbose-name(ng-hide="!block.selectedOption")
-                h4 {{ getName($index + 1) }} ({{ block.selectedOption.name }}) 
+            #block-verbose-name(ng-hide="!block.data.type")
+                h4 {{ getName($index + 1) }} ({{ block.data.type.name }}) 
                 hr
                 
             //- Allows user to select type for the block
             #type-selector.form-group
                 label(for="type") Вид испытаний
                 
-                select(ng-model="block.selectedOption",
-                       ng-options="option as option.name for option in options")
+                select(ng-model="block.data.type",
+                       ng-options="option.name for option in options track by option.id")
                              
             //- Includes the appropriate form view depending on the block's type
-            #form-include(ng-include="block.selectedOption.formView")
+            #form-include(ng-include="block.data.type.formView")
 
         //- Delete block button
         button(ng-click="delete(block)") Удалить блок

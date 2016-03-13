@@ -12,8 +12,10 @@ angular.module 'app.calculation'
 
 .factory 'ActiveCalculation', () ->
 	
+    # calculation data object
 	data: ''
 
+    # test type choices
 	typeOptions: [
         { 
             label: 'Квалификационные'

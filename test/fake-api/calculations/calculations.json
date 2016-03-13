@@ -18,10 +18,51 @@
             "comment": "Комментарии излишни"
         },
         "climatic": {
+            "blocks": [
+                {
+                    "index": 1,
+                    "type": {
+                        "id": 1,
+                        "name": "Повышенная температура",
+                        "formView": "calculation/views/climatic-partial/sub-partials/temperature-form.jade"
+                    },                    
+                    "values": {
+                        "workTemp": 40,
+                        "workTime": 6,
+                        "edgeTemp": 100,
+                        "edgeTime": 1
+                    }
+                },
+                {
+                    "index": 2,
+                    "type": {
+                        "name": "Технологическая операция",
+                        "id": 5,
+                        "formView": "calculation/views/climatic-partial/sub-partials/operation-form.jade"
+                    },
+                    "values": {
+                        "operationTime": 0.5
+                    }
+                },
+                {
+                    "index": 3,
+                    "type": {
+                        "name": "Повышенная влажность",
+                        "id": 4,
+                        "formView": "calculation/views/climatic-partial/sub-partials/humidity-form.jade"
+                    }, 
+                    "values": {
+                        "humValue": 98,
+                        "humTime": 24
+                    }
+                }
+            ],
+            "results": {
 
+            }
         },
         "mechanic": {
-
+            "blocks": []
         }   
     },
     {
@@ -43,10 +84,10 @@
             "comment": "Комментарии излишни"
         },
         "climatic": {
-
+            "blocks": []
         },
         "mechanic": {
-
+            "blocks": []
         }   
     },
     {
@@ -68,10 +109,10 @@
             "comment": "Комментарии излишни"
         },
         "climatic": {
-
+            "blocks": []
         },
         "mechanic": {
-
+            "blocks": []
         }   
     },
     {
@@ -93,10 +134,10 @@
             "comment": "Комментарии излишни"
         },
         "climatic": {
-
+            "blocks": []
         },
         "mechanic": {
-
+            "blocks": []
         }   
     }       
 ]

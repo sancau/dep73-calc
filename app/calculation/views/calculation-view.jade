@@ -9,7 +9,7 @@ section#status-panel(
     sticky-nav="ng-sticky-behaviour",
     ignore-element-size,
 )
-    div(ng-controller="StatusCtrl")
+    div(ng-controller="StatusCtrl as status")
         h3 Текущий расчёт
         hr
         
@@ -20,16 +20,16 @@ section#status-panel(
             tbody
                 tr
                     td.info Изделие:
-                    td.success {{ activeCalculation.data.general.name }}
+                    td.success {{ status.activeCalculation.data.general.name }}
                 tr
                     td.info Вид испытаний:
-                    td.success {{ activeCalculation.data.general.type.label }}
+                    td.success {{ status.activeCalculation.data.general.type.label }}
                 tr
                     td.info Руководящий документ:
-                    td.success {{ activeCalculation.data.general.document }}
+                    td.success {{ status.activeCalculation.data.general.document }}
                 tr
                     td.info Комментарий:
-                    td.success {{ activeCalculation.data.general.comment }}
+                    td.success {{ status.activeCalculation.data.general.comment }}
 
 //- Calculation data inputs section
 section#forms-panel

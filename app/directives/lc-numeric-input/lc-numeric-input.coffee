@@ -14,6 +14,7 @@ lcNumericInput = () ->
         inputId: '@'
         required: '='
         inputObject: '='
+        model: '='
         submitted: '='
         value: '@'
         min: '@'

@@ -7,6 +7,11 @@
 
 NewCalculationCtrl = ($scope, ActiveCalculation) ->
 
+    # Each form ctrl hosts data object for form model
+    # on save this data object injects into activeCalculation object
+    # then activeCalculation obj POST to server and reload activeCalculation 
+    # with GET
+
     # Reset active calculation
     ActiveCalculation.data = ''
 

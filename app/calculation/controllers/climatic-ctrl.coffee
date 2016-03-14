@@ -23,7 +23,6 @@ ClimaticCtrl = ($scope, ActiveCalculation) ->
             blocks = [{data: ''}]
         else
             # parse object and populate blocks
-            console.log "climatic exists"
             for block in data.climatic.blocks
                 thisBlock = 
                     data: block

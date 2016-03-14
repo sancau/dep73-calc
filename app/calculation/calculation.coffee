@@ -19,7 +19,7 @@ angular.module 'app.calculation', [
 
         $stateProvider
         
-            #state for an existing calculation
+            # an existing calculation
             .state 'calculation',
                 url: '/calculation/:calculationID'
                 views: 
@@ -29,7 +29,7 @@ angular.module 'app.calculation', [
                 data:
                     pageTitle: 'Расчёт трудоёмкости'
 
-            #state for a new calculation
+            # a new calculation
             .state 'calculation-new',
                 url: '/calculation'
                 views:
@@ -41,7 +41,7 @@ angular.module 'app.calculation', [
 ]
 
 # this preloads calculation data to feed ActiveCalculation object 
-# before calculation page is even loaded
+# before calculation page and inner ctrls are loaded
 calculationPreload = 
     preload: [
         'CalculationResource'

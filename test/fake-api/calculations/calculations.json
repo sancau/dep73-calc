@@ -23,8 +23,7 @@
                     "index": 1,
                     "type": {
                         "id": 1,
-                        "name": "Повышенная температура",
-                        "formView": "calculation/views/climatic-partial/sub-partials/temperature-form.jade"
+                        "name": "Повышенная температура"
                     },                    
                     "values": {
                         "workTemp": 40,
@@ -37,8 +36,7 @@
                     "index": 2,
                     "type": {
                         "name": "Технологическая операция",
-                        "id": 5,
-                        "formView": "calculation/views/climatic-partial/sub-partials/operation-form.jade"
+                        "id": 5
                     },
                     "values": {
                         "operationTime": 0.5
@@ -48,8 +46,7 @@
                     "index": 3,
                     "type": {
                         "name": "Повышенная влажность",
-                        "id": 4,
-                        "formView": "calculation/views/climatic-partial/sub-partials/humidity-form.jade"
+                        "id": 4
                     }, 
                     "values": {
                         "humValue": 98,

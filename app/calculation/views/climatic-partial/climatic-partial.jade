@@ -27,7 +27,7 @@
                        ng-options="option.name for option in options track by option.id")
                              
             //- Includes the appropriate form view depending on the block's type
-            #form-include(ng-include="block.data.type.formView")
+            #form-include(ng-include="getFormUrl(block.data.type.id, block)")
 
         //- Delete block button
         button(ng-click="delete(block)") Удалить блок

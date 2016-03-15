@@ -15,6 +15,9 @@ StatusCtrl = (ActiveCalculation) ->
     # shared data object reference
     vm.activeCalculation = ActiveCalculation
 
+    # view is binded to the ActiveCalculation object 
+    # lets user to monitor current calculation parameters and results
+
     return vm 
 
 # controller registration

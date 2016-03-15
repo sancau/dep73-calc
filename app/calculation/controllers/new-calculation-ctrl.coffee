@@ -26,6 +26,11 @@ NewCalculationCtrl = ($scope, ActiveCalculation) ->
 
         if $scope.generalInfoForm.$valid
             console.log 'VALID FORM new calc ctrl createCalculation()'
+
+            # create new calculation in DB via POST on API endpoint
+
+            # GET new calculation as ActiveCalculation
+            # Redirect to calculation/{{new-calc-id}}
         else
             console.log 'INVALID FORM new calc ctrl createCalculation()'
 

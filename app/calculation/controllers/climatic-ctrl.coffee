@@ -8,62 +8,8 @@
 # controller function
 ClimaticCtrl = ($scope, ActiveCalculation) ->
 
-    ###
-    TODO
-    EXCLUDE FORMVIEW URL FROM DATA 
-    ###
-
+    # DEBUG line
     console.log "ClimaticCtrl loaded"
-
-    # Function to parse ActiveCalculation object and populate blocks array
-    getBlocks = (data) ->
-        blocks = []        
-        # if there's no climatic data -> populate 1 empty block
-        if data.climatic.blocks.length is 0
-            blocks = [{data: ''}]
-        else
-            # parse object and populate blocks
-            for block in data.climatic.blocks
-                thisBlock = 
-                    data: block
-
-                blocks.push thisBlock
-
-        return blocks 
-
-    # Initial array of field groups contains 1 blank block
-    $scope.blocks = getBlocks ActiveCalculation.data
-
-    # Returns a verbose name for a block to display
-    $scope.getName = ($index) ->
-        "Блок #{$index}"
-
-    # Add block logic
-    $scope.clone = () ->
-
-        # if no data entered in existing block user cant add another 
-        hasEmptyBlock = no
-        for block in $scope.blocks
-            if not block.data.type
-                hasEmptyBlock = yes
-        if hasEmptyBlock then return console.log "there's an empty block to use | ClimaticCtrl clone()"
-
-        # If form structure changed after submit attempt the state resets
-        $scope.submitted = off
-        $scope.blocks.push {data: ''}
-
-    # Delete block logic
-    $scope.delete = (block) ->
-        # If form structure changed after submit attempt the state resets
-        $scope.submitted = off
-
-        # Delete field group by index
-        index = $scope.blocks.indexOf block
-        $scope.blocks.splice index, 1
-
-        # If 0 blocks remains after deletion 
-        # then a new blank block should be populated after deletion
-        $scope.blocks.push {data: ''} if $scope.blocks.length is 0
 
     # form block type options
     $scope.options = 
@@ -95,6 +41,69 @@ ClimaticCtrl = ($scope, ActiveCalculation) ->
         }
     ]
 
+    # Function to parse ActiveCalculation object and populate blocks array
+    getBlocks = (data) ->
+        blocks = []        
+        # if there's no climatic data -> populate 1 empty block
+        if data.climatic.blocks.length is 0
+            blocks = [{data: ''}]
+        else
+            # parse object and populate blocks
+            for block in data.climatic.blocks
+                thisBlock = 
+                    data: block
+
+                blocks.push thisBlock
+
+        return blocks 
+
+    # Initial array of field groups contains 1 blank block
+    $scope.blocks = getBlocks ActiveCalculation.data
+
+    # Returns a verbose name for a block to display
+    $scope.getName = ($index) ->
+        # ISSUE | NOT CRITICAL Why it invoked so many times??? 
+        # DEBUG LINE 
+        # console.log 'getName() invoked'
+
+        "Блок #{$index}"
+
+    # returns the form view url for a block type
+    $scope.getFormUrl = (typeID, block) ->
+        
+        # ISSUE | NOT CRITICAL Why it invoked so many times??? 
+        # DEBUG line
+        # console.log 'getFormUrl() invoked'
+
+        return (i.formView for i in $scope.options when i.id is typeID)[0]
+
+    # Add block logic
+    $scope.clone = () ->
+
+        # if no data entered in existing block user cant add another 
+        hasEmptyBlock = no
+        for block in $scope.blocks
+            if not block.data.type
+                hasEmptyBlock = yes
+        if hasEmptyBlock then return console.log "there's an empty block to use | ClimaticCtrl clone()"
+
+        # If form structure changed after submit attempt the state resets
+        $scope.submitted = off
+        $scope.blocks.push {data: ''}
+
+    # Delete block logic
+    $scope.delete = (block) ->
+        # If form structure changed after submit attempt the state resets
+        $scope.submitted = off
+
+        # Delete field group by index
+        index = $scope.blocks.indexOf block
+        $scope.blocks.splice index, 1
+
+        # If 0 blocks remains after deletion 
+        # then a new blank block should be populated after deletion
+        $scope.blocks.push {data: ''} if $scope.blocks.length is 0
+
     # Logic on climatic data submission
     $scope.saveChangesButtonContent = 'Сохранить' 
     $scope.saveChanges = () ->
@@ -111,13 +120,21 @@ ClimaticCtrl = ($scope, ActiveCalculation) ->
         # depending on the validation status perform proper logic
         if dataValid
             # TODO save changes logic
+            # DEBUG
             console.log "Save changes logic to go | ClimaticCtrl.saveChanges()"
             console.log "DATA TO SAVE:" 
 
             data = []
             for block in $scope.blocks
-                data.push block.data    
+                data.push block.data  
+
+            # data to POST 
+            # DEBUG 
             console.log data
+
+            # Update climatic data section of the ActiveCalculation
+            # PUT ActiveCalculation object to server
+
         else
             # TODO handle the validation error
             console.log "Form is invalid | ClimaticCtrl.saveChanges()"

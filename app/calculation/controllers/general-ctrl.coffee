@@ -23,6 +23,14 @@ GeneralCtrl = ($scope, ActiveCalculation) ->
 
         if $scope.generalInfoForm.$valid
             console.log 'VALID FORM general ctrl saveChanges()'
+
+            # bind form data to the data object 
+            # not to ActiveCalculation or $scope
+
+            # update ActiveCalculation with the general data object
+            # PUT ActiveCalculation
+            # Reload Actual ?
+
         else
             console.log 'INVALID FORM general ctrl saveChanges()'
 

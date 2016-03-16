@@ -12,9 +12,10 @@ GeneralCtrl = ($scope, ActiveCalculation, PresetsResource) ->
         .$promise.then(
             # success
             (data) ->
-                for i in data
 
-                    $scope.presetOptions = []
+                $scope.presetOptions = []
+
+                for i in data
 
                     presetOption = 
                         value: "#{i.id}"
@@ -23,8 +24,6 @@ GeneralCtrl = ($scope, ActiveCalculation, PresetsResource) ->
                     $scope.presetOptions.push presetOption
 
                 console.log "Presets loaded"
-                console.log $scope.presetOptions
-
             # error
             (error) ->
                 console.log error
@@ -54,6 +53,7 @@ GeneralCtrl = ($scope, ActiveCalculation, PresetsResource) ->
             # Reload Actual ?
 
         else
+            console.log $scope.presetOptions
             console.log 'INVALID FORM general ctrl saveChanges()'
 
 # controller registration

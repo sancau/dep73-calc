@@ -6,39 +6,61 @@
 ###
 
 # controller function
-ClimaticCtrl = ($scope, ActiveCalculation) ->
+ClimaticCtrl = (ActiveCalculation) ->
 
-    # DEBUG line
+    vm = this
+
+    # DEBUG
     console.log "ClimaticCtrl loaded"
 
     # form block type options
-    $scope.options = 
+    vm.options = 
     [
         {   
             id: 1 
             name: 'Повышенная температура' 
-            formView: 'calculation/views/climatic-partial/sub-partials/temperature-form.jade'
         }
         { 
             id: 2 
             name: 'Пониженная температура' 
-            formView: 'calculation/views/climatic-partial/sub-partials/temperature-form.jade'
         }
         { 
             id: 3 
             name: 'Пониженная влажность' 
-            formView: 'calculation/views/climatic-partial/sub-partials/humidity-form.jade'
         }
         { 
             id: 4 
             name: 'Повышенная влажность' 
-            formView: 'calculation/views/climatic-partial/sub-partials/humidity-form.jade' 
         }
         { 
             id: 5 
             name: 'Технологическая операция' 
-            formView: 'calculation/views/climatic-partial/sub-partials/operation-form.jade' 
         }
+    ]
+
+    # forms views urls depending on block type
+    formsUrls = 
+    [
+        {   
+            typeID: 1 
+            formView: 'calculation/views/climatic-partial/sub-partials/temperature-form.jade'
+        }
+        { 
+            typeID: 2 
+            formView: 'calculation/views/climatic-partial/sub-partials/temperature-form.jade'
+        }
+        { 
+            typeID: 3 
+            formView: 'calculation/views/climatic-partial/sub-partials/humidity-form.jade'
+        }
+        { 
+            typeID: 4 
+            formView: 'calculation/views/climatic-partial/sub-partials/humidity-form.jade' 
+        }
+        { 
+            typeID: 5  
+            formView: 'calculation/views/climatic-partial/sub-partials/operation-form.jade' 
+        }        
     ]
 
     # Function to parse ActiveCalculation object and populate blocks array
@@ -49,71 +71,71 @@ ClimaticCtrl = ($scope, ActiveCalculation) ->
             blocks = [{data: ''}]
         else
             # parse object and populate blocks
-            for block in data.climatic.blocks
+            for dataItem in data.climatic.blocks
                 thisBlock = 
-                    data: block
+                    data: dataItem
 
                 blocks.push thisBlock
 
         return blocks 
 
     # Initial array of field groups contains 1 blank block
-    $scope.blocks = getBlocks ActiveCalculation.data
+    vm.blocks = getBlocks ActiveCalculation.data
 
     # Returns a verbose name for a block to display
-    $scope.getName = ($index) ->
+    vm.getName = (index) ->
         # ISSUE | NOT CRITICAL Why it invoked so many times??? 
-        # DEBUG LINE 
+        # DEBUG  
         # console.log 'getName() invoked'
 
-        "Блок #{$index}"
+        "Блок #{index}"
 
     # returns the form view url for a block type
-    $scope.getFormUrl = (typeID, block) ->
+    vm.getFormUrl = (typeID, block) ->
         
         # ISSUE | NOT CRITICAL Why it invoked so many times??? 
-        # DEBUG line
+        # DEBUG 
         # console.log 'getFormUrl() invoked'
 
-        return (i.formView for i in $scope.options when i.id is typeID)[0]
+        return (i.formView for i in formsUrls when i.typeID is typeID)[0]
 
     # Add block logic
-    $scope.clone = () ->
+    vm.clone = () ->
 
         # if no data entered in existing block user cant add another 
         hasEmptyBlock = no
-        for block in $scope.blocks
+        for block in vm.blocks
             if not block.data.type
                 hasEmptyBlock = yes
         if hasEmptyBlock then return console.log "there's an empty block to use | ClimaticCtrl clone()"
 
         # If form structure changed after submit attempt the state resets
-        $scope.submitted = off
-        $scope.blocks.push {data: ''}
+        vm.submitted = off
+        vm.blocks.push {data: ''}
 
     # Delete block logic
-    $scope.delete = (block) ->
+    vm.delete = (block) ->
         # If form structure changed after submit attempt the state resets
-        $scope.submitted = off
+        vm.submitted = off
 
         # Delete field group by index
-        index = $scope.blocks.indexOf block
-        $scope.blocks.splice index, 1
+        index = vm.blocks.indexOf block
+        vm.blocks.splice index, 1
 
         # If 0 blocks remains after deletion 
         # then a new blank block should be populated after deletion
-        $scope.blocks.push {data: ''} if $scope.blocks.length is 0
+        vm.blocks.push {data: ''} if vm.blocks.length is 0
 
     # Logic on climatic data submission
-    $scope.saveChangesButtonContent = 'Сохранить' 
-    $scope.saveChanges = () ->
+    vm.saveChangesButtonContent = 'Сохранить' 
+    vm.saveChanges = () ->
 
         # flag signals that form was submitted by the user
-        $scope.submitted = on
+        vm.submitted = on
 
         # check each block of form to be valid 
         dataValid = yes
-        for block in $scope.blocks 
+        for block in vm.blocks 
             if not block.climaticForm.$valid
                 dataValid = no
 
@@ -125,7 +147,8 @@ ClimaticCtrl = ($scope, ActiveCalculation) ->
             console.log "DATA TO SAVE:" 
 
             data = []
-            for block in $scope.blocks
+            for block in vm.blocks
+
                 data.push block.data  
 
             # data to POST 
@@ -139,10 +162,11 @@ ClimaticCtrl = ($scope, ActiveCalculation) ->
             # TODO handle the validation error
             console.log "Form is invalid | ClimaticCtrl.saveChanges()"
 
+    return vm   
+
 # controller registration
 angular.module 'app.calculation'
     .controller 'ClimaticCtrl', [
-        '$scope'
         'ActiveCalculation'
 
         ClimaticCtrl

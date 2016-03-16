@@ -19,26 +19,25 @@ NewCalculationCtrl = ($scope, ActiveCalculation, PresetsResource) ->
     $scope.activeCalculation = ActiveCalculation
 
     PresetsResource.query()
-    .$promise.then(
-        # success
-        (data) ->
-            for i in data
+        .$promise.then(
+            # success
+            (data) ->
 
                 $scope.presetOptions = []
 
-                presetOption = 
-                    value: "#{i.id}"
-                    label: i.name
+                for i in data
 
-                $scope.presetOptions.push presetOption
+                    presetOption = 
+                        value: "#{i.id}"
+                        label: i.name
 
-            console.log "Presets loaded"
-            console.log $scope.presetOptions
+                    $scope.presetOptions.push presetOption
 
-        # error
-        (error) ->
-            console.log error
-    )
+                console.log "Presets loaded"
+            # error
+            (error) ->
+                console.log error
+        )
 
     # Create new calculation logic
     $scope.createCalculationButtonContent = "Создать расчёт"

@@ -8,13 +8,31 @@
             "editor": "Баба Яга",
             "edited": "05.03.2016"
         },
-       	"settings": {
-       		"upSpeed": 2,
-       		"downSpeed": 3,
-       		"normalConditions": {
-       			"temp": 22,
-       			"hum": 30
-       		} 		
-       	}
+        "settings": {
+            "upSpeed": 2,
+            "downSpeed": 3,
+            "normalConditions": {
+                "temp": 22,
+                "hum": 30
+            }       
+        }
+    },
+    {
+        "id": 2,
+        "name": "Аттестация оборудования",
+        "meta": {
+            "author": "Царь Горох",
+            "created": "10.10.2015",
+            "editor": "Баба Яга",
+            "edited": "05.03.2016"
+        },
+        "settings": {
+            "upSpeed": 2,
+            "downSpeed": 3,
+            "normalConditions": {
+                "temp": 22,
+                "hum": 30
+            }     
+        }
     }
 ]

@@ -4,9 +4,9 @@
     Description: Partial view for climatic data inputs 
     Author: Alexander Tatchin | github.com/sancau
 
-#climatic-controls(ng-controller="ClimaticCtrl")
+#climatic-controls(ng-controller="ClimaticCtrl as climatic")
 
-    #blocks(ng-repeat="block in blocks")   
+    #blocks(ng-repeat="block in climatic.blocks")   
         
         //- Form for a block of inputs
         form(role="form", 
@@ -24,17 +24,17 @@
                 label(for="type") Вид испытаний
                 
                 select(ng-model="block.data.type",
-                       ng-options="option.name for option in options track by option.id")
+                       ng-options="option.name for option in climatic.options track by option.id")
                              
             //- Includes the appropriate form view depending on the block's type
-            #form-include(ng-include="getFormUrl(block.data.type.id, block)")
+            #form-include(ng-include="climatic.getFormUrl(block.data.type.id, block)")
 
         //- Delete block button
-        button(ng-click="delete(block)") Удалить блок
+        button(ng-click="climatic.delete(block)") Удалить блок
         hr
 
     //- Submit button
-    button(ng-click="saveChanges()") {{ saveChangesButtonContent }}
+    button(ng-click="climatic.saveChanges()") {{ climatic.saveChangesButtonContent }}
     
     //- Clone block button
-    button(ng-click="clone()") Добавить блок
+    button(ng-click="climatic.clone()") Добавить блок

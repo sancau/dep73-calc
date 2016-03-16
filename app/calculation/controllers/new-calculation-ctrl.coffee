@@ -5,7 +5,7 @@
     Author: Alexander Tatchin | github.com/sancau
 ###
 
-NewCalculationCtrl = ($scope, ActiveCalculation) ->
+NewCalculationCtrl = ($scope, ActiveCalculation, PresetsResource) ->
 
     # Each form ctrl hosts data object for form model
     # on save this data object injects into activeCalculation object
@@ -17,6 +17,28 @@ NewCalculationCtrl = ($scope, ActiveCalculation) ->
 
     # scope reference for active calculation
     $scope.activeCalculation = ActiveCalculation
+
+    PresetsResource.query()
+    .$promise.then(
+        # success
+        (data) ->
+            for i in data
+
+                $scope.presetOptions = []
+
+                presetOption = 
+                    value: "#{i.id}"
+                    label: i.name
+
+                $scope.presetOptions.push presetOption
+
+            console.log "Presets loaded"
+            console.log $scope.presetOptions
+
+        # error
+        (error) ->
+            console.log error
+    )
 
     # Create new calculation logic
     $scope.createCalculationButtonContent = "Создать расчёт"
@@ -40,6 +62,7 @@ angular.module 'app.calculation'
     .controller 'NewCalculationCtrl', [
         '$scope'
         'ActiveCalculation'
+        'PresetsResource'
 
         NewCalculationCtrl
     ]

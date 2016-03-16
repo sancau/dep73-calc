@@ -6,7 +6,29 @@
 ###
 
 # controller function
-GeneralCtrl = ($scope, ActiveCalculation) ->
+GeneralCtrl = ($scope, ActiveCalculation, PresetsResource) ->
+
+    PresetsResource.query()
+        .$promise.then(
+            # success
+            (data) ->
+                for i in data
+
+                    $scope.presetOptions = []
+
+                    presetOption = 
+                        value: "#{i.id}"
+                        label: i.name
+
+                    $scope.presetOptions.push presetOption
+
+                console.log "Presets loaded"
+                console.log $scope.presetOptions
+
+            # error
+            (error) ->
+                console.log error
+        )
 
     console.log 'GeneralCtrl loaded'
 
@@ -39,6 +61,7 @@ angular.module 'app.calculation'
     .controller 'GeneralCtrl', [
         '$scope'
         'ActiveCalculation'
+        'PresetsResource'
 
         GeneralCtrl
     ]

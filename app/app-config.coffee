@@ -15,6 +15,7 @@ appConfig =
 
         resources: 
             calculationsUrl: '../test/fake-api/calculations/calculations.json'
+            presetsUrl: '../test/fake-api/presets/presets.json'
 
 angular.module 'app'
 .constant 'AppConfig', appConfig

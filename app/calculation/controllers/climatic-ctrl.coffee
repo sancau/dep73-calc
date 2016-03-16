@@ -73,7 +73,8 @@ ClimaticCtrl = (ActiveCalculation) ->
             # parse object and populate blocks
             for dataItem in data.climatic.blocks
                 thisBlock = 
-                    data: dataItem
+                    # clone the object to prevent unexprected bindings
+                    data: JSON.parse JSON.stringify(dataItem)
 
                 blocks.push thisBlock
 
@@ -98,6 +99,11 @@ ClimaticCtrl = (ActiveCalculation) ->
         # console.log 'getFormUrl() invoked'
 
         return (i.formView for i in formsUrls when i.typeID is typeID)[0]
+
+    # resets block data object on type change
+    vm.blockTypeChanged = (block) ->
+        block.data.values = {}
+        return
 
     # Add block logic
     vm.clone = () ->
@@ -141,19 +147,17 @@ ClimaticCtrl = (ActiveCalculation) ->
 
         # depending on the validation status perform proper logic
         if dataValid
-            # TODO save changes logic
-            # DEBUG
-            console.log "Save changes logic to go | ClimaticCtrl.saveChanges()"
-            console.log "DATA TO SAVE:" 
-
             data = []
-            for block in vm.blocks
+            for block in vm.blocks              
+                if block.data isnt ''
+                    data.push JSON.parse JSON.stringify(block.data)  
 
-                data.push block.data  
-
+            ActiveCalculation.data.climatic.blocks = data
             # data to POST 
             # DEBUG 
-            console.log data
+            console.log "LOGIC TO SAVE THIS DATA:"
+            console.log ActiveCalculation.data
+
 
             # Update climatic data section of the ActiveCalculation
             # PUT ActiveCalculation object to server

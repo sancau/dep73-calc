@@ -13,23 +13,33 @@ section#status-panel(
         h3 Текущий расчёт
         hr
         
-        table.table
-            thead 
-                th.info Общая информация
-                th.success ЗАПОЛНЕНА
+        pre Общая информация
+        table.table(id = "general-info")            
             tbody
                 tr
                     td.info Изделие:
-                    td.success {{ status.activeCalculation.data.general.name }}
+                    td(ng-class="status.activeCalculation.data.general.name ? 'success' : 'danger'") {{ status.activeCalculation.data.general.name }}
                 tr
                     td.info Вид испытаний:
-                    td.success {{ status.activeCalculation.data.general.type.label }}
+                    td(ng-class="status.activeCalculation.data.general.type.label ? 'success' : 'danger'") {{ status.activeCalculation.data.general.type.label }}
                 tr
                     td.info Руководящий документ:
-                    td.success {{ status.activeCalculation.data.general.document }}
+                    td(ng-class="status.activeCalculation.data.general.document ? 'success' : 'danger'") {{ status.activeCalculation.data.general.document }}
                 tr
                     td.info Комментарий:
-                    td.success {{ status.activeCalculation.data.general.comment }}
+                    td(ng-class="status.activeCalculation.data.general.comment ? 'success' : 'warning'") {{ status.activeCalculation.data.general.comment }}
+    
+        hr
+        pre(ng-show="status.activeCalculation.data.climatic.blocks.length") Климатические испытания
+
+        #climatic-info(ng-repeat="block in status.activeCalculation.data.climatic.blocks")
+            h5 Блок {{$index + 1}} ({{ block.type.name }})        
+            table.table(id = "block-info")          
+                tbody
+                    tr
+                        td.info Суммарная трудоёмкость:
+                        td(ng-class="block.totalLabor ? 'success' : 'danger'") {{ block.totalLabor ? block.totalLabor : 'Нет данных' }}
+
 
 //- Calculation data inputs section
 section#forms-panel

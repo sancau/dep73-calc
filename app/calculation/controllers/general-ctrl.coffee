@@ -31,29 +31,32 @@ GeneralCtrl = ($scope, ActiveCalculation, PresetsResource) ->
 
     console.log 'GeneralCtrl loaded'
 
-    $scope.test = ActiveCalculation.data
-
     # shared data object reference
     $scope.activeCalculation = ActiveCalculation
+
+    $scope.formModel = JSON.parse JSON.stringify(ActiveCalculation.data.general)
 
     # Save changes logic 
     $scope.saveChangesButtonContent = 'Сохранить' 
     $scope.saveChanges = () ->
+        
+        # adds labels for type and preset to the data object
+        $scope.formModel.type.label = 
+            (i.label for i in ActiveCalculation.typeOptions when i.value is $scope.formModel.type.code)[0]
+        $scope.formModel.settings.label = 
+                (i.label for i in $scope.presetOptions when i.value is $scope.formModel.settings.code)[0]
 
         $scope.submitted = on
 
         if $scope.generalInfoForm.$valid
-            console.log 'VALID FORM general ctrl saveChanges()'
 
-            # bind form data to the data object 
-            # not to ActiveCalculation or $scope
+            ActiveCalculation.data.general = JSON.parse JSON.stringify($scope.formModel)
+            data = $scope.activeCalculation.data
 
-            # update ActiveCalculation with the general data object
-            # PUT ActiveCalculation
-            # Reload Actual ?
+            console.log 'LOGIC TO SAVE THIS DATA:'
+            console.log data
 
         else
-            console.log $scope.presetOptions
             console.log 'INVALID FORM general ctrl saveChanges()'
 
 # controller registration

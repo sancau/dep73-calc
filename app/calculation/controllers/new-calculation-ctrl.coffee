@@ -17,6 +17,7 @@ NewCalculationCtrl = ($scope, ActiveCalculation, PresetsResource) ->
 
     # scope reference for active calculation
     $scope.activeCalculation = ActiveCalculation
+    $scope.formModel = {}
 
     PresetsResource.query()
         .$promise.then(
@@ -48,10 +49,21 @@ NewCalculationCtrl = ($scope, ActiveCalculation, PresetsResource) ->
         if $scope.generalInfoForm.$valid
             console.log 'VALID FORM new calc ctrl createCalculation()'
 
-            # create new calculation in DB via POST on API endpoint
+            # adds type label and preset label to data objects
+            $scope.formModel.type.label = 
+                (i.label for i in ActiveCalculation.typeOptions when i.value is $scope.formModel.type.code)[0]
+            $scope.formModel.settings.label = 
+                (i.label for i in $scope.presetOptions when i.value is $scope.formModel.settings.code)[0]
 
+            data = $scope.formModel
+
+            # create new calculation in DB via POST on API endpoint
             # GET new calculation as ActiveCalculation
             # Redirect to calculation/{{new-calc-id}}
+
+            console.log "LOGIC TO CREATE NEW CALC WITH THIS DATA:"
+            console.log data
+
         else
             console.log 'INVALID FORM new calc ctrl createCalculation()'
 

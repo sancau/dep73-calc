@@ -16,7 +16,7 @@
                 
             //- Visible only if the block type is already chosen
             #block-verbose-name(ng-hide="!block.data.type")
-                h4 {{ getName($index + 1) }} ({{ block.data.type.name }}) 
+                h4 {{ climatic.getName($index + 1) }} ({{ block.data.type.name }}) 
                 hr
                 
             //- Allows user to select type for the block
@@ -24,6 +24,7 @@
                 label(for="type") Вид испытаний
                 
                 select(ng-model="block.data.type",
+                       ng-change="climatic.blockTypeChanged(block)"
                        ng-options="option.name for option in climatic.options track by option.id")
                              
             //- Includes the appropriate form view depending on the block's type

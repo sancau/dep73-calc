@@ -30,19 +30,17 @@ calculationsPreload =
         'CalculationResource'
 
         (CalculationResource) ->
-
-            # Storing the calculation in activeCalculation
-            # TEMP use get instead with the real API
+            
+            # getting all the calculations from server
             CalculationResource.query()
                 .$promise.then(
                     # success
                     (data) ->
-
+                        
                         console.log data._items 
                         console.log "Calculations preloaded"
 
                         return data._items
-
 
                     # error
                     (error) ->

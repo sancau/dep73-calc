@@ -5,7 +5,7 @@
     Author: Alexander Tatchin | github.com/sancau
 ###
 
-NewCalculationCtrl = ($scope, ActiveCalculation, PresetsResource) ->
+NewCalculationCtrl = ($scope, $http, ActiveCalculation, PresetsResource) ->
 
     # Each form ctrl hosts data object for form model
     # on save this data object injects into activeCalculation object
@@ -55,8 +55,23 @@ NewCalculationCtrl = ($scope, ActiveCalculation, PresetsResource) ->
             $scope.formModel.settings.label = 
                 (i.label for i in $scope.presetOptions when i.value is $scope.formModel.settings.code)[0]
 
-            data = $scope.formModel
+            general = 
+                general: $scope.formModel
 
+            data = JSON.stringify general
+
+            # DEVELOPMENT ONLY
+
+            $http.post('http://127.0.0.1:8000/api/v1/calculation', data)
+                .success(
+                        (data,status) ->
+                            console.log data
+                            console.log status
+                    )
+                .error(
+                        (error) ->
+                            console.log error
+                    )
             # create new calculation in DB via POST on API endpoint
             # GET new calculation as ActiveCalculation
             # Redirect to calculation/{{new-calc-id}}
@@ -72,6 +87,7 @@ NewCalculationCtrl = ($scope, ActiveCalculation, PresetsResource) ->
 angular.module 'app.calculation'
     .controller 'NewCalculationCtrl', [
         '$scope'
+        '$http' #remove
         'ActiveCalculation'
         'PresetsResource'
 

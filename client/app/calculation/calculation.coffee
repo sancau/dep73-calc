@@ -50,16 +50,17 @@ calculationPreload =
 
         (CalculationResource, ActiveCalculation, $stateParams) ->
 
-            id = parseInt $stateParams.calculationID
+            id = $stateParams.calculationID
+            console.log id
 
-            # Storing the calculation in activeCalculation
-            # TEMP use get instead with the real API
-            CalculationResource.query()
+            # get calculation entity
+            CalculationResource.get({ id: id })
                 .$promise.then(
                     # success
                     (data) ->
-                        calculation = (i for i in data when i.id is id)[0]
-                        ActiveCalculation.data = calculation
+
+                        console.log data
+                        ActiveCalculation.data = data
 
                         console.log "Caclulation Data Preloaded"
 

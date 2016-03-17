@@ -10,12 +10,15 @@ appConfig =
 
     # Database related configuration settings
     database:
-        dbName: ''
-        baseUrl: ''
+        dbName: 'dep73-calc'
+        baseApiUrl: 'http://127.0.0.1:8000/api/v1'
 
         resources: 
-            calculationsUrl: '../test/fake-api/calculations/calculations.json'
+            calculationsUrl: 'http://127.0.0.1:8000/api/v1/calculation' 
+            
+            #DEBUG
             presetsUrl: '../test/fake-api/presets/presets.json'
+            #DEBUG '../test/fake-api/calculations/calculations.json'
 
 angular.module 'app'
 .constant 'AppConfig', appConfig

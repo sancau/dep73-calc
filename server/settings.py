@@ -10,6 +10,17 @@ MONGO_DBNAME = 'dep73-calc'
 API settings
 =================
 '''
+
+# should specify a client application host domain
+# for the CORS to work properly
+X_DOMAINS = [
+    'http://localhost:9000'
+]
+
+X_HEADERS = [
+    'Content-Type'
+]
+
 URL_PREFIX = 'api'
 API_VERSION = 'v1'
 RESOURCE_METHODS = ['GET', 'POST']
@@ -21,11 +32,21 @@ Entities schemas
 '''
 CALCULATION_SCHEMA = \
 {
-	'general': {
-		'type': 'dict',
-		'empty': False,
-		'required': True,
-	}
+    'general': {
+        'type': 'dict',
+        'empty': False,
+        'required': True,
+    },
+    'climatic': {
+        'type': 'dict',
+        'empty': False,
+        'required': True,
+    },
+    'meta': {
+        'type': 'dict',
+        'empty': False,
+        'required': True,
+    }
 }
 
 '''
@@ -34,11 +55,11 @@ Endpoints settings
 '''
 CALCULATION_SETTINGS = \
 {
-	'item_title': 'calculation',
-	'cache_control': 'max-age=10, must-revalidate',
-	'cache_expires' : 10,
-	'resource_methods': ['GET','POST'],
-	'schema': CALCULATION_SCHEMA
+    'item_title': 'calculation',
+    'cache_control': 'max-age=10, must-revalidate',
+    'cache_expires' : 10,
+    'resource_methods': ['GET','POST'],
+    'schema': CALCULATION_SCHEMA
 }
 
 '''
@@ -47,5 +68,5 @@ Domain settings
 '''
 DOMAIN = \
 {
-	'calculation': CALCULATION_SETTINGS
+    'calculation': CALCULATION_SETTINGS
 }

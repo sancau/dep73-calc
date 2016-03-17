@@ -13,7 +13,8 @@
     h3 История расчётов
     hr
     
-    table#list-view.table.table-striped
+    pre(ng-hide="!list.calculationsList.length == 0") Пока расчётов нет
+    table#list-view.table.table-striped(ng-hide="list.calculationsList.length == 0")
         thead
             tr
                 th Изделие
@@ -28,8 +29,8 @@
         )
             td {{ calculation.general.name }}
             td {{ calculation.general.type.label }}
-            td {{ calculation.meta.author }}
-            td {{ calculation.meta.edited }}
+            td {{ calculation.meta.author || 'Нет данных' }}
+            td {{ calculation._updated }}
 
     //- hr
     //- h5 TODO:

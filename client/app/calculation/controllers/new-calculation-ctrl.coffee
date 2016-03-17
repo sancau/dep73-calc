@@ -55,10 +55,17 @@ NewCalculationCtrl = ($scope, $http, ActiveCalculation, PresetsResource) ->
             $scope.formModel.settings.label = 
                 (i.label for i in $scope.presetOptions when i.value is $scope.formModel.settings.code)[0]
 
-            general = 
+            newCalculation = 
+                meta: { 
+                    completed: false
+                }
                 general: $scope.formModel
+                climatic: {
+                    blocks: []
+                }
 
-            data = JSON.stringify general
+
+            data = JSON.stringify newCalculation
 
             # DEVELOPMENT ONLY
 

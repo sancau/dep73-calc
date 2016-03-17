@@ -12,7 +12,12 @@ CalculationResource = ($resource, AppConfig) ->
 
     url = AppConfig.database.resources.calculationsUrl
 
-    return $resource(url, {}, {})
+    config = 
+        query: 
+            method: 'GET'
+            isArray: no
+
+    return $resource("#{url}/:id", { id: '@_id'}, config)
 
 # Calculation resource registration
 angular.module 'app'

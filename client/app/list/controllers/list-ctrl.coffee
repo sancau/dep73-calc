@@ -6,20 +6,19 @@
 ###
 
 # controller function
-ListCtrl = ($state, CalculationResource) ->
+ListCtrl = ($state, allCalculations) ->
     
     vm = this
     
-    # gets list of calculations from the CalculationResource service
-    # and attaches the date to the controller scope 
-    vm.calculationsList =  CalculationResource.query()
+    vm.calculationsList = allCalculations
 
     # logic on listview row click
     # goes to the certain calculation view state
     vm.showCalculation = (calculation) ->
+        
         console.log "going to #{calculation.general.name} page"
 
-        $state.go 'calculation', { calculationID: calculation.id }
+        $state.go 'calculation', { calculationID: calculation._id }
 
     return vm
 
@@ -27,7 +26,7 @@ ListCtrl = ($state, CalculationResource) ->
 angular.module 'app.list'
 .controller 'ListCtrl', [
     '$state'
-    'CalculationResource'
+    'allCalculations'
 
     ListCtrl
 ]

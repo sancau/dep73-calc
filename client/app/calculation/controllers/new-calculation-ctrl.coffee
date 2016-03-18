@@ -5,12 +5,7 @@
     Author: Alexander Tatchin | github.com/sancau
 ###
 
-NewCalculationCtrl = ($scope, $http, ActiveCalculation, PresetsResource) ->
-
-    # Each form ctrl hosts data object for form model
-    # on save this data object injects into activeCalculation object
-    # then activeCalculation obj POST to server and reload activeCalculation 
-    # with GET
+NewCalculationCtrl = ($scope, $state, ActiveCalculation, CalculationResource, PresetsResource) ->
 
     # Reset active calculation
     ActiveCalculation.data = ''
@@ -23,11 +18,9 @@ NewCalculationCtrl = ($scope, $http, ActiveCalculation, PresetsResource) ->
         .$promise.then(
             # success
             (data) ->
-
                 $scope.presetOptions = []
 
                 for i in data
-
                     presetOption = 
                         value: "#{i.id}"
                         label: i.name
@@ -47,6 +40,7 @@ NewCalculationCtrl = ($scope, $http, ActiveCalculation, PresetsResource) ->
         $scope.submitted = on
 
         if $scope.generalInfoForm.$valid
+            # DEBUG
             console.log 'VALID FORM new calc ctrl createCalculation()'
 
             # adds type label and preset label to data objects
@@ -55,7 +49,8 @@ NewCalculationCtrl = ($scope, $http, ActiveCalculation, PresetsResource) ->
             $scope.formModel.settings.label = 
                 (i.label for i in $scope.presetOptions when i.value is $scope.formModel.settings.code)[0]
 
-            newCalculation = 
+            # populates data object using entered data from fromModel
+            data = 
                 meta: { 
                     completed: false
                 }
@@ -64,27 +59,23 @@ NewCalculationCtrl = ($scope, $http, ActiveCalculation, PresetsResource) ->
                     blocks: []
                 }
 
+            # creates resource instance
+            entity = new CalculationResource
 
-            data = JSON.stringify newCalculation
+            # adds data to the instance
+            for prop, value of data
+                entity[prop] = value
 
-            # DEVELOPMENT ONLY
-
-            $http.post('http://127.0.0.1:8000/api/v1/calculation', data)
-                .success(
-                        (data,status) ->
-                            console.log data
-                            console.log status
-                    )
-                .error(
-                        (error) ->
-                            console.log error
-                    )
-            # create new calculation in DB via POST on API endpoint
-            # GET new calculation as ActiveCalculation
-            # Redirect to calculation/{{new-calc-id}}
-
-            console.log "LOGIC TO CREATE NEW CALC WITH THIS DATA:"
-            console.log data
+            # push to the server
+            entity.$save(
+                    # success
+                    (newEntity) ->
+                        # redirect to the created calculation view
+                        $state.go 'calculation', { calculationID: newEntity._id }
+                    # error
+                    (error) ->
+                        console.log error
+                )
 
         else
             console.log 'INVALID FORM new calc ctrl createCalculation()'
@@ -94,8 +85,9 @@ NewCalculationCtrl = ($scope, $http, ActiveCalculation, PresetsResource) ->
 angular.module 'app.calculation'
     .controller 'NewCalculationCtrl', [
         '$scope'
-        '$http' #remove
+        '$state' 
         'ActiveCalculation'
+        'CalculationResource'
         'PresetsResource'
 
         NewCalculationCtrl

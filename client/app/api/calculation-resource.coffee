@@ -1,13 +1,11 @@
 ###
     Source: api/calculation-resource.coffee 
     Project: dep73-calc
-    Description: An abstraction over $http to manage 
-                calculations db interactions using 
-                $resourse from ngResourse module
+    Description: CalculationResource using $resource
     Author: Alexander Tatchin | github.com/sancau
 ###
 
-# Calculation resource definition
+# definition
 CalculationResource = ($resource, AppConfig) ->
 
     url = AppConfig.database.resources.calculationsUrl
@@ -19,7 +17,7 @@ CalculationResource = ($resource, AppConfig) ->
 
     return $resource("#{url}/:id", { id: '@_id'}, config)
 
-# Calculation resource registration
+# registration
 angular.module 'app'
 .factory 'CalculationResource', [
         '$resource'

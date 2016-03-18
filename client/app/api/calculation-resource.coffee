@@ -7,15 +7,38 @@
 
 # definition
 CalculationResource = ($resource, AppConfig) ->
+ 
+    resource =
+        # wrapper to receive params likes etag, token, etc
+        etag: (etag) ->
 
-    url = AppConfig.database.resources.calculationsUrl
+            url = AppConfig.database.resources.calculationsUrl
 
-    config = 
-        query: 
-            method: 'GET'
-            isArray: no
+            etagConfig = 
+                query: 
+                    method: 'GET'
+                    isArray: no
+                delete:
+                    method: 'DELETE'
+                    headers: { 'If-Match': etag }
 
-    return $resource("#{url}/:id", { id: '@_id'}, config)
+            console.log 'asd'
+
+            return $resource("#{url}/:id", { id: '@_id'}, etagConfig)
+
+        # no headers version of resource
+        plain: () ->
+
+            url = AppConfig.database.resources.calculationsUrl
+
+            plainConfig = 
+                query: 
+                    method: 'GET'
+                    isArray: no
+
+            return $resource("#{url}/:id", { id: '@_id'}, plainConfig)
+
+    return resource
 
 # registration
 angular.module 'app'

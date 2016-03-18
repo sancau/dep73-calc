@@ -18,7 +18,8 @@ X_DOMAINS = [
 ]
 
 X_HEADERS = [
-    'Content-Type'
+    'Content-Type',
+    'If-Match'
 ]
 
 URL_PREFIX = 'api'
@@ -59,6 +60,7 @@ CALCULATION_SETTINGS = \
     'cache_control': 'max-age=10, must-revalidate',
     'cache_expires' : 10,
     'resource_methods': ['GET','POST'],
+    'item_methods': ['GET', 'PUT', 'DELETE'],
     'schema': CALCULATION_SCHEMA
 }
 

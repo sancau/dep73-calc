@@ -25,12 +25,13 @@
 
         tr(
             ng-repeat="calculation in list.calculationsList",
-            ng-click="list.showCalculation(calculation)"
         )
-            td {{ calculation.general.name }}
-            td {{ calculation.general.type.label }}
-            td {{ calculation.meta.author || 'Нет данных' }}
-            td {{ calculation._updated }}
+            td(ng-click="list.showCalculation(calculation)") {{ calculation.general.name }}
+            td(ng-click="list.showCalculation(calculation)")  {{ calculation.general.type.label }}
+            td(ng-click="list.showCalculation(calculation)")  {{ calculation.meta.author || 'Нет данных' }}
+            td(ng-click="list.showCalculation(calculation)")  {{ calculation._updated }}
+            td 
+                button.btn.btn-xs.btn-danger(ng-click='list.delete(calculation)') Удалить расчёт
 
     //- hr
     //- h5 TODO:

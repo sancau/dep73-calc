@@ -32,7 +32,8 @@ calculationsPreload =
         (CalculationResource) ->
             
             # getting all the calculations from server
-            CalculationResource.query()
+            CalculationResource.plain().
+            query()
                 .$promise.then(
                     # success
                     (data) ->

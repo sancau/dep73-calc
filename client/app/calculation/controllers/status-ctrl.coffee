@@ -6,7 +6,7 @@
 ###
 
 # controller function
-StatusCtrl = (ActiveCalculation) ->
+StatusCtrl = (ActiveCalculation, CalculationResource) ->
 
     console.log 'StatusCtrl loaded'
 
@@ -16,7 +16,7 @@ StatusCtrl = (ActiveCalculation) ->
     vm.activeCalculation = ActiveCalculation
 
     # view is binded to the ActiveCalculation object 
-    # lets user to monitor current calculation parameters and results
+    # lets user to monitor current calculation parameters and results    
 
     return vm 
 
@@ -24,6 +24,7 @@ StatusCtrl = (ActiveCalculation) ->
 angular.module 'app.calculation'
     .controller 'StatusCtrl', [
         'ActiveCalculation'
+        'CalculationResource'
 
         StatusCtrl
     ] 

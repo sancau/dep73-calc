@@ -6,7 +6,7 @@
 ###
 
 # controller function
-ListCtrl = ($state, allCalculations) ->
+ListCtrl = ($state, allCalculations, CalculationResource) ->
     
     vm = this
     
@@ -20,6 +20,31 @@ ListCtrl = ($state, allCalculations) ->
 
         $state.go 'calculation', { calculationID: calculation._id }
 
+    vm.delete = (calculation) -> 
+
+        console.log calculation._etag
+
+        # get calculation entity
+        CalculationResource.etag(calculation._etag).get({ id: calculation._id })
+            .$promise.then(
+                # success
+                (entity) ->
+
+                    entity.$delete(
+                            # success
+                            (data) ->
+                                console.log data
+
+                            # error
+                            (error) ->
+                                console.log error
+                        )
+
+                # error
+                (error) ->
+                    console.log error
+            )    
+        
     return vm
 
 # controller registration
@@ -27,6 +52,7 @@ angular.module 'app.list'
 .controller 'ListCtrl', [
     '$state'
     'allCalculations'
+    'CalculationResource'
 
     ListCtrl
 ]

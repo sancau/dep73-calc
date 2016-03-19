@@ -8,7 +8,35 @@
 # definition
 CalculationResource = ($resource, AppConfig) ->
  
+    url = AppConfig.database.resources.calculationsUrl
+
+    plainConfig = 
+        query: 
+            method: 'GET'
+            isArray: no
+        update:
+            method: 'PUT'
+
+    return $resource("#{url}/:id", { id: '@_id'}, plainConfig)
+
+# registration
+angular.module 'app'
+.factory 'CalculationResource', [
+        '$resource'
+        'AppConfig'
+
+        CalculationResource
+    ]
+
+
+#############################################################
+
+# version to pass ETAG
+# definition
+CalculationResourceEtag = ($resource, AppConfig) ->
+
     resource =
+
         # wrapper to receive params likes etag, token, etc
         etag: (etag) ->
 
@@ -21,30 +49,19 @@ CalculationResource = ($resource, AppConfig) ->
                 delete:
                     method: 'DELETE'
                     headers: { 'If-Match': etag }
-
-            console.log 'asd'
+                update:
+                    method: 'PUT'
+                    headers: { 'If-Match': etag }
 
             return $resource("#{url}/:id", { id: '@_id'}, etagConfig)
-
-        # no headers version of resource
-        plain: () ->
-
-            url = AppConfig.database.resources.calculationsUrl
-
-            plainConfig = 
-                query: 
-                    method: 'GET'
-                    isArray: no
-
-            return $resource("#{url}/:id", { id: '@_id'}, plainConfig)
 
     return resource
 
 # registration
 angular.module 'app'
-.factory 'CalculationResource', [
+.factory 'CalculationResourceEtag', [
         '$resource'
         'AppConfig'
 
-        CalculationResource
+        CalculationResourceEtag
     ]

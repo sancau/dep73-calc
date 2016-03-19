@@ -6,10 +6,9 @@
 ###
 
 # controller function
-ListCtrl = ($state, allCalculations, CalculationResource) ->
+ListCtrl = ($state, allCalculations, CalculationResourceEtag) ->
     
     vm = this
-    
     vm.calculationsList = allCalculations
 
     # logic on listview row click
@@ -22,24 +21,21 @@ ListCtrl = ($state, allCalculations, CalculationResource) ->
 
     vm.delete = (calculation) -> 
 
-        console.log calculation._etag
-
         # get calculation entity
-        CalculationResource.etag(calculation._etag).get({ id: calculation._id })
+        CalculationResourceEtag.etag(calculation._etag).get({ id: calculation._id })
             .$promise.then(
                 # success
                 (entity) ->
 
-                    entity.$delete(
+                    # delete entity
+                    entity.$delete(                        
                             # success
-                            (data) ->
-                                console.log data
-
+                            (data) ->  
+                                vm.calculationsList.pop calculation
                             # error
                             (error) ->
                                 console.log error
                         )
-
                 # error
                 (error) ->
                     console.log error
@@ -52,7 +48,7 @@ angular.module 'app.list'
 .controller 'ListCtrl', [
     '$state'
     'allCalculations'
-    'CalculationResource'
+    'CalculationResourceEtag'
 
     ListCtrl
 ]

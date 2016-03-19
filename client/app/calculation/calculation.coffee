@@ -54,18 +54,19 @@ calculationPreload =
             console.log id
 
             # get calculation entity
-            CalculationResource.get({ id: id })
-                .$promise.then(
-                    # success
-                    (data) ->
+            CalculationResource
+                .get({ id: id })
+                    .$promise.then(
+                        # success
+                        (data) ->
 
-                        console.log data
-                        ActiveCalculation.data = data
+                            console.log data
+                            ActiveCalculation.data = data
 
-                        console.log "Caclulation Data Preloaded"
+                            console.log "Caclulation Data Preloaded"
 
-                    # error
-                    (error) ->
-                        console.log error
-                )
+                        # error
+                        (error) ->
+                            console.log error
+                    )
     ]

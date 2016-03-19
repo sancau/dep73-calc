@@ -6,7 +6,7 @@
 ###
 
 # controller function
-GeneralCtrl = ($scope, ActiveCalculation, PresetsResource) ->
+GeneralCtrl = ($scope, ActiveCalculation, CalculationResourceEtag, PresetsResource) ->
 
     PresetsResource.query()
         .$promise.then(
@@ -53,9 +53,40 @@ GeneralCtrl = ($scope, ActiveCalculation, PresetsResource) ->
             ActiveCalculation.data.general = JSON.parse JSON.stringify($scope.formModel)
             data = $scope.activeCalculation.data
 
-            console.log 'LOGIC TO SAVE THIS DATA:'
-            console.log data
+            CalculationResourceEtag.etag(data._etag)
+                .get({ id: data._id })
+                    .$promise.then(
+                        # success
+                        (entity) ->
 
+                            # adds changes to the instance
+                            for prop, value of data.general
+                                entity.general[prop] = value
+
+                            # ISSUE | NOT CRITICAL
+                            # should remove meta fields from entity to pass server validation
+                            # eve framework pitfall? 
+                            for i in ['_created', '_etag', '_links', '_updated']
+                                delete entity[i]
+
+                            # push to the server
+                            entity.$update(
+                                    # success
+                                    (updatedEntity) ->
+
+                                        # update ActiveCalculation with new META
+                                        for prop, value of updatedEntity
+                                            ActiveCalculation.data[prop] = value
+
+                                    # error
+                                    (error) ->
+                                        console.log error
+                                )
+
+                        # error
+                        (error) ->
+                            console.log error
+                    )
         else
             console.log 'INVALID FORM general ctrl saveChanges()'
 
@@ -64,6 +95,7 @@ angular.module 'app.calculation'
     .controller 'GeneralCtrl', [
         '$scope'
         'ActiveCalculation'
+        'CalculationResourceEtag'
         'PresetsResource'
 
         GeneralCtrl

@@ -61,10 +61,12 @@ NewCalculationCtrl = ($scope, $state, ActiveCalculation, CalculationResource, Pr
 
             # creates resource instance
             entity = new CalculationResource
+            console.log entity
 
             # adds data to the instance
             for prop, value of data
                 entity[prop] = value
+            
 
             # push to the server
             entity.$save(

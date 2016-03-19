@@ -6,7 +6,7 @@
 ###
 
 # controller function
-StatusCtrl = (ActiveCalculation, CalculationResource) ->
+StatusCtrl = (ActiveCalculation) ->
 
     console.log 'StatusCtrl loaded'
 
@@ -24,7 +24,6 @@ StatusCtrl = (ActiveCalculation, CalculationResource) ->
 angular.module 'app.calculation'
     .controller 'StatusCtrl', [
         'ActiveCalculation'
-        'CalculationResource'
 
         StatusCtrl
     ] 

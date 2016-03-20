@@ -57,8 +57,8 @@ Endpoints settings
 CALCULATION_SETTINGS = \
 {
     'item_title': 'calculation',
-    'cache_control': 'max-age=10, must-revalidate',
-    'cache_expires' : 10,
+    # 'cache_control': 'max-age=10, must-revalidate',
+    # 'cache_expires' : 10,
     'resource_methods': ['GET','POST'],
     'item_methods': ['GET', 'PUT', 'DELETE'],
     'schema': CALCULATION_SCHEMA

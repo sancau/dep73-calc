@@ -6,7 +6,7 @@
 ###
 
 # controller function
-ClimaticCtrl = (ActiveCalculation) ->
+ClimaticCtrl = (ActiveCalculation, CalculationResourceEtag) ->
 
     vm = this
 
@@ -158,9 +158,46 @@ ClimaticCtrl = (ActiveCalculation) ->
             console.log "LOGIC TO SAVE THIS DATA:"
             console.log ActiveCalculation.data
 
+            data = ActiveCalculation.data
 
-            # Update climatic data section of the ActiveCalculation
-            # PUT ActiveCalculation object to server
+            CalculationResourceEtag.etag(data._etag)
+                .get({ id: data._id })
+                    .$promise.then(
+                        # success
+                        (entity) ->
+
+                            # adds changes to the instance
+                            for prop, value of data.climatic
+                                entity.climatic[prop] = value
+
+                            # ISSUE | NOT CRITICAL
+                            # should remove meta fields from entity to pass server validation
+                            # eve framework pitfall? 
+                            for i in ['_created', '_etag', '_links', '_updated']
+                                delete entity[i]
+
+                            console.log 'entity' + entity
+
+                            # push to the server
+                            entity.$update(
+                                    # success
+                                    (updatedEntity) ->
+
+                                        # update ActiveCalculation with new META
+                                        for prop, value of updatedEntity
+                                            ActiveCalculation.data[prop] = value
+
+                                        vm.blocks = getBlocks ActiveCalculation.data
+
+                                    # error
+                                    (error) ->
+                                        console.log error
+                                )
+
+                        # error
+                        (error) ->
+                            console.log error
+                    )
 
         else
             # TODO handle the validation error
@@ -172,6 +209,7 @@ ClimaticCtrl = (ActiveCalculation) ->
 angular.module 'app.calculation'
     .controller 'ClimaticCtrl', [
         'ActiveCalculation'
+        'CalculationResourceEtag'
 
         ClimaticCtrl
     ]

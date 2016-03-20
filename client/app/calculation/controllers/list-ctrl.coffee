@@ -27,7 +27,7 @@ ListCtrl = ($state, allCalculations, CalculationService) ->
     return vm
 
 # controller registration
-angular.module 'app.list'
+angular.module 'app.calculation'
 .controller 'ListCtrl', [
     '$state'
     'allCalculations'

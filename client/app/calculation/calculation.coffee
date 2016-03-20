@@ -18,6 +18,17 @@ angular.module 'app.calculation', [
     ($stateProvider) ->
 
         $stateProvider
+
+            # calculations list
+            .state 'list',
+                url: '/'
+                views: 
+                    'main':
+                        controller: 'ListCtrl as list'
+                        templateUrl: 'calculation/views/list-view.jade'
+                        resolve: listPreload
+                data:
+                    pageTitle: 'История расчётов'
         
             # an existing calculation
             .state 'calculation',
@@ -57,6 +68,24 @@ calculationPreload =
                     # success
                     (data) ->
                         ActiveCalculation.data = data
+                    # error
+                    (error) ->
+                        console.log error
+                )
+    ]
+
+# this preloads calculations data before ctrl is loaded
+listPreload = 
+    allCalculations: [
+        'CalculationService'
+
+        (CalculationService) ->
+            
+            CalculationService.getAll()
+                .then(
+                    # success
+                    (data) -> 
+                        data._items
                     # error
                     (error) ->
                         console.log error

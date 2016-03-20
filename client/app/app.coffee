@@ -12,8 +12,6 @@ angular.module 'app', [
     'ngResource'
 
     'lc.directives' # custom application directives
-    
-    'app.list' # depricate / merge with app.calculation?   
 
     'app.auth' # user athentication and authorization
     'app.calculation' # calculations list / view / create / manage

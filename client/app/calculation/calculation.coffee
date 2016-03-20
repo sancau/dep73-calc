@@ -44,29 +44,21 @@ angular.module 'app.calculation', [
 # before calculation page and inner ctrls are loaded
 calculationPreload = 
     preload: [
-        'CalculationResource'
+        'CalculationService'
         'ActiveCalculation'
         '$stateParams'
 
-        (CalculationResource, ActiveCalculation, $stateParams) ->
+        (CalculationService, ActiveCalculation, $stateParams) ->
 
             id = $stateParams.calculationID
-            console.log id
 
-            # get calculation entity
-            CalculationResource
-                .get({ id: id })
-                    .$promise.then(
-                        # success
-                        (data) ->
-
-                            console.log data
-                            ActiveCalculation.data = data
-
-                            console.log "Caclulation Data Preloaded"
-
-                        # error
-                        (error) ->
-                            console.log error
-                    )
+            CalculationService.getOne(id)
+                .then(
+                    # success
+                    (data) ->
+                        ActiveCalculation.data = data
+                    # error
+                    (error) ->
+                        console.log error
+                )
     ]

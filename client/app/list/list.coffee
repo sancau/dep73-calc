@@ -27,23 +27,15 @@ angular.module 'app.list', [
 # this preloads calculations data before ctrl is loaded
 calculationsPreload = 
     allCalculations: [
-        'CalculationResource'
+        'CalculationService'
 
-        (CalculationResource) ->
+        (CalculationService) ->
             
-            # getting all the calculations from server
-            CalculationResource
-            .query()
-                .$promise.then(
+            CalculationService.getAll()
+                .then(
                     # success
-                    (data) ->
-                        
-                        # DEBUG
-                        console.log data._items 
-                        console.log "Calculations preloaded"
-
-                        return data._items
-
+                    (data) -> 
+                        data._items
                     # error
                     (error) ->
                         console.log error

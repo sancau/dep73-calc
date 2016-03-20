@@ -5,7 +5,7 @@
     Author: Alexander Tatchin | github.com/sancau
 ###
 
-NewCalculationCtrl = ($scope, $state, ActiveCalculation, CalculationResource, PresetsResource) ->
+NewCalculationCtrl = ($scope, $state, ActiveCalculation, CalculationService, PresetsResource) ->
 
     # Reset active calculation
     ActiveCalculation.data = ''
@@ -40,8 +40,6 @@ NewCalculationCtrl = ($scope, $state, ActiveCalculation, CalculationResource, Pr
         $scope.submitted = on
 
         if $scope.generalInfoForm.$valid
-            # DEBUG
-            console.log 'VALID FORM new calc ctrl createCalculation()'
 
             # adds type label and preset label to data objects
             $scope.formModel.type.label = 
@@ -59,20 +57,10 @@ NewCalculationCtrl = ($scope, $state, ActiveCalculation, CalculationResource, Pr
                     blocks: []
                 }
 
-            # creates resource instance
-            entity = new CalculationResource
-            console.log entity
-
-            # adds data to the instance
-            for prop, value of data
-                entity[prop] = value
-            
-
-            # push to the server
-            entity.$save(
+            CalculationService.create(data)
+            .then(
                     # success
                     (newEntity) ->
-                        # redirect to the created calculation view
                         $state.go 'calculation', { calculationID: newEntity._id }
                     # error
                     (error) ->
@@ -80,8 +68,7 @@ NewCalculationCtrl = ($scope, $state, ActiveCalculation, CalculationResource, Pr
                 )
 
         else
-            console.log 'INVALID FORM new calc ctrl createCalculation()'
-
+            console.log 'Form Invalid'
 
 # controller registration
 angular.module 'app.calculation'
@@ -89,7 +76,7 @@ angular.module 'app.calculation'
         '$scope'
         '$state' 
         'ActiveCalculation'
-        'CalculationResource'
+        'CalculationService'
         'PresetsResource'
 
         NewCalculationCtrl

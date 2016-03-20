@@ -6,7 +6,7 @@
 ###
 
 # controller function
-ClimaticCtrl = (ActiveCalculation, CalculationResourceEtag) ->
+ClimaticCtrl = (ActiveCalculation, CalculationService) ->
 
     vm = this
 
@@ -153,55 +153,24 @@ ClimaticCtrl = (ActiveCalculation, CalculationResourceEtag) ->
                     data.push JSON.parse JSON.stringify(block.data)  
 
             ActiveCalculation.data.climatic.blocks = data
-            # data to POST 
-            # DEBUG 
-            console.log "LOGIC TO SAVE THIS DATA:"
-            console.log ActiveCalculation.data
 
-            data = ActiveCalculation.data
+            entity = ActiveCalculation.data
 
-            CalculationResourceEtag.etag(data._etag)
-                .get({ id: data._id })
-                    .$promise.then(
-                        # success
-                        (entity) ->
+            CalculationService.update(entity)
+                .then(
+                        (updatedEntity) ->
+                            # update ActiveCalculation with new META
+                            for prop, value of updatedEntity
+                                ActiveCalculation.data[prop] = value
 
-                            # adds changes to the instance
-                            for prop, value of data.climatic
-                                entity.climatic[prop] = value
+                            vm.blocks = getBlocks ActiveCalculation.data
 
-                            # ISSUE | NOT CRITICAL
-                            # should remove meta fields from entity to pass server validation
-                            # eve framework pitfall? 
-                            for i in ['_created', '_etag', '_links', '_updated']
-                                delete entity[i]
-
-                            console.log 'entity' + entity
-
-                            # push to the server
-                            entity.$update(
-                                    # success
-                                    (updatedEntity) ->
-
-                                        # update ActiveCalculation with new META
-                                        for prop, value of updatedEntity
-                                            ActiveCalculation.data[prop] = value
-
-                                        vm.blocks = getBlocks ActiveCalculation.data
-
-                                    # error
-                                    (error) ->
-                                        console.log error
-                                )
-
-                        # error
                         (error) ->
                             console.log error
                     )
 
         else
-            # TODO handle the validation error
-            console.log "Form is invalid | ClimaticCtrl.saveChanges()"
+            console.log "Invalid Form"
 
     return vm   
 
@@ -209,7 +178,7 @@ ClimaticCtrl = (ActiveCalculation, CalculationResourceEtag) ->
 angular.module 'app.calculation'
     .controller 'ClimaticCtrl', [
         'ActiveCalculation'
-        'CalculationResourceEtag'
+        'CalculationService'
 
         ClimaticCtrl
     ]

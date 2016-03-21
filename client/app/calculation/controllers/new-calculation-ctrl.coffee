@@ -5,7 +5,7 @@
     Author: Alexander Tatchin | github.com/sancau
 ###
 
-NewCalculationCtrl = ($scope, $state, ActiveCalculation, CalculationService, PresetsResource) ->
+NewCalculationCtrl = ($scope, $state, AppConfig, ActiveCalculation, CalculationService, PresetsResource) ->
 
     # Reset active calculation
     ActiveCalculation.data = ''
@@ -49,7 +49,8 @@ NewCalculationCtrl = ($scope, $state, ActiveCalculation, CalculationService, Pre
 
             # populates data object using entered data from fromModel
             data = 
-                meta: { 
+                meta: {
+                    author: AppConfig.userData.username 
                     completed: false
                 }
                 general: $scope.formModel
@@ -74,7 +75,8 @@ NewCalculationCtrl = ($scope, $state, ActiveCalculation, CalculationService, Pre
 angular.module 'app.calculation'
     .controller 'NewCalculationCtrl', [
         '$scope'
-        '$state' 
+        '$state'
+        'AppConfig' 
         'ActiveCalculation'
         'CalculationService'
         'PresetsResource'

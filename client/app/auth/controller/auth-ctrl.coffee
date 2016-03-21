@@ -6,17 +6,32 @@
 ###
 
 # controller function
-AuthCtrl = ($scope, $state) ->
+AuthCtrl = ($state, AppConfig) ->
 
-    $scope.login = () ->
-        $state.go('list')   
+    vm = this
+
+    vm.login = () ->
+        
+        vm.submitted = on
+
+        if not vm.form.username
+            return 
+        
+        userData = 
+            username: vm.form.username
+
+        AppConfig.userData = userData
+
+        $state.go('list') 
+
+    return vm 
 
 
 # controller registration 
 angular.module 'app.auth'
 .controller 'AuthCtrl', [
-    '$scope'
     '$state'
+    'AppConfig'
 
     AuthCtrl
 ]

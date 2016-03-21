@@ -8,6 +8,8 @@
 
 appConfig = 
 
+    userData: {}
+
     # Database related configuration settings
     database:
         dbName: 'dep73-calc'

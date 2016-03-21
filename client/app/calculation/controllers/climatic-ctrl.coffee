@@ -6,7 +6,7 @@
 ###
 
 # controller function
-ClimaticCtrl = (ActiveCalculation, CalculationService) ->
+ClimaticCtrl = (ActiveCalculation, CalculationService, LogicService) ->
 
     vm = this
 
@@ -154,7 +154,9 @@ ClimaticCtrl = (ActiveCalculation, CalculationService) ->
 
             ActiveCalculation.data.climatic.blocks = data
 
-            entity = ActiveCalculation.data
+            entity = LogicService.evaluate(ActiveCalculation.data)
+            console.log 'TO UPDATE' 
+            console.log entity
 
             CalculationService.update(entity)
                 .then(
@@ -179,6 +181,7 @@ angular.module 'app.calculation'
     .controller 'ClimaticCtrl', [
         'ActiveCalculation'
         'CalculationService'
+        'LogicService'
 
         ClimaticCtrl
     ]

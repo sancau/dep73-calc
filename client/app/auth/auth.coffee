@@ -18,6 +18,7 @@ angular.module 'app.auth', [
             views: 
                 'main':
                     controller: 'AuthCtrl'
+                    controllerAs: 'auth'
                     templateUrl: 'auth/views/auth-view.jade'
             data:
                 pageTitle: 'Отдел №73'

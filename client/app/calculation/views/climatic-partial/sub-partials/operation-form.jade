@@ -5,6 +5,15 @@
     Author: Alexander Tatchin | github.com/sancau
 
 .operation
+
+    lc-string-input(
+        required="true",
+        label="Описание операции (кратко)",
+        input-id="operationDescription",
+        input-object="block.climaticForm.operationDescription",
+        model="block.data.values.operationDescription",
+        submitted="climatic.submitted"
+    )
     
     lc-numeric-input(
         required="true",

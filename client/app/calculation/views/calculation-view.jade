@@ -30,16 +30,21 @@ section#status-panel(
                     td(ng-class="status.activeCalculation.data.general.comment ? 'success' : 'warning'") {{ status.activeCalculation.data.general.comment }}
     
         hr
-        pre(ng-show="status.activeCalculation.data.climatic.blocks.length") Климатические испытания
 
-        #climatic-info(ng-repeat="block in status.activeCalculation.data.climatic.blocks")
-            h5 Блок {{$index + 1}} ({{ block.type.name }})        
-            table.table(id = "block-info")          
-                tbody
-                    tr
-                        td.info Суммарная трудоёмкость:
-                        td(ng-class="block.totalLabor ? 'success' : 'danger'") {{ block.totalLabor ? block.totalLabor : 'Нет данных' }}
+        div(ng-show="status.activeCalculation.data.climatic.blocks.length")
+           
+            pre Климатические испытания
 
+            #climatic-info(ng-repeat="block in status.activeCalculation.data.climatic.blocks")
+                h5 Блок {{$index + 1}} ({{ block.type.name }})        
+                table.table(id = "block-info")          
+                    tbody
+                        tr
+                            td.info Суммарная трудоёмкость:
+                            td(ng-class="block.totalLabor ? 'success' : 'danger'") {{ block.totalLabor ? block.totalLabor : 'Нет данных' }}
+
+            pre(ng-show="status.activeCalculation.data.climatic.blocks.length") 
+                <b> КЛИМАТИКА ВСЕГО: {{ status.activeCalculation.data.climatic.results.hours }} (часов), {{ status.activeCalculation.data.climatic.results.pdays }} (ч/дней) </b>
 
 //- Calculation data inputs section
 section#forms-panel

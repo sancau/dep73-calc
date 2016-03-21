@@ -5,16 +5,23 @@
     Author: Alexander Tatchin | github.com/sancau
 
 .well
-    h3 Аутентификация
+    h3 Расчёт трудоёмкости испытаний
 
-    hr 
-    h5 TODO:  
-    ul
-        li Get user data from from (username / password)
-        li Request server for login (via LoginService)
-        li On success $state.go("list") / add user info to UserData constant
-        li On error - notify user
-    hr
+   
+    form(
+        role="form",
+        name="loginForm",
+        novalidate="novalidate",
+        ng-model="loginForm"
+    )
 
+        lc-string-input(
+            required="true",
+            label="Ваше имя",
+            input-id="username",
+            input-object="loginForm.username",
+            model="auth.form.username",
+            submitted="auth.submitted"
+        )   
     a
-        button.btn(ng-click="login()") Вход
+        button.btn.btn-primary(ng-click="auth.login()") Вход

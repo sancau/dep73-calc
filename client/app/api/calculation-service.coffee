@@ -16,7 +16,7 @@ CalculationService = ($resource, AppConfig, CalculationResource) ->
         etagConfig = 
             query: 
                 method: 'GET'
-                isArray: no
+                isArray: yes
             delete:
                 method: 'DELETE'
                 headers: { 'If-Match': etag }

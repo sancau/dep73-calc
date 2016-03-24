@@ -13,10 +13,10 @@ appConfig =
     # Database related configuration settings
     database:
         dbName: 'dep73-calc'
-        baseApiUrl: 'http://127.0.0.1:8000/api/v1'
+        baseApiUrl: 'http://127.0.0.1:3000'
 
         resources: 
-            calculationsUrl: 'http://127.0.0.1:8000/api/v1/calculation' 
+            calculationsUrl: 'http://127.0.0.1:3000/calculation' 
             
             #DEBUG
             presetsUrl: '../test/fake-api/presets/presets.json'

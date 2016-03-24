@@ -84,8 +84,8 @@ listPreload =
             CalculationService.getAll()
                 .then(
                     # success
-                    (data) -> 
-                        data._items
+                    (data) ->
+                        data
                     # error
                     (error) ->
                         console.log error

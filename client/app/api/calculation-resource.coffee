@@ -13,7 +13,7 @@ CalculationResource = ($resource, AppConfig) ->
     plainConfig = 
         query: 
             method: 'GET'
-            isArray: no
+            isArray: yes
         update:
             method: 'PUT'
 

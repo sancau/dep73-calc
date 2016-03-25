@@ -18,7 +18,7 @@ angular.module 'app.settings', [
             views: 
                 'main':
                     controller: 'SettingsCtrl as settings'
-                    templateUrl: 'settings/views/settings-view.jade'
+                    templateUrl: 'settings/settings-view.jade'
             data:
                 pageTitle: 'Профили настроек'
 ]

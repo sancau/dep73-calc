@@ -12,13 +12,13 @@
     label.control-label(for="{{ inputId }}") {{ label }}
         
     input.form-control(
-        type="text",
+        type="{{ forPassword ? 'password' : 'text' }}",
         id="{{ inputId }}",
         name="{{ inputId }}",
         ng-model="model",
         ng-required="required"
     )
-
+    
     p.help-block(
         ng-show!="inputObject.$error.required && (!inputObject.$pristine || submitted)"
     )   Это поле не может быть пустым

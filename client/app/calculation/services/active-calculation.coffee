@@ -10,42 +10,8 @@
 ###
 
 angular.module 'app.calculation'
-
-.factory 'ActiveCalculation', () ->
-	
-    # calculation data object
-	data: ''
-
-    # test type choices
-	typeOptions: [
-        { 
-            label: 'Квалификационные'
-            value: '1'
-        }
-        { 
-            label: 'Конструкторско-доводческие'
-            value: '2'
-        }
-        { 
-            label: 'Периодические'
-            value: '3'
-        }
-        { 
-            label: 'Приёмо-сдаточные'
-            value: '4'
-        }
-        { 
-            label: 'Предварительные'
-            value: '5'
-        }
-        { 
-            label: 'Типовые'
-            value: '6'
-        }
-        { 
-            label: 'Иное'
-            value: '7'
-        }
-    ]
+    .factory 'ActiveCalculation', () ->
+        # calculation data object
+    	data: ''
 
 

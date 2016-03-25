@@ -5,64 +5,44 @@
     Author: Alexander Tatchin | github.com/sancau
 ###
 
-# controller function
-GeneralCtrl = ($scope, ActiveCalculation, CalculationService, PresetsResource) ->
+GeneralCtrl = ($scope, ActiveCalculation, CalculationAPI, TypeOptions) ->
 
-    PresetsResource.query()
-        .$promise.then(
-            # success
-            (data) ->
-
-                $scope.presetOptions = []
-
-                for i in data
-
-                    presetOption = 
-                        value: "#{i.id}"
-                        label: i.name
-
-                    $scope.presetOptions.push presetOption
-
-                console.log "Presets loaded"
-            # error
-            (error) ->
-                console.log error
-        )
-
-    console.log 'GeneralCtrl loaded'
-
-    # shared data object reference
     $scope.activeCalculation = ActiveCalculation
+    $scope.typeOptions = TypeOptions.options
 
     $scope.formModel = JSON.parse JSON.stringify(ActiveCalculation.data.general)
 
     # Save changes logic 
-    $scope.saveChangesButtonContent = 'Сохранить' 
     $scope.saveChanges = () ->
         
-        # adds labels for type and preset to the data object
+        # Adds labels for type and preset to the data object
         $scope.formModel.type.label = 
-            (i.label for i in ActiveCalculation.typeOptions when i.value is $scope.formModel.type.code)[0]
-        $scope.formModel.settings.label = 
-                (i.label for i in $scope.presetOptions when i.value is $scope.formModel.settings.code)[0]
+            (i.label for i in $scope.typeOptions when i.value is $scope.formModel.type.code)[0]
 
         $scope.submitted = on
 
         if $scope.generalInfoForm.$valid
 
             ActiveCalculation.data.general = JSON.parse JSON.stringify($scope.formModel)
-            data = $scope.activeCalculation.data
-            
-            CalculationService.update(data)
-                .then(
-                        (updatedEntity) ->
-                            # update ActiveCalculation with new META
-                            for prop, value of updatedEntity
-                                ActiveCalculation.data[prop] = value
-                        (error) ->
-                            console.log error
-                    )
+            calculation = $scope.activeCalculation.data          
 
+            CalculationAPI.one(calculation._id).get()
+                .then(
+                    (entity) ->
+                        for prop, value of entity
+                            entity[prop] = value
+                        entity.save()
+                            .then(
+                                (updatedEntity) ->
+                                    # update ActiveCalculation
+                                    for prop, value of updatedEntity
+                                        ActiveCalculation.data[prop] = value
+                                (error) ->
+                                    console.log error
+                            )
+                    (error) ->
+                        console.log error
+                )
         else
             console.log 'Invalid Form'
 
@@ -71,8 +51,8 @@ angular.module 'app.calculation'
     .controller 'GeneralCtrl', [
         '$scope'
         'ActiveCalculation'
-        'CalculationService'
-        'PresetsResource'
+        'CalculationAPI'
+        'TypeOptions'
 
         GeneralCtrl
     ]

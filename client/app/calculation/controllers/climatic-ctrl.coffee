@@ -6,7 +6,7 @@
 ###
 
 # controller function
-ClimaticCtrl = (ActiveCalculation, CalculationService, LogicService) ->
+ClimaticCtrl = (ActiveCalculation, LogicService) ->
 
     vm = this
 
@@ -180,7 +180,6 @@ ClimaticCtrl = (ActiveCalculation, CalculationService, LogicService) ->
 angular.module 'app.calculation'
     .controller 'ClimaticCtrl', [
         'ActiveCalculation'
-        'CalculationService'
         'LogicService'
 
         ClimaticCtrl

@@ -8,9 +8,10 @@
 angular.module 'app.calculation', [
     'ui.router'
     'ui.bootstrap'
-    
     'dm.stickyNav' 
-]
+
+    'api'
+]   
 
 .config [
     '$stateProvider'
@@ -19,7 +20,7 @@ angular.module 'app.calculation', [
 
         $stateProvider
 
-            # calculations list
+            # Calculations list
             .state 'list',
                 url: '/'
                 views: 
@@ -30,7 +31,7 @@ angular.module 'app.calculation', [
                 data:
                     pageTitle: 'История расчётов'
         
-            # an existing calculation
+            # Existing calculation
             .state 'calculation',
                 url: '/calculation/:calculationID'
                 views: 
@@ -40,7 +41,7 @@ angular.module 'app.calculation', [
                 data:
                     pageTitle: 'Расчёт трудоёмкости'
 
-            # a new calculation
+            # New calculation
             .state 'calculation-new',
                 url: '/calculation'
                 views:
@@ -51,42 +52,36 @@ angular.module 'app.calculation', [
                     pageTitle: 'Новый расчёт трудоёмкости'
 ]
 
-# this preloads calculation data to feed ActiveCalculation object 
-# before calculation page and inner ctrls are loaded
+# This preloads calculation data to feed ActiveCalculation object 
 calculationPreload = 
     preload: [
-        'CalculationService'
-        'ActiveCalculation'
         '$stateParams'
+        'ActiveCalculation'
+        'CalculationAPI'
 
-        (CalculationService, ActiveCalculation, $stateParams) ->
+        ($stateParams, ActiveCalculation, CalculationAPI) ->
 
             id = $stateParams.calculationID
 
-            CalculationService.getOne(id)
+            CalculationAPI.one(id).get()
                 .then(
-                    # success
                     (data) ->
-                        ActiveCalculation.data = data
-                    # error
+                        ActiveCalculation.data = data.plain()
                     (error) ->
                         console.log error
                 )
     ]
 
-# this preloads calculations data before ctrl is loaded
+# This preloads calculations data before list ctrl is loaded
 listPreload = 
     allCalculations: [
-        'CalculationService'
+        'CalculationAPI'
 
-        (CalculationService) ->
-            
-            CalculationService.getAll()
+        (CalculationAPI) ->    
+            CalculationAPI.getList()
                 .then(
-                    # success
                     (data) ->
-                        data
-                    # error
+                        data.plain()
                     (error) ->
                         console.log error
                 )

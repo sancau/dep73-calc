@@ -6,7 +6,7 @@
 ###
 
 # controller function
-AuthCtrl = ($state, AppConfig) ->
+AuthCtrl = ($state) ->
 
     vm = this
 
@@ -14,13 +14,7 @@ AuthCtrl = ($state, AppConfig) ->
         
         vm.submitted = on
 
-        if not vm.form.username
-            return 
-        
-        userData = 
-            username: vm.form.username
-
-        AppConfig.userData = userData
+        console.log 'AUTH LOGIC | NOT IMPLEMENTED'
 
         $state.go('list') 
 
@@ -31,7 +25,6 @@ AuthCtrl = ($state, AppConfig) ->
 angular.module 'app.auth'
 .controller 'AuthCtrl', [
     '$state'
-    'AppConfig'
 
     AuthCtrl
 ]

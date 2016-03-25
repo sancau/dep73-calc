@@ -8,16 +8,18 @@
 angular.module 'app', [
     'ui.bootstrap'
     'ui.router'
+    
     'ngAnimate'
     'ngResource'
 
-    'lc.directives' # custom application directives
+    'lc.directives' 
 
-    'app.auth' # user athentication and authorization
-    'app.calculation' # calculations list / view / create / manage
-    'app.settings' # calculation settings preset manager
-    'app.views' # cached templates module 
+    'app.auth'
+    'app.calculation' 
+    'app.settings'
+    'app.views' 
 ]
+
 .config [
     '$stateProvider'
     '$urlRouterProvider'
@@ -25,3 +27,24 @@ angular.module 'app', [
     ($stateProvider, $urlRouterProvider) ->
         $urlRouterProvider.otherwise '/'
 ]
+
+.controller 'AppCtrl', [
+    '$location'
+    '$scope'
+    '$state'
+
+    ($location, $scope, $state) ->
+
+        $scope.uiState = $state
+
+        # change of state affects pageTitle value
+        $scope.$on '$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) ->           
+            if angular.isDefined toState.data.pageTitle
+                $scope.pageTitle = "#{toState.data.pageTitle} | ЦНИИ РТК"
+
+        # active CSS class handler
+        $scope.isActive = (viewLocation) ->
+            viewLocation is (do $location.path)
+]
+
+

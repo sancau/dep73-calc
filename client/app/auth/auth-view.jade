@@ -5,8 +5,6 @@
     Author: Alexander Tatchin | github.com/sancau
 
 .well
-    h3 Расчёт трудоёмкости испытаний
-
    
     form(
         role="form",
@@ -17,11 +15,22 @@
 
         lc-string-input(
             required="true",
-            label="Ваше имя",
+            label="Имя пользователя",
             input-id="username",
             input-object="loginForm.username",
             model="auth.form.username",
             submitted="auth.submitted"
-        )   
+        )
+
+        lc-string-input(
+            type="password",
+            required="true",
+            label="Пароль",
+            input-id="password",
+            input-object="loginForm.password",
+            model="auth.form.password",
+            submitted="auth.submitted"
+        )     
+
     a
         button.btn.btn-primary(ng-click="auth.login()") Вход

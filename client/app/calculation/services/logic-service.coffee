@@ -1,3 +1,4 @@
+
 ###
     Source: calculation/services/logic.coffee 
     Project: dep73-calc
@@ -5,11 +6,11 @@
     Author: Alexander Tatchin | github.com/sancau
 ###
 
-LogicService = (PresetsService) ->
+LogicService = () ->
 
     logicService = {}
 
-    # performs calculation evaluation
+    # Performs calculation evaluation
     logicService.evaluate = (calculation) -> 
 
         evalClimaticBlock = (block, preset) ->
@@ -20,7 +21,6 @@ LogicService = (PresetsService) ->
                 workTemp = block.values.workTemp
                 edgeTemp = block.values.edgeTemp
                 
-
                 if workTemp > preset.normalConditions.temp
                     labor += (workTemp - preset.normalConditions.temp) / preset.upSpeed 
                 else 
@@ -43,7 +43,7 @@ LogicService = (PresetsService) ->
 
                 return block.values.operationTime
 
-        # PROTOTYPE PRESET IMPLEMENTATION
+        # Hardcoded default preset for now. Presets UI / API to be implemented
         preset = 
             upSpeed: 1
             downSpeed: 1
@@ -65,27 +65,6 @@ LogicService = (PresetsService) ->
 
         calculation.climatic.results = results
 
-        # calculation.climatic.results.pdays = totalClimatic * 2 / 8
-
-        # PresetService
-        # .getOne(calculation.general.settings.code)
-        # .then(
-        #     (preset) ->
-
-        #         total = 0    
-
-        #         # climatic    
-        #         for block in calculation.climatic.blocks
-        #             console.log 'eval block'
-        #             console.log block
-
-        #         return calculation
-
-        #     (error) ->
-        #         console.log error
-        #         return null
-        # )
-
         return calculation
 
     return logicService 
@@ -93,7 +72,6 @@ LogicService = (PresetsService) ->
 
 angular.module 'app.calculation'
     .factory 'LogicService', [
-        'PresetsService'
 
         LogicService
     ]

@@ -19,7 +19,7 @@ angular.module 'app.auth', [
                 'main':
                     controller: 'AuthCtrl'
                     controllerAs: 'auth'
-                    templateUrl: 'auth/views/auth-view.jade'
+                    templateUrl: 'auth/auth-view.jade'
             data:
                 pageTitle: 'Отдел №73'
 ]

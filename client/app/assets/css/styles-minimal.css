@@ -46,12 +46,6 @@ p {
   background-color: #efefef; 
 }
 
-/* General buttons style */
-
-.btn:hover {
-  background-color: #cfcfcf;
-}
-
 /* Header styles */
 #header {
   margin-top: 10px;

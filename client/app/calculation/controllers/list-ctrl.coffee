@@ -5,7 +5,7 @@
     Author: Alexander Tatchin | github.com/sancau
 ###
 
-ListCtrl = ($state, allCalculations, CalculationService) ->
+ListCtrl = ($state, allCalculations, CalculationAPI) ->
     
     vm = this
     vm.calculationsList = allCalculations
@@ -14,14 +14,20 @@ ListCtrl = ($state, allCalculations, CalculationService) ->
         $state.go 'calculation', { calculationID: calculation._id }
 
     vm.delete = (calculation) -> 
-        CalculationService.delete(calculation)
-            .then(                        
-                # success
-                (data) ->  
-                    vm.calculationsList.pop calculation
-                # error
+        CalculationAPI.one(calculation._id).get().
+            then(
+                (entity) ->
+                    entity.remove()
+                        .then(                        
+                            # success
+                            (data) ->  
+                                vm.calculationsList.pop calculation
+                            # error
+                            (error) ->
+                                console.log error
+                        )
                 (error) ->
-                    console.log error
+                    console.log error                    
             )
         
     return vm
@@ -31,7 +37,7 @@ angular.module 'app.calculation'
 .controller 'ListCtrl', [
     '$state'
     'allCalculations'
-    'CalculationService'
+    'CalculationAPI'
 
     ListCtrl
 ]

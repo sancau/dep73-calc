@@ -4,7 +4,6 @@
     Description: Form view for general data inputs 
     Author: Alexander Tatchin | github.com/sancau
 
-//-General information form
 form(
     role="form",
     name="$parent.generalInfoForm",
@@ -26,20 +25,20 @@ form(
         label="Вид испытаний",
         input-id="type",
         input-object="generalInfoForm.type",
-        options="activeCalculation.typeOptions",
+        options="typeOptions",
         selected-option="formModel.type.code",
         submitted="submitted"
     )
-
-    lc-select-input(
-        required="true",
-        label="Вариант настроек",
-        input-id="settings",
-        input-object="generalInfoForm.settings",
-        options="presetOptions",
-        selected-option="formModel.settings.code",
-        submitted="submitted"
-    )
+    
+    //- lc-select-input(
+    //-     required="true",
+    //-     label="Вариант настроек",
+    //-     input-id="settings",
+    //-     input-object="generalInfoForm.settings",
+    //-     options="presetOptions",
+    //-     selected-option="formModel.settings.code",
+    //-     submitted="submitted"
+    //- )
 
     lc-string-input(
         required="true",

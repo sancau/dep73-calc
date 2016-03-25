@@ -29,7 +29,7 @@
             td(ng-click="list.showCalculation(calculation)") {{ calculation.general.name }}
             td(ng-click="list.showCalculation(calculation)")  {{ calculation.general.type.label }}
             td(ng-click="list.showCalculation(calculation)")  {{ calculation.meta.author || 'Нет данных' }}
-            td(ng-click="list.showCalculation(calculation)")  {{ calculation._updated }}
+            td(ng-click="list.showCalculation(calculation)")  {{ calculation.meta.edited | date:'MM/dd/yyyy' }}
             td 
                 button.btn.btn-xs.btn-danger(ng-click='list.delete(calculation)') Удалить расчёт
 

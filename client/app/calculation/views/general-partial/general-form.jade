@@ -6,7 +6,7 @@
 
 form(
     role="form",
-    name="$parent.generalInfoForm",
+    name="general.generalInfoForm",
     novalidate="novalidate",
     ng-model="generalForm"
 )
@@ -15,19 +15,19 @@ form(
         required="true",
         label="Наименование изделия",
         input-id="name",
-        input-object="generalInfoForm.name",
-        model="formModel.name",
-        submitted="submitted"
+        input-object="general.generalInfoForm.name",
+        model="general.formModel.name",
+        submitted="general.submitted"
     )
 
     lc-select-input(
         required="true",
         label="Вид испытаний",
         input-id="type",
-        input-object="generalInfoForm.type",
-        options="typeOptions",
-        selected-option="formModel.type.code",
-        submitted="submitted"
+        input-object="general.generalInfoForm.type",
+        options="general.typeOptions",
+        selected-option="general.formModel.type.code",
+        submitted="general.submitted"
     )
     
     //- lc-select-input(
@@ -44,9 +44,9 @@ form(
         required="true",
         label="Руководящий документ", 
         input-id="doc", 
-        input-object="generalInfoForm.doc",
-        model="formModel.document",
-        submitted="submitted"
+        input-object="general.generalInfoForm.doc",
+        model="general.formModel.document",
+        submitted="general.submitted"
     )
 
     lc-text-input(
@@ -54,7 +54,7 @@ form(
         label="Комментарий", 
         rows="5", 
         input-id="comment",
-        input-object="generalInfoForm.comment",
-        model="formModel.comment",
-        submitted="submitted"
+        input-object="general.generalInfoForm.comment",
+        model="general.formModel.comment",
+        submitted="general.submitted"
     )

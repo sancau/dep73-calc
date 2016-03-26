@@ -6,14 +6,11 @@
 ###
 
 # controller function
-ClimaticCtrl = (ActiveCalculation, LogicService) ->
+ClimaticCtrl = (LogicService, Current) ->
 
     vm = this
 
-    # DEBUG
-    console.log "ClimaticCtrl loaded"
-
-    # form block type options
+    # Form block type options
     vm.options = 
     [
         {   
@@ -38,7 +35,7 @@ ClimaticCtrl = (ActiveCalculation, LogicService) ->
         }
     ]
 
-    # forms views urls depending on block type
+    # Forms views urls depending on block type
     formsUrls = 
     [
         {   
@@ -63,44 +60,32 @@ ClimaticCtrl = (ActiveCalculation, LogicService) ->
         }        
     ]
 
-    # Function to parse ActiveCalculation object and populate blocks array
-    getBlocks = (data) ->
+    # Populates blocks array based on calculation data
+    getBlocks = (climaticData) ->
         blocks = []        
         # if there's no climatic data -> populate 1 empty block
-        if data.climatic.blocks.length is 0
+        if climaticData.blocks.length is 0
             blocks = [{data: ''}]
         else
             # parse object and populate blocks
-            for dataItem in data.climatic.blocks
+            for item in climaticData.blocks
                 thisBlock = 
                     # clone the object to prevent unexprected bindings
-                    data: JSON.parse JSON.stringify(dataItem)
+                    data: JSON.parse JSON.stringify(item)
 
                 blocks.push thisBlock
 
         return blocks 
 
-    # Initial array of field groups contains 1 blank block
-    vm.blocks = getBlocks ActiveCalculation.data
-
     # Returns a verbose name for a block to display
     vm.getName = (index) ->
-        # ISSUE | NOT CRITICAL Why it invoked so many times??? 
-        # DEBUG  
-        # console.log 'getName() invoked'
-
         "Блок #{index}"
 
-    # returns the form view url for a block type
+    # Returns form view url for a block type
     vm.getFormUrl = (typeID, block) ->
-        
-        # ISSUE | NOT CRITICAL Why it invoked so many times??? 
-        # DEBUG 
-        # console.log 'getFormUrl() invoked'
+        (i.formView for i in formsUrls when i.typeID is typeID)[0]
 
-        return (i.formView for i in formsUrls when i.typeID is typeID)[0]
-
-    # resets block data object on type change
+    # Resets block data object on type change
     vm.blockTypeChanged = (block) ->
         block.data.values = {}
         return
@@ -113,9 +98,10 @@ ClimaticCtrl = (ActiveCalculation, LogicService) ->
         for block in vm.blocks
             if not block.data.type
                 hasEmptyBlock = yes
-        if hasEmptyBlock then return console.log "there's an empty block to use | ClimaticCtrl clone()"
+        if hasEmptyBlock 
+            return console.log "there's an empty block to use | ClimaticCtrl clone()"
 
-        # If form structure changed after submit attempt the state resets
+        # If form structure changed after submit attempt so the state resets
         vm.submitted = off
         vm.blocks.push {data: ''}
 
@@ -133,7 +119,6 @@ ClimaticCtrl = (ActiveCalculation, LogicService) ->
         vm.blocks.push {data: ''} if vm.blocks.length is 0
 
     # Logic on climatic data submission
-    vm.saveChangesButtonContent = 'Сохранить' 
     vm.saveChanges = () ->
 
         # flag signals that form was submitted by the user
@@ -152,35 +137,30 @@ ClimaticCtrl = (ActiveCalculation, LogicService) ->
                 if block.data isnt ''
                     data.push JSON.parse JSON.stringify(block.data)  
 
-            ActiveCalculation.data.climatic.blocks = data
+            Current.calculation.climatic.blocks = data
 
-            entity = LogicService.evaluate(ActiveCalculation.data)
-            console.log 'TO UPDATE' 
-            console.log entity
+            Current.calculation = LogicService.evaluate(Current.calculation)
 
-            CalculationService.update(entity)
+            Current.calculation.save()
                 .then(
-                        (updatedEntity) ->
-                            # update ActiveCalculation with new META
-                            for prop, value of updatedEntity
-                                ActiveCalculation.data[prop] = value
-
-                            vm.blocks = getBlocks ActiveCalculation.data
-
+                        (data) ->   
+                            console.log 'Update successfull'
                         (error) ->
                             console.log error
                     )
-
         else
             console.log "Invalid Form"
+
+    # Initial array of field groups contains 1 blank block
+    vm.blocks = getBlocks Current.calculation.climatic
 
     return vm   
 
 # controller registration
 angular.module 'app.calculation'
     .controller 'ClimaticCtrl', [
-        'ActiveCalculation'
         'LogicService'
+        'Current'
 
         ClimaticCtrl
     ]

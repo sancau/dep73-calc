@@ -5,54 +5,44 @@
     Author: Alexander Tatchin | github.com/sancau
 ###
 
-GeneralCtrl = ($scope, ActiveCalculation, CalculationAPI, TypeOptions) ->
+GeneralCtrl = (TypeOptions, Current) ->
 
-    $scope.activeCalculation = ActiveCalculation
-    $scope.typeOptions = TypeOptions.options
+    vm = this
 
-    $scope.formModel = JSON.parse JSON.stringify(ActiveCalculation.data.general)
+    vm.typeOptions = TypeOptions.options
+
+    # Copy of shared calculation 
+    # Prevents general form from instantly changing status panel data before saved
+    vm.formModel = JSON.parse JSON.stringify(Current.calculation.general)
 
     # Save changes logic 
-    $scope.saveChanges = () ->
-        
+    vm.saveChanges = () ->
+
         # Adds labels for type and preset to the data object
-        $scope.formModel.type.label = 
-            (i.label for i in $scope.typeOptions when i.value is $scope.formModel.type.code)[0]
+        vm.formModel.type.label = 
+            (i.label for i in vm.typeOptions when i.value is vm.formModel.type.code)[0]
 
-        $scope.submitted = on
+        vm.submitted = on
 
-        if $scope.generalInfoForm.$valid
+        if vm.generalInfoForm.$valid
 
-            ActiveCalculation.data.general = JSON.parse JSON.stringify($scope.formModel)
-            calculation = $scope.activeCalculation.data          
-
-            CalculationAPI.one(calculation._id).get()
+            Current.calculation.general = JSON.parse JSON.stringify(vm.formModel)
+            
+            Current.calculation.save()
                 .then(
-                    (entity) ->
-                        for prop, value of entity
-                            entity[prop] = value
-                        entity.save()
-                            .then(
-                                (updatedEntity) ->
-                                    # update ActiveCalculation
-                                    for prop, value of updatedEntity
-                                        ActiveCalculation.data[prop] = value
-                                (error) ->
-                                    console.log error
-                            )
+                    (data) ->
+                        console.log data
                     (error) ->
-                        console.log error
+                        console.log error                    
                 )
-        else
-            console.log 'Invalid Form'
+
+    return vm
 
 # controller registration
 angular.module 'app.calculation'
     .controller 'GeneralCtrl', [
-        '$scope'
-        'ActiveCalculation'
-        'CalculationAPI'
         'TypeOptions'
+        'Current'
 
         GeneralCtrl
     ]

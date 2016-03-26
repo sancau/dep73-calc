@@ -5,4 +5,4 @@
     Author: Alexander Tatchin | github.com/sancau
 ###
 
-angular.module 'lc.directives', []
+angular.module 'app.directives', []

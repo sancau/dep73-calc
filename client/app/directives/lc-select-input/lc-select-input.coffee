@@ -21,5 +21,5 @@ lcSelectInput = () ->
     link: (scope) ->    
 
 # directive registration
-angular.module 'lc.directives'
+angular.module 'app.directives'
     .directive 'lcSelectInput', lcSelectInput

@@ -1,18 +1,23 @@
 ###
     Source: settings/controllers/settings-ctrl.coffee 
     Project: dep73-calc
-    Description: Controller for the settings page
+    Description: Controller for the settings view
     Author: Alexander Tatchin | github.com/sancau
 ###
 
-# controller function
-SettingsCtrl = ($scope) ->
+# controller 
+SettingsCtrl = () ->
+	vm = this
 
+	###
+		CTRL LOGIC TODO
+	###
 
-# controller definition
+	return vm
+
+# controller registration
 angular.module 'app.settings'
 .controller 'SettingsCtrl', [
-    '$scope'
     
     SettingsCtrl
 ]

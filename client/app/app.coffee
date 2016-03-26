@@ -6,15 +6,8 @@
 ###
 
 angular.module 'app', [
-    'ui.bootstrap'
-    'ui.router'
-    
-    'ngAnimate'
-    'ngResource'
-
-    'lc.directives' 
-
     'app.auth'
+    'app.directives' 
     'app.calculation' 
     'app.settings'
     'app.views' 
@@ -35,7 +28,9 @@ angular.module 'app', [
 
     ($location, $scope, $state) ->
 
-        $scope.uiState = $state
+        vm = this
+
+        vm.uiState = $state
 
         # change of state affects pageTitle value
         $scope.$on '$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) ->           
@@ -43,8 +38,10 @@ angular.module 'app', [
                 $scope.pageTitle = "#{toState.data.pageTitle} | ЦНИИ РТК"
 
         # active CSS class handler
-        $scope.isActive = (viewLocation) ->
+        vm.isActive = (viewLocation) ->
             viewLocation is (do $location.path)
+
+        return vm
 ]
 
 

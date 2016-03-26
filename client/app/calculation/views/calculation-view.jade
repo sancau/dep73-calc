@@ -4,34 +4,6 @@
     Description: View for the calculation module / state: calculation 
     Author: Alexander Tatchin | github.com/sancau
 
-
-//-
-    ЗАДАЧИ ОТ ЗАКАЗЧИКА 
-    
-    1) Ввести вторую рабочую с возможностью установки в ноль
-    Добавить -
-
-    1) Изменение температуры
-        (сложные)
-        
-
-    2) Повышенное / понижженое давление
-     (строковые)
-    3) Термовакуумные испытания
-     (строковые)
-    4) Иний / Роса
-     (строковые)
-    5) дополнительная температурная погрешность
-     (строковая)
-    6) солнечная радиация
-     (строковая)
-    7) пыль
-     (строковая)
-
-//- (климатика )
-
-
-
 //- Calculation status section
 section#status-panel(
     sticky-nav="ng-sticky-behaviour",
@@ -40,30 +12,30 @@ section#status-panel(
     div(ng-controller="StatusCtrl as status")
         h3 Текущий расчёт
         hr
-       
+
         pre Общая информация
         table.table(id = "general-info")            
             tbody
                 tr
                     td.info Изделие:
-                    td(ng-class="status.activeCalculation.data.general.name ? 'success' : 'danger'") {{ status.activeCalculation.data.general.name }}
+                    td(ng-class="status.currentCalculation.general.name ? 'success' : 'danger'") {{ status.currentCalculation.general.name }}
                 tr
                     td.info Вид испытаний:
-                    td(ng-class="status.activeCalculation.data.general.type.label ? 'success' : 'danger'") {{ status.activeCalculation.data.general.type.label }}
+                    td(ng-class="status.currentCalculation.general.type.label ? 'success' : 'danger'") {{ status.currentCalculation.general.type.label }}
                 tr
                     td.info Руководящий документ:
-                    td(ng-class="status.activeCalculation.data.general.document ? 'success' : 'danger'") {{ status.activeCalculation.data.general.document }}
+                    td(ng-class="status.currentCalculation.general.document ? 'success' : 'danger'") {{ status.currentCalculation.general.document }}
                 tr
                     td.info Комментарий:
-                    td(ng-class="status.activeCalculation.data.general.comment ? 'success' : 'warning'") {{ status.activeCalculation.data.general.comment }}
+                    td(ng-class="status.currentCalculation.general.comment ? 'success' : 'warning'") {{ status.currentCalculation.general.comment }}
     
         hr
 
-        div(ng-show="status.activeCalculation.data.climatic.blocks.length")
+        div(ng-show="status.currentCalculation.climatic.blocks.length")
            
             pre Климатические испытания
 
-            #climatic-info(ng-repeat="block in status.activeCalculation.data.climatic.blocks")
+            #climatic-info(ng-repeat="block in status.currentCalculation.climatic.blocks")
                 h5 Блок {{$index + 1}} ({{ block.type.name }})        
                 table.table(id = "block-info")          
                     tbody
@@ -71,8 +43,8 @@ section#status-panel(
                             td.info Суммарная трудоёмкость:
                             td(ng-class="block.totalLabor ? 'success' : 'danger'") {{ block.totalLabor ? block.totalLabor : 'Нет данных' }}
 
-            pre(ng-show="status.activeCalculation.data.climatic.blocks.length") 
-                <b> КЛИМАТИКА ВСЕГО: {{ status.activeCalculation.data.climatic.results.hours }} (часов), {{ status.activeCalculation.data.climatic.results.pdays }} (ч/дней) </b>
+            pre(ng-show="status.currentCalculation.climatic.blocks.length") 
+                <b> КЛИМАТИКА ВСЕГО: {{ status.currentCalculation.climatic.results.hours }} (часов), {{ status.currentCalculation.climatic.results.pdays }} (ч/дней) </b>
 
 //- Calculation data inputs section
 section#forms-panel
@@ -87,14 +59,14 @@ section#forms-panel
             is-disabled="generalDisabled"
         )
             #general-partial(
-                ng-controller="GeneralCtrl"
+                ng-controller="GeneralCtrl as general"
             )
                 #general-form(
                     ng-include="'calculation/views/general-partial/general-form.jade'"
                 ) 
                 
                 //- Save general info changes (logic on GeneralCrtl)
-                button(ng-click="saveChanges()") Сохранить
+                button(ng-click="general.saveChanges()") Сохранить
         
         //- Climatic information inputs host
         uib-accordion-group(
@@ -106,7 +78,7 @@ section#forms-panel
                 ng-include="'calculation/views/climatic-partial/climatic-partial.jade'"
             )
         
-        //- Mechanical tests | NOT IMPLEMENTED  
+        //- Mechanical tests | NOT IMPLEMENTED 
         //- uib-accordion-group(
         //-     heading="Механические испытания",
         //-     is-open="mechanicalOpen",

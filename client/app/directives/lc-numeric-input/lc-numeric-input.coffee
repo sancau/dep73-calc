@@ -25,5 +25,5 @@ lcNumericInput = () ->
 
 
 # directive registration
-angular.module 'lc.directives'
+angular.module 'app.directives'
     .directive 'lcNumericInput', lcNumericInput 

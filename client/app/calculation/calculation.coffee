@@ -8,6 +8,7 @@
 angular.module 'app.calculation', [
     'ui.router'
     'ui.bootstrap'
+    'ngAnimate'
     'dm.stickyNav' 
 
     'api'
@@ -46,7 +47,7 @@ angular.module 'app.calculation', [
                 url: '/calculation'
                 views:
                     'main':
-                        controller: 'NewCalculationCtrl'
+                        controller: 'NewCalculationCtrl as general'
                         templateUrl: 'calculation/views/calculation-new-view.jade'
                 data:
                     pageTitle: 'Новый расчёт трудоёмкости'
@@ -56,17 +57,17 @@ angular.module 'app.calculation', [
 calculationPreload = 
     preload: [
         '$stateParams'
-        'ActiveCalculation'
         'CalculationAPI'
+        'Current'
 
-        ($stateParams, ActiveCalculation, CalculationAPI) ->
+        ($stateParams, CalculationAPI, Current) ->
 
             id = $stateParams.calculationID
 
             CalculationAPI.one(id).get()
                 .then(
                     (data) ->
-                        ActiveCalculation.data = data.plain()
+                        Current.calculation = data
                     (error) ->
                         console.log error
                 )

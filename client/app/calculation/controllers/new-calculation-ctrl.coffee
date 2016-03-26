@@ -5,21 +5,23 @@
     Author: Alexander Tatchin | github.com/sancau
 ###
 
-NewCalculationCtrl = ($scope, $state, CalculationAPI, TypeOptions) ->
+NewCalculationCtrl = ($state, CalculationAPI, TypeOptions) ->
 
-    $scope.formModel = {}
-    $scope.typeOptions = TypeOptions.options
+    vm = this
+
+    vm.formModel = {}
+    vm.typeOptions = TypeOptions.options
 
     # Create new calculation logic
-    $scope.createCalculation = () ->
+    vm.createCalculation = () ->
 
-        $scope.submitted = on
+        vm.submitted = on
 
-        if $scope.generalInfoForm.$valid
+        if vm.generalInfoForm.$valid
 
             # Adds type label and preset label to data objects
-            $scope.formModel.type.label = 
-                (i.label for i in $scope.typeOptions when i.value is $scope.formModel.type.code)[0]
+            vm.formModel.type.label = 
+                (i.label for i in vm.typeOptions when i.value is vm.formModel.type.code)[0]
         
             # Populates data object using entered data from fromModel
             data = 
@@ -29,7 +31,7 @@ NewCalculationCtrl = ($scope, $state, CalculationAPI, TypeOptions) ->
                     edited: new Date()
                     completed: false
                 }
-                general: $scope.formModel
+                general: vm.formModel
                 climatic: {
                     blocks: []
                 }
@@ -47,10 +49,11 @@ NewCalculationCtrl = ($scope, $state, CalculationAPI, TypeOptions) ->
         else
             console.log 'Form Invalid'
 
+    return vm
+
 # Controller registration
 angular.module 'app.calculation'
     .controller 'NewCalculationCtrl', [
-        '$scope'
         '$state'
         'CalculationAPI'
         'TypeOptions'

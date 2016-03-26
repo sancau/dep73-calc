@@ -7,44 +7,44 @@
 ###
 
 angular.module 'api', [
-	'restangular'
+    'restangular'
 ]
 
 .config [
-	'RestangularProvider'
+    'RestangularProvider'
 
-	(RestangularProvider, APIBaseURL) ->
-		RestangularProvider
-			.setBaseUrl 'http://localhost:3000'
+    (RestangularProvider, APIBaseURL) ->
+        RestangularProvider
+            .setBaseUrl 'http://localhost:3000'
 ]
 
 .factory 'ConfiguredRestangular', [
-	'Restangular'
+    'Restangular'
 
-	(Restangular) ->
-		Restangular.withConfig (RestangularConfigurer) ->
-			RestangularConfigurer.setRestangularFields {
-				id: '_id'
-			}
+    (Restangular) ->
+        Restangular.withConfig (RestangularConfigurer) ->
+            RestangularConfigurer.setRestangularFields {
+                id: '_id'
+            }
 ]
 
 .factory 'CalculationAPI', [
-	'ConfiguredRestangular'
+    'ConfiguredRestangular'
 
-	(ConfiguredRestangular) ->
-		ConfiguredRestangular.service('calculation')
+    (ConfiguredRestangular) ->
+        ConfiguredRestangular.service('calculation')
 ]
 
 .factory 'PresetAPI', [
-	'ConfiguredRestangular'
+    'ConfiguredRestangular'
 
-	(ConfiguredRestangular) ->
-		ConfiguredRestangular.service('preset')
+    (ConfiguredRestangular) ->
+        ConfiguredRestangular.service('preset')
 ]
 
 .factory 'UserAPI', [
-	'ConfiguredRestangular'
+    'ConfiguredRestangular'
 
-	(ConfiguredRestangular) ->
-		ConfiguredRestangular.service('user')
+    (ConfiguredRestangular) ->
+        ConfiguredRestangular.service('user')
 ]

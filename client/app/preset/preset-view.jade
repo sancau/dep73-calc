@@ -1,12 +1,15 @@
 //-
-    Source: settings/views/settings-view.jade 
+    Source: preset/preset-view.jade 
     Project: dep73-calc
-    Description: Main view for the settings module 
+    Description: Main view for the preset module 
     Author: Alexander Tatchin | github.com/sancau
 
 .well
     h3 Профили настроек
     hr
+    
+    pre {{ preset.presets }}
+
     h5 TODO:
     ul
         li Select field with available presets

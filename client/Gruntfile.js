@@ -39,7 +39,7 @@ module.exports = function(grunt) {
                     'js/app.js',
                     'js/calculation.js',
                     'js/list.js',
-                    'js/settings.js',
+                    'js/preset.js',
                     'js/auth.js',
                     'js/views.js', 
                     'js/*.js',

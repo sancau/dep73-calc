@@ -9,7 +9,7 @@ angular.module 'app', [
     'app.auth'
     'app.directives' 
     'app.calculation' 
-    'app.settings'
+    'app.preset'
     'app.views' 
 ]
 

@@ -3,8 +3,8 @@ restful = require 'node-restful'
 module.exports = (app, route) ->
     # Setup the controller for REST
     rest = restful.model(
-            'calculation'
-            app.models.calculation
+            'preset'
+            app.models.preset
         )
         .methods [
             'get'

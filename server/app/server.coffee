@@ -1,16 +1,18 @@
 express = require 'express'
-mongoose = require 'mongoose'
 bodyParser = require 'body-parser'
 methodOverride = require 'method-override'
+mongoose = require 'mongoose'
+morgan = require 'morgan'
 _ = require 'lodash'
 
 # Create the application
 app = do express
 
-# Add Middleware necessary for REST API's
+# Add some Middleware 
 app.use bodyParser.urlencoded({extended: true})
 app.use bodyParser.json()
 app.use methodOverride('X-HTTP-Method-Override')
+app.use morgan 'dev'
 
 # CORS Support
 app.use (req, res, next) ->
@@ -27,12 +29,15 @@ mongoose.connection.once(
         # Load the models
         app.models = require './models/index'
 
+        # Load the middleware 
+        app.middleware = require './middleware'
+
         # Load the routes
         routes = require './routes'
         _.each(
             routes
             (controller, route) ->
-                app.use(route, controller(app, route))
+                app.use route, controller(app, route)
         )
 
         app.listen 3000

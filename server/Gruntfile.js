@@ -7,7 +7,7 @@ module.exports = function(grunt) {
             },
             scripts: {
                 files: ['app/**/*.coffee'],
-                tasks: ['process']
+                tasks: ['newer:coffee']
             },
             all: {
                 files: ['app/*.*']
@@ -21,32 +21,27 @@ module.exports = function(grunt) {
                 dest: 'js/',
                 ext: '.js'
             }
-        },
-        express: {
-            all: {
-                options: {
-                    port: 5000,
-                    hostname: 'localhost',
-                    bases: ['.'],
-                    livereload: 1337,
-                }
-            }
-        }       
+        }
+        // express: {
+        //     all: {
+        //         options: {
+        //             port: 5000,
+        //             hostname: 'localhost',
+        //             bases: ['.'],
+        //             livereload: 1337,
+        //         }
+        //     }
+        // }       
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-coffee')
     grunt.loadNpmTasks('grunt-newer');
-    grunt.loadNpmTasks('grunt-express');
+    //grunt.loadNpmTasks('grunt-express');
     
-    grunt.registerTask(
-        'process', 
-
-        ['newer:coffee']);
-
     grunt.registerTask(
         'default',
 
-        ['coffee', 'express', 'watch']
+        ['coffee', 'watch']
     );
 };

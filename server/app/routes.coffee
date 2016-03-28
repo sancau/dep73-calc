@@ -1,4 +1,11 @@
+baseUrl = '/api/v1'
+
 module.exports = 
-    '/calculation': require './controllers/CalculationController'
-    '/preset': require './controllers/PresetController'
-    '/user': require './controllers/UserController'
+
+    # DB endpoints
+    "#{baseUrl}/calculation": require './controllers/CalculationController'
+    "#{baseUrl}/preset": require './controllers/PresetController'
+    "#{baseUrl}/user": require './controllers/UserController'
+    
+    # BL endpoints
+    "#{baseUrl}/admin/init": require './controllers/InitController'

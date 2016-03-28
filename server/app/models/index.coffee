@@ -1,5 +1,5 @@
 # Register app models here
 module.exports = 
-    calculation: require('./Calculation.js')
-    preset: require('./Preset.js')
-    user: require('./User.js')
+    calculation: require('./Calculation')
+    preset: require('./Preset')
+    user: require('./User')

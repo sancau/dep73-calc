@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "An AngularJS application for labour calculations in test department of @rtc.ru. Created by Alexander Tatchin @ github.com/sancau.",
   "author": "Alexander Tatchin <sancau@mail.ru>",
-  "main": "index.html",
+  "main": "app/index.html",
   "readme": "README.md",
   "repository": {
     "type": "git",

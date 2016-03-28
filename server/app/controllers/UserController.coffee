@@ -2,7 +2,7 @@ restful = require 'node-restful'
 
 module.exports = (app, route) ->
     # Setup the controller for REST
-    rest = restful.model(
+    endpoint = restful.model(
             'user'
             app.models.user
         )
@@ -13,8 +13,12 @@ module.exports = (app, route) ->
             'delete'
         ]
 
+    # Register endpoint middleware
+    for method in ['get', 'post', 'put', 'delete']
+        endpoint.before method, app.middleware.test
+
     # Register this endpoint with the application
-    rest.register(app, route)
+    endpoint.register(app, route)
 
     # Return middleware
     return (req, res, next) -> do next

@@ -1,4 +1,10 @@
-# App controllers
+###
+    Source: app/controllers.coffee 
+    Project: dep73-calc
+    Description: Controllers bootstrap script
+    Author: Alexander Tatchin | github.com/sancau
+###
+
 module.exports = 
     calculationCtrl: require './controllers/calculation-ctrl'
     presetCtrl: require './controllers/preset-ctrl'

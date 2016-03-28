@@ -1,3 +1,10 @@
+###
+    Source: app/models/user.coffee 
+    Project: dep73-calc
+    Description: User db model
+    Author: Alexander Tatchin | github.com/sancau
+###
+
 mongoose = require 'mongoose'
 
 UserSchema = new mongoose.Schema(

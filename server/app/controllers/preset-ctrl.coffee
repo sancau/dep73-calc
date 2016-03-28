@@ -1,3 +1,10 @@
+###
+    Source: app/controllers/preset-ctrl.coffee 
+    Project: dep73-calc
+    Description: Controller for /preset endpoint
+    Author: Alexander Tatchin | github.com/sancau
+###
+
 restful = require 'node-restful'
 
 module.exports = (app, route) ->

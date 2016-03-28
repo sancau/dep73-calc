@@ -1,3 +1,10 @@
+###
+    Source: app/models/calculation.coffee 
+    Project: dep73-calc
+    Description: Calculation db model
+    Author: Alexander Tatchin | github.com/sancau
+###
+
 mongoose = require 'mongoose'
 
 CalculationSchema = new mongoose.Schema(

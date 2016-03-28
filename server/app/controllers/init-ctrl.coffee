@@ -1,6 +1,5 @@
-
 ###
-    Source: app/server.coffee 
+    Source: app/controllers/init-ctrl.coffee 
     Project: dep73-calc
     Description: 
             Users initialize controller.

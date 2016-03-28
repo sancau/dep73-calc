@@ -2,3 +2,4 @@
 module.exports = 
     calculation: require('./Calculation.js')
     preset: require('./Preset.js')
+    user: require('./User.js')

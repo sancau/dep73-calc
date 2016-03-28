@@ -1,6 +1,5 @@
 mongoose = require 'mongoose'
 
-# Create model schema
 CalculationSchema = new mongoose.Schema(
         meta:
             type: {}
@@ -13,6 +12,5 @@ CalculationSchema = new mongoose.Schema(
             required: true
     )
 
-# Export the model schema
 module.exports = CalculationSchema
 

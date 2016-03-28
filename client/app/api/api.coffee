@@ -15,7 +15,7 @@ angular.module 'api', [
 
     (RestangularProvider, APIBaseURL) ->
         RestangularProvider
-            .setBaseUrl 'http://localhost:3000'
+            .setBaseUrl 'http://localhost:3000/api/v1'
 ]
 
 .factory 'ConfiguredRestangular', [

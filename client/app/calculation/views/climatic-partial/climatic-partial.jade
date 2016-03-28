@@ -28,7 +28,7 @@
                        ng-options="option.name for option in climatic.options track by option.id")
                              
             //- Includes the appropriate form view depending on the block's type
-            #form-include(ng-include="climatic.getFormUrl(block.data.type.id, block)")
+            #form-include(ng-include="climatic.getFormUrl(block.data.type.id)")
 
         //- Delete block button
         button(ng-click="climatic.delete(block)") Удалить блок

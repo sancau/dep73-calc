@@ -1,3 +1,10 @@
+###
+    Source: app/server.coffee 
+    Project: dep73-calc
+    Description: Server API main script
+    Author: Alexander Tatchin | github.com/sancau
+###
+
 express = require 'express'
 bodyParser = require 'body-parser'
 methodOverride = require 'method-override'
@@ -27,7 +34,7 @@ mongoose.connection.once(
     'open' 
     () -> 
         # Load the models
-        app.models = require './models/index'
+        app.models = require './models'
 
         # Load the middleware 
         app.middleware = require './middleware'

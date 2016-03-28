@@ -14,7 +14,7 @@ ClimaticCtrl = (LogicService, Current) ->
     vm.options = 
     [
         {   
-            id: 1 
+            id: 1
             name: 'Повышенная температура' 
         }
         { 
@@ -82,7 +82,7 @@ ClimaticCtrl = (LogicService, Current) ->
         "Блок #{index}"
 
     # Returns form view url for a block type
-    vm.getFormUrl = (typeID, block) ->
+    vm.getFormUrl = (typeID) ->
         (i.formView for i in formsUrls when i.typeID is typeID)[0]
 
     # Resets block data object on type change

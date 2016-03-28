@@ -1,9 +1,13 @@
 
-### 
-    Users initialize controller.
-    If no users exist in the db 
-        then populate test admin / user entities
-    If db has users -> do nothing / notify 
+###
+    Source: app/server.coffee 
+    Project: dep73-calc
+    Description: 
+            Users initialize controller.
+            If no users exist in the db 
+            then populate test admin / user entities
+            If db has users -> do nothing / notify 
+    Author: Alexander Tatchin | github.com/sancau
 ###
 
 mongoose = require 'mongoose'

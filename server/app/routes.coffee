@@ -1,11 +1,21 @@
+###
+    Source: app/routes.coffee 
+    Project: dep73-calc
+    Description: Routing configuration 
+    Author: Alexander Tatchin | github.com/sancau
+###
+
 baseUrl = '/api/v1'
+controllers = require './controllers'
 
 module.exports = 
 
     # DB endpoints
-    "#{baseUrl}/calculation": require './controllers/CalculationController'
-    "#{baseUrl}/preset": require './controllers/PresetController'
-    "#{baseUrl}/user": require './controllers/UserController'
+    "#{baseUrl}/calculation": controllers.calculationCtrl
+    "#{baseUrl}/preset": controllers.presetCtrl
+    "#{baseUrl}/user": controllers.userCtrl
     
     # BL endpoints
-    "#{baseUrl}/admin/init": require './controllers/InitController'
+    # "#{baseUrl}/login" : controllers.loginCtrl
+    "#{baseUrl}/admin/init": controllers.initCtrl
+

@@ -10,3 +10,4 @@ module.exports =
     presetCtrl: require './controllers/preset-ctrl'
     userCtrl: require './controllers/user-ctrl'
     initCtrl: require './controllers/init-ctrl'
+    loginCtrl: require './controllers/login-ctrl'

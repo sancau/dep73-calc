@@ -6,6 +6,6 @@
 ###
 
 module.exports = 
-    calculation: require('./models/calculation')
-    preset: require('./models/preset')
-    user: require('./models/user')
+    calculation: require './models/calculation'
+    preset: require './models/preset'
+    user: require './models/user'

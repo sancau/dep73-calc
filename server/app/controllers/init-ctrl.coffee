@@ -15,6 +15,8 @@ module.exports = (app, route) ->
 
     (req, res) -> 
 
+        console.log req
+
         UserModel = mongoose.model('user', app.models.user)
 
         UserModel.find {}, (error, users) ->

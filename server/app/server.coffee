@@ -10,7 +10,6 @@ bodyParser = require 'body-parser'
 methodOverride = require 'method-override'
 mongoose = require 'mongoose'
 morgan = require 'morgan'
-_ = require 'lodash'
 
 # Create the application
 app = do express
@@ -41,11 +40,8 @@ mongoose.connection.once(
 
         # Load the routes
         routes = require './routes'
-        _.each(
-            routes
-            (controller, route) ->
-                app.use route, controller(app, route)
-        )
+        for route, controller of routes 
+            app.use route, controller app, route
 
         app.listen 3000
         console.log 'Listening on port 3000...' 

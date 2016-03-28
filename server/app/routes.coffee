@@ -16,6 +16,6 @@ module.exports =
     "#{baseUrl}/user": controllers.userCtrl
     
     # BL endpoints
-    # "#{baseUrl}/login" : controllers.loginCtrl
+    "#{baseUrl}/login" : controllers.loginCtrl
     "#{baseUrl}/admin/init": controllers.initCtrl
 

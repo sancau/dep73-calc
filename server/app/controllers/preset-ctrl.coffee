@@ -20,9 +20,9 @@ module.exports = (app, route) ->
             'delete'
         ]
 
-    # Register endpoint middleware
-    for method in ['get', 'post', 'put', 'delete']
-        endpoint.before method, app.middleware.checkAuth
+    # # Register endpoint middleware
+    # for method in ['get', 'post', 'put', 'delete']
+    #     endpoint.before method, app.middleware.checkAuth
 
     # Register this endpoint with the application
     endpoint.register(app, route)

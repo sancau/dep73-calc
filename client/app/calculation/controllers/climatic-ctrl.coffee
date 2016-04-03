@@ -33,6 +33,42 @@ ClimaticCtrl = (LogicService, Current) ->
             id: 5 
             name: 'Технологическая операция' 
         }
+        {
+            id: 6
+            name: 'Повышенное давление'
+        }
+        {
+            id: 7
+            name: 'Пониженное давление'
+        }
+        {
+            id: 9
+            name: 'Термовакуумные испытания'
+        }
+        {
+            id: 10
+            name: 'Испытания на воздействие иния'
+        }
+        {
+            id: 11
+            name: 'Испытания на воздействие росы'
+        }
+        {
+            id: 12
+            name: 'Дополнительная температурная погрешность'
+        }
+        {
+            id: 13
+            name: 'Испытания на воздействие солнечной радиации'
+        }
+        {
+            id: 14
+            name: 'Испытания на воздействие пыли'
+        }
+        {
+            id: 15
+            name: 'Изменение температуры'
+        }
     ]
 
     # Forms views urls depending on block type
@@ -57,8 +93,19 @@ ClimaticCtrl = (LogicService, Current) ->
         { 
             typeID: 5  
             formView: 'calculation/views/climatic-partial/sub-partials/operation-form.jade' 
+        }
+        {
+            typeID: 15
+            formView: 'calculation/views/climatic-partial/sub-partials/temperature-change-form.jade' 
         }        
     ]
+
+    for i in [6,7,8,9,10,11,12,13,14]
+        formsUrls.push {
+            typeID: i
+            formView: 'calculation/views/climatic-partial/sub-partials/time-only-form.jade' 
+        }
+
 
     # Populates blocks array based on calculation data
     getBlocks = (climaticData) ->

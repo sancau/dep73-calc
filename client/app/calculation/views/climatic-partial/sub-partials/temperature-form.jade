@@ -8,7 +8,7 @@
     
     lc-numeric-input(
         required="true",
-        label="Рабочая температура",
+        label="Рабочая температура 1",
         min="-70",
         max="180",
         step="1",    
@@ -20,12 +20,35 @@
 
     lc-numeric-input(
         required="true",
-        label="Количество часов (рабочая температура)",
+        label="Количество часов (рабочая температура 1)",
         min="0",
         step="0.1", 
         input-id="workTime",
         input-object="block.climaticForm.workTime",
         model="block.data.values.workTime",
+        submitted="climatic.submitted"
+    )
+
+    lc-numeric-input(
+        required="true",
+        label="Рабочая температура 2",
+        min="-70",
+        max="180",
+        step="1",    
+        input-id="workTemp2",
+        input-object="block.climaticForm.workTemp2",
+        model="block.data.values.workTemp2",
+        submitted="climatic.submitted"
+    )
+
+    lc-numeric-input(
+        required="true",
+        label="Количество часов (рабочая температура 2)",
+        min="0",
+        step="0.1", 
+        input-id="workTime2",
+        input-object="block.climaticForm.workTime2",
+        model="block.data.values.workTime2",
         submitted="climatic.submitted"
     )
 

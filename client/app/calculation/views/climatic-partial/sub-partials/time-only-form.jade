@@ -1,0 +1,18 @@
+//-
+    Source: calculation/views/climatic-partials/sub-partials/time-only-form.jade 
+    Project: dep73-calc
+    Description: A generic form for those cases where only time is mentioned
+    Author: Alexander Tatchin | github.com/sancau
+
+.genericTime
+
+    lc-numeric-input(
+        required="true",
+        label="Время на этап",
+        min="0",
+        step="0.25",    
+        input-id="phaseTime",
+        input-object="block.climaticForm.phaseTime",
+        model="block.data.values.phaseTime",
+        submitted="climatic.submitted"
+    )

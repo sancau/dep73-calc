@@ -36,7 +36,7 @@ section#status-panel(
             pre Климатические испытания
 
             #climatic-info(ng-repeat="block in status.currentCalculation.climatic.blocks")
-                h5 Блок {{$index + 1}} ({{ block.type.name }})        
+                h5 Этап {{$index + 1}} ({{ block.type.name }})        
                 table.table(id = "block-info")          
                     tbody
                         tr

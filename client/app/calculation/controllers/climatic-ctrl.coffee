@@ -42,31 +42,27 @@ ClimaticCtrl = (LogicService, Current) ->
             name: 'Пониженное давление'
         }
         {
-            id: 9
+            id: 8
             name: 'Термовакуумные испытания'
         }
         {
+            id: 9
+            name: 'Испытания на воздействие инея и росы'
+        }
+        {
             id: 10
-            name: 'Испытания на воздействие иния'
-        }
-        {
-            id: 11
-            name: 'Испытания на воздействие росы'
-        }
-        {
-            id: 12
             name: 'Дополнительная температурная погрешность'
         }
         {
-            id: 13
+            id: 11
             name: 'Испытания на воздействие солнечной радиации'
         }
         {
-            id: 14
+            id: 12
             name: 'Испытания на воздействие пыли'
         }
         {
-            id: 15
+            id: 13
             name: 'Изменение температуры'
         }
     ]
@@ -95,12 +91,12 @@ ClimaticCtrl = (LogicService, Current) ->
             formView: 'calculation/views/climatic-partial/sub-partials/operation-form.jade' 
         }
         {
-            typeID: 15
+            typeID: 13
             formView: 'calculation/views/climatic-partial/sub-partials/temperature-change-form.jade' 
         }        
     ]
 
-    for i in [6,7,8,9,10,11,12,13,14]
+    for i in [6,7,8,9,10,11,12]
         formsUrls.push {
             typeID: i
             formView: 'calculation/views/climatic-partial/sub-partials/time-only-form.jade' 
@@ -126,7 +122,7 @@ ClimaticCtrl = (LogicService, Current) ->
 
     # Returns a verbose name for a block to display
     vm.getName = (index) ->
-        "Блок #{index}"
+        "Этап #{index}"
 
     # Returns form view url for a block type
     vm.getFormUrl = (typeID) ->

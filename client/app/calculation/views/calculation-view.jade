@@ -46,6 +46,21 @@ section#status-panel(
             pre(ng-show="status.currentCalculation.climatic.blocks.length") 
                 <b> КЛИМАТИКА ВСЕГО: {{ status.currentCalculation.climatic.results.hours }} (часов), {{ status.currentCalculation.climatic.results.pdays }} (ч/дней) </b>
 
+        div(ng-show="status.currentCalculation.mechanic.blocks.length")
+           
+            pre Климатические испытания
+
+            #mechanic-info(ng-repeat="block in status.currentCalculation.mechanic.blocks")
+                h5 Этап {{$index + 1}} ({{ block.type.name }})        
+                table.table(id = "block-info")          
+                    tbody
+                        tr
+                            td.info Суммарная трудоёмкость:
+                            td(ng-class="block.totalLabor ? 'success' : 'danger'") {{ block.totalLabor ? block.totalLabor : 'Нет данных' }}
+
+            pre(ng-show="status.currentCalculation.mechanic.blocks.length") 
+                <b> МЕХАНИКА ВСЕГО: {{ status.currentCalculation.mechanic.results.hours }} (часов), {{ status.currentCalculation.mechanic.results.pdays }} (ч/дней) </b>
+
 //- Calculation data inputs section
 section#forms-panel
 
@@ -79,9 +94,11 @@ section#forms-panel
             )
         
         //- Mechanical tests | NOT IMPLEMENTED 
-        //- uib-accordion-group(
-        //-     heading="Механические испытания",
-        //-     is-open="mechanicalOpen",
-        //-     is-disabled="mechanicalDisabled"
-        //- )
-        //-     p Форма для механических испытаний
+        uib-accordion-group(
+            heading="Механические испытания",
+            is-open="mechanicalOpen",
+            is-disabled="mechanicalDisabled"
+        )
+            #mechanic-partial(
+                ng-include="'calculation/views/mechanic-partial/mechanic-partial.jade'"
+            )

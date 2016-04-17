@@ -35,11 +35,15 @@ NewCalculationCtrl = ($state, CalculationAPI, TypeOptions) ->
                 climatic: {
                     blocks: []
                 }
-
+                mechanic: {
+                    blocks: []
+                }
+                
             CalculationAPI.post(data)
                 .then(
                         # success
                         (newEntity) ->
+                            console.log newEntity
                             $state.go 'calculation', { calculationID: newEntity._id }
                         # error
                         (error) ->

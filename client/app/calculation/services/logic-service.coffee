@@ -13,7 +13,7 @@ LogicService = () ->
     # Performs calculation evaluation
     logicService.evaluate = (calculation) -> 
 
-        evalClimaticBlock = (block, preset) ->
+        evalBlock = (block, preset) ->
 
             if block.type.name in ['Повышенная температура', 'Пониженная температура']
                 
@@ -102,6 +102,19 @@ LogicService = () ->
             pdays: (totalClimatic * 2 / 8).toFixed 1
 
         calculation.climatic.results = results
+
+        totalMechanic = 0
+        for block in calculation.mechanic.blocks
+
+            block.totalLabor = Math.round evalBlock block, preset
+            console.log block.totalLabor
+            totalMechanic += block.totalLabor
+        
+        results = 
+            hours: totalMechanic
+            pdays: (totalMechanic * 2 / 8).toFixed 1
+
+        calculation.mechanic.results = results
 
         return calculation
 

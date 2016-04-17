@@ -1,0 +1,41 @@
+//-
+    Source: calculation/views/mechanic-partial/mechanic-partial.jade 
+    Project: dep73-calc
+    Description: Partial view for mechanic data inputs 
+    Author: Alexander Tatchin | github.com/sancau
+
+#mechanic-controls(ng-controller="MechanicCtrl as mechanic")
+
+    #blocks(ng-repeat="block in mechanic.blocks")   
+        
+        //- Form for a block of inputs
+        form(role="form", 
+             name="block.mechanicForm", 
+             novalidate="novalidate", 
+             ng-model="block.mechanicFormModel")
+                
+            //- Visible only if the block type is already chosen
+            #block-verbose-name(ng-hide="!block.data.type")
+                h4 {{ mechanic.getName($index + 1) }} ({{ block.data.type.name }}) 
+                hr
+                
+            //- Allows user to select type for the block
+            #type-selector.form-group
+                label(for="type") Вид испытаний
+                
+                select(ng-model="block.data.type",
+                       ng-change="mechanic.blockTypeChanged(block)"
+                       ng-options="option.name for option in mechanic.options track by option.id")
+                             
+            //- Includes the appropriate form view depending on the block's type
+            #form-include(ng-include="mechanic.getFormUrl(block.data.type.id)")
+
+        //- Delete block button
+        button(ng-click="mechanic.delete(block)") Удалить этап
+        hr
+
+    //- Submit button
+    button(ng-click="mechanic.saveChanges()") Сохранить 
+    
+    //- Clone block button
+    button(ng-click="mechanic.clone()") Добавить этап

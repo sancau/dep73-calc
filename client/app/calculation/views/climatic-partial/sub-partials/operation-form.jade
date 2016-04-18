@@ -8,6 +8,15 @@
 
     lc-string-input(
         required="true",
+        label="Пукт требований ТУ или программы",
+        input-id="documentItem",
+        input-object="block.climaticForm.documentItem",
+        model="block.data.values.documentItem",
+        submitted="climatic.submitted"
+    )
+
+    lc-string-input(
+        required="true",
         label="Описание операции (кратко)",
         input-id="operationDescription",
         input-object="block.climaticForm.operationDescription",

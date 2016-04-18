@@ -6,6 +6,15 @@
 
 .genericTime
 
+    lc-string-input(
+        required="true",
+        label="Пукт требований ТУ или программы",
+        input-id="documentItem",
+        input-object="block.mechanicForm.documentItem",
+        model="block.data.values.documentItem",
+        submitted="mechanic.submitted"
+    )
+
     lc-numeric-input(
         required="true",
         label="Время на этап",
@@ -16,3 +25,4 @@
         model="block.data.values.phaseTime",
         submitted="mechanic.submitted"
     )
+

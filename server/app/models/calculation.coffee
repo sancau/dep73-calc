@@ -20,6 +20,9 @@ CalculationSchema = new mongoose.Schema(
         mechanic: 
             type: {}
             required: true
+        additional: 
+            type: {} 
+            required: true
     )
 
 module.exports = CalculationSchema

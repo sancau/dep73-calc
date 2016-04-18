@@ -38,6 +38,9 @@ NewCalculationCtrl = ($state, CalculationAPI, TypeOptions) ->
                 mechanic: {
                     blocks: []
                 }
+                additional: {
+                    preparationLabor: 4
+                }
                 
             CalculationAPI.post(data)
                 .then(

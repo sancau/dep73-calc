@@ -6,6 +6,58 @@
 
 .temperatureChange
 
-    pre
-        h4 Форма для изменения температуры 
-        h5 Обсудить содержимое
+    lc-string-input(
+        required="true",
+        label="Пукт требований ТУ или программы",
+        input-id="documentItem",
+        input-object="block.climaticForm.documentItem",
+        model="block.data.values.documentItem",
+        submitted="climatic.submitted"
+    )
+
+    lc-numeric-input(
+        required="true",
+        label="Предельная пониженная",
+        min="-70",
+        max="180",
+        step="1",    
+        input-id="negativeEdge",
+        input-object="block.climaticForm.negativeEdge",
+        model="block.data.values.negativeEdge",
+        submitted="climatic.submitted"
+    )
+
+    lc-numeric-input(
+        required="true",
+        label="Предельная повышенная",
+        min="-70",
+        max="180",
+        step="1",    
+        input-id="positiveEdge",
+        input-object="block.climaticForm.positiveEdge",
+        model="block.data.values.positiveEdge",
+        submitted="climatic.submitted"
+    )
+
+    lc-numeric-input(
+        required="true",
+        label="Время выдержки на полке",
+        min="0",
+        step="0.1", 
+        input-id="staying",
+        input-object="block.climaticForm.staying",
+        model="block.data.values.staying",
+        submitted="climatic.submitted"
+    )
+
+    lc-numeric-input(
+        required="true",
+        label="Количество циклов",
+        min="0",
+        step="1", 
+        input-id="laps",
+        input-object="block.climaticForm.laps",
+        model="block.data.values.laps",
+        submitted="climatic.submitted"
+    )
+

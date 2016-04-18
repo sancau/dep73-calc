@@ -73,9 +73,42 @@ LogicService = () ->
                 return block.values.operationTime
 
             if block.type.name is 'Изменение температуры'
-                # NOT IMPLEMENTED
-                return 0
+                console.log 'temp change'
 
+                labor = 0
+                normalConditions = preset.normalConditions.temp
+                upSpeed = preset.upSpeed
+                downSpeed = preset.downSpeed
+                negativeEdge = block.values.negativeEdge
+                positiveEdge = block.values.positiveEdge
+                staying = block.values.staying * 60 # in minutes
+
+                for i in [1..block.values.laps]
+                    # going to negative edge
+                    labor += (normalConditions - negativeEdge) / downSpeed
+                    # staying
+                    labor += staying
+                    # going to positive edge
+                    labor += (positiveEdge - negativeEdge) / upSpeed
+                    # staying
+                    labor += staying
+                    # going to normal conditions
+                    labor += (positiveEdge - normalConditions) / downSpeed
+
+                return +((labor / 60).toFixed 2) 
+
+            if block.type.name in [
+                'Резонансные исследования (снятие АЧХ)'
+                'Вибро-прочность'
+                'Вибро-устойчивость'
+                'Ударная прочность'
+                'Ударная устойчивость'
+                'Транспортная тряска'
+                'Технологическая вибрация'
+            ]
+                console.log 'механика'
+                console.log block.values
+                return block.values.phaseTime + 1
             else 
                 console.log 'else'
                 console.log block.values
@@ -93,7 +126,7 @@ LogicService = () ->
         totalClimatic = 0
         for block in calculation.climatic.blocks
 
-            block.totalLabor = Math.round evalClimaticBlock block, preset
+            block.totalLabor = Math.round evalBlock block, preset
             console.log block.totalLabor
             totalClimatic += block.totalLabor
         

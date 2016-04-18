@@ -5,6 +5,15 @@
     Author: Alexander Tatchin | github.com/sancau
 
 .humidity
+
+    lc-string-input(
+        required="true",
+        label="Пукт требований ТУ или программы",
+        input-id="documentItem",
+        input-object="block.climaticForm.documentItem",
+        model="block.data.values.documentItem",
+        submitted="climatic.submitted"
+    )
       
     lc-numeric-input(
         required="true",

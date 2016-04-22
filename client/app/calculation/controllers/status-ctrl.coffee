@@ -12,6 +12,7 @@ StatusCtrl = (Current) ->
 
     # shared data object reference
     vm.currentCalculation = Current.calculation
+    vm.current = Current
 
     # view is binded to the ActiveCalculation object 
     # lets user to monitor current calculation parameters and results    

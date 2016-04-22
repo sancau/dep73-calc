@@ -11,3 +11,4 @@ module.exports =
     userCtrl: require './controllers/user-ctrl'
     initCtrl: require './controllers/init-ctrl'
     loginCtrl: require './controllers/login-ctrl'
+    reportCtrl: require './controllers/report-ctrl'

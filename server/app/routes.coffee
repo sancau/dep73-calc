@@ -18,4 +18,6 @@ module.exports =
     # BL endpoints
     "#{baseUrl}/login" : controllers.loginCtrl
     "#{baseUrl}/admin/init": controllers.initCtrl
+    "#{baseUrl}/report" : controllers.reportCtrl
+
 

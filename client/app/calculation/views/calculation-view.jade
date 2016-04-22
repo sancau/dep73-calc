@@ -13,6 +13,8 @@ section#status-panel(
         h3 Текущий расчёт
         hr
 
+        pre {{ status.current.getReport(status.currentCalculation) | json }}
+
         pre Общая информация
         table.table(id = "general-info")            
             tbody
@@ -70,6 +72,10 @@ section#status-panel(
             pre(ng-show="status.currentCalculation.mechanic.blocks.length") 
                 <b> МЕХАНИКА ВСЕГО: {{ status.currentCalculation.mechanic.results.hours }} (часов), {{ status.currentCalculation.mechanic.results.pdays }} (ч/дней) </b>
 
+            pre 
+                strong СУММАРНАЯ ТРУДОЁМКОСТЬ {{ status.currentCalculation.me}}
+
+
 //- Calculation data inputs section
 section#forms-panel
 
@@ -111,3 +117,4 @@ section#forms-panel
             #mechanic-partial(
                 ng-include="'calculation/views/mechanic-partial/mechanic-partial.jade'"
             )
+

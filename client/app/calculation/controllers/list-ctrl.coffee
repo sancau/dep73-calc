@@ -5,7 +5,7 @@
     Author: Alexander Tatchin | github.com/sancau
 ###
 
-ListCtrl = ($state, allCalculations, CalculationAPI) ->
+ListCtrl = ($state, $http, allCalculations, CalculationAPI) ->
     
     vm = this
     vm.calculationsList = allCalculations
@@ -29,13 +29,35 @@ ListCtrl = ($state, allCalculations, CalculationAPI) ->
                 (error) ->
                     console.log error                    
             )
-        
+
+    vm.createReport = (calculation) ->
+        req = 
+            url: 'http://localhost:3000/api/v1/report'
+            method: 'GET'
+            params: 
+                calculation: calculation
+
+        vm.monitor = calculation
+
+        console.log vm.monitor
+
+        $http(req)
+            .then(
+                (data) -> 
+                    window.alert 'Отчёт создан!'
+
+                (error) ->
+                    window.alert 'Ошибка!'
+                    console.log error
+            )
+
     return vm
 
 # controller registration
 angular.module 'app.calculation'
 .controller 'ListCtrl', [
     '$state'
+    '$http'
     'allCalculations'
     'CalculationAPI'
 

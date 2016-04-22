@@ -32,7 +32,7 @@ ListCtrl = ($state, $http, allCalculations, CalculationAPI, Current) ->
 
     vm.createReport = (calculation) ->
         req = 
-            url: 'http://localhost:3000/api/v1/report'
+            url: 'http://sqlisp.rtc.local:3000/api/v1/report'
             method: 'POST'
             data: Current.getReport(calculation)
 
@@ -43,9 +43,11 @@ ListCtrl = ($state, $http, allCalculations, CalculationAPI, Current) ->
         $http(req)
             .then(
                 (data) -> 
+                    window.alert 'Отчёт успешно создан и сохранен в папку ТРУДОЁМКОСТЬ РАСЧЁТЫ, которая находится в общей папке документов отдела.'
                     console.log data
 
                 (error) ->
+                    window.alert 'При создании отчёта произошла ошибка - свяжитесь с администратором'
                     console.log error
             )
 

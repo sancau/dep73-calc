@@ -15,7 +15,7 @@ angular.module 'api', [
 
     (RestangularProvider, APIBaseURL) ->
         RestangularProvider
-            .setBaseUrl 'http://localhost:3000/api/v1'
+            .setBaseUrl 'http://sqlisp.rtc.local:3000/api/v1'
 ]
 
 .factory 'ConfiguredRestangular', [

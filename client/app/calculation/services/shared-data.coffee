@@ -58,7 +58,7 @@ angular.module 'app.calculation'
             table.rows.push {
               type: block.type.name
               documentItem: block.values.documentItem
-              labor: block.totalLabor
+              labor: Math.round(block.totalLabor * 2 / 8)
             }
 
           # mech details
@@ -66,7 +66,7 @@ angular.module 'app.calculation'
             table.rows.push {
               type: block.type.name
               documentItem: block.values.documentItem
-              labor: block.totalLabor
+              labor: Math.round(block.totalLabor * 2 / 8)
             }
 
           table.rows.push {

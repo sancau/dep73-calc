@@ -69,8 +69,8 @@ section#status-panel(
             pre(ng-show="status.currentCalculation.mechanic.blocks.length") 
                 <b> МЕХАНИКА ВСЕГО: {{ status.currentCalculation.mechanic.results.hours }} (часов), {{ status.currentCalculation.mechanic.results.pdays }} (ч/дней) </b>
 
-            pre 
-                strong СУММАРНАЯ ТРУДОЁМКОСТЬ {{ status.currentCalculation.me}}
+        pre 
+            strong СУММАРНАЯ ТРУДОЁМКОСТЬ {{ status.current.getReport(status.currentCalculation).report.detailTable.total }} (чел/дней)
 
 
 //- Calculation data inputs section

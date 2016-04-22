@@ -21,21 +21,32 @@ angular.module 'app.calculation'
           if calculation.climatic.blocks.length > 0
             table.rows.push {
               type: 'Климатические'
-              labor: parseFloat(calculation.climatic.results.pdays) # pdays
+              labor: do () ->
+                num = parseFloat(calculation.climatic.results.pdays) / 20 # pm
+                rounded = Math.round( num * 10) / 10
+                return rounded
             }
           if calculation.mechanic.blocks.length > 0
             table.rows.push {
               type: 'Механические'
-              labor: parseFloat(calculation.mechanic.results.pdays) #pdays
+              labor: do () ->
+                num = parseFloat(calculation.mechanic.results.pdays) / 20 # pm
+                rounded = Math.round( num * 10) / 10
+                return rounded
             }
           table.rows.push 
             type: 'Подготовительно-заключительные работы'
-            labor: calculation.additional.preparationLabor #pdays
+            labor: do () ->
+              num = calculation.additional.preparationLabor / 20 #pm
+              rounded = Math.round( num * 10) / 10
+              return rounded
 
           table.total = 0
           for row in table.rows
+            table.rows[table.rows.indexOf(row)].index = table.rows.indexOf(row) + 1
             table.total += row.labor
-            
+          table.total = Math.round( table.total * 10) / 10
+
           return table
 
         detailTable: do () ->
@@ -66,6 +77,7 @@ angular.module 'app.calculation'
 
           table.total = 0
           for row in table.rows
+            table.rows[table.rows.indexOf(row)].index = table.rows.indexOf(row) + 1
             table.total += row.labor
 
           return table

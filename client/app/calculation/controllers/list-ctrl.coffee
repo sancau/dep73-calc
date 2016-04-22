@@ -5,7 +5,7 @@
     Author: Alexander Tatchin | github.com/sancau
 ###
 
-ListCtrl = ($state, $http, allCalculations, CalculationAPI) ->
+ListCtrl = ($state, $http, allCalculations, CalculationAPI, Current) ->
     
     vm = this
     vm.calculationsList = allCalculations
@@ -33,21 +33,19 @@ ListCtrl = ($state, $http, allCalculations, CalculationAPI) ->
     vm.createReport = (calculation) ->
         req = 
             url: 'http://localhost:3000/api/v1/report'
-            method: 'GET'
-            params: 
-                calculation: calculation
+            method: 'POST'
+            data: Current.getReport(calculation)
 
-        vm.monitor = calculation
-
-        console.log vm.monitor
+        console.log 'REQUEST DATA: '
+        console.log req.data
+        vm.monitor = req.data # DEBUG
 
         $http(req)
             .then(
                 (data) -> 
-                    window.alert 'Отчёт создан!'
+                    console.log data
 
                 (error) ->
-                    window.alert 'Ошибка!'
                     console.log error
             )
 
@@ -60,6 +58,7 @@ angular.module 'app.calculation'
     '$http'
     'allCalculations'
     'CalculationAPI'
+    'Current'
 
     ListCtrl
 ]

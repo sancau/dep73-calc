@@ -35,7 +35,11 @@ module.exports = (app, route) ->
       doc = new Docxtemplater(content)
       doc.setData(templateData)
       doc.render()
+
+      date = new Date().toISOString().slice(0,10).replace(/-/g,"")
+      fileName = "/#{report.name}_#{date}.docx"
+
       buf = doc.getZip().generate { type: 'nodebuffer'}
-      fs.writeFileSync(__dirname + "/output.docx", buf)
+      fs.writeFileSync(__dirname + '/reports' + fileName, buf)
       
       res.json { success: true }

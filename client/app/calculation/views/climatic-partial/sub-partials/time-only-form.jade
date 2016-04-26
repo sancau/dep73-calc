@@ -15,6 +15,16 @@
         submitted="climatic.submitted"
     )
 
+    lc-text-input(
+        required="false", 
+        label="Комментарий", 
+        rows="2", 
+        input-id="phaseComment",
+        input-object="block.climaticForm.phaseComment",
+        model="block.data.values.phaseComment",
+        submitted="climatic.submitted"
+    )  
+
     lc-numeric-input(
         required="true",
         label="Время на этап",

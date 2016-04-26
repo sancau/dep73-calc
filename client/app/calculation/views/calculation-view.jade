@@ -4,114 +4,108 @@
     Description: View for the calculation module / state: calculation 
     Author: Alexander Tatchin | github.com/sancau
 
-//- Calculation status section
-section#status-panel(
-    sticky-nav="ng-sticky-behaviour",
-    ignore-element-size,
-)
-    div(ng-controller="StatusCtrl as status")
-        h3 Текущий расчёт
-        hr
-        pre Общая информация
-        table.table(id = "general-info")            
-            tbody
-                tr
-                    td.info Изделие:
-                    td(ng-class="status.currentCalculation.general.name ? 'success' : 'danger'") {{ status.currentCalculation.general.name }}
-                tr
-                    td.info Вид испытаний:
-                    td(ng-class="status.currentCalculation.general.type.label ? 'success' : 'danger'") {{ status.currentCalculation.general.type.label }}
-                tr
-                    td.info Руководящий документ:
-                    td(ng-class="status.currentCalculation.general.document ? 'success' : 'danger'") {{ status.currentCalculation.general.document }}
-                tr
-                    td.info Комментарий:
-                    td(ng-class="status.currentCalculation.general.comment ? 'success' : 'warning'") {{ status.currentCalculation.general.comment }}
-    
-        hr
+div.Container
+    //- Calculation data inputs section
+    section#forms-panel.Left
 
-        div
-            pre Дополнительные временные затраты
-            h5 Этап 0 (Подготовительно-заключительные операции)        
-            table.table(id = "block-info")          
+        //- Accordion
+        uib-accordion(close-others="true")
+            //- General information inputs host
+            uib-accordion-group(
+                heading="Общая информация",
+                is-open="generalOpen",
+                is-disabled="generalDisabled"
+            )
+                #general-partial(
+                    ng-controller="GeneralCtrl as general"
+                )
+                    #general-form(
+                        ng-include="'calculation/views/general-partial/general-form.jade'"
+                    ) 
+                    
+                    //- Save general info changes (logic on GeneralCrtl)
+                    button(ng-click="general.saveChanges()") Сохранить
+            
+            //- Climatic information inputs host
+            uib-accordion-group(
+                heading="Климатические испытания",
+                is-open="climaticOpen",
+                is-disabled="climaticDisabled"
+            )
+                #climatic-partial(
+                    ng-include="'calculation/views/climatic-partial/climatic-partial.jade'"
+                )
+            
+            //- Mechanical tests 
+            uib-accordion-group(
+                heading="Механические испытания",
+                is-open="mechanicalOpen",
+                is-disabled="mechanicalDisabled"
+            )
+                #mechanic-partial(
+                    ng-include="'calculation/views/mechanic-partial/mechanic-partial.jade'"
+                )
+
+    //- Calculation status section
+    section#status-panel.Right
+        div(ng-controller="StatusCtrl as status")
+            h3 Текущий расчёт
+            hr
+            pre Общая информация
+            table.table(id = "general-info")            
                 tbody
                     tr
-                        td.info Суммарная трудоёмкость:
-                        td.success {{ status.currentCalculation.additional.preparationLabor }} (ч/дней)
-
-        div(ng-show="status.currentCalculation.climatic.blocks.length")
-           
-            pre Климатические испытания
-
-            #climatic-info(ng-repeat="block in status.currentCalculation.climatic.blocks")
-                h5 Этап {{$index + 1}} ({{ block.type.name }})        
+                        td.info Изделие:
+                        td(ng-class="status.currentCalculation.general.name ? 'success' : 'danger'") {{ status.currentCalculation.general.name }}
+                    tr
+                        td.info Вид испытаний:
+                        td(ng-class="status.currentCalculation.general.type.label ? 'success' : 'danger'") {{ status.currentCalculation.general.type.label }}
+                    tr
+                        td.info Руководящий документ:
+                        td(ng-class="status.currentCalculation.general.document ? 'success' : 'danger'") {{ status.currentCalculation.general.document }}
+                    tr
+                        td.info Комментарий:
+                        td(ng-class="status.currentCalculation.general.comment ? 'success' : 'warning'") {{ status.currentCalculation.general.comment }}
+        
+            hr
+            div
+                pre Дополнительные временные затраты
+                h5 Этап 0 (Подготовительно-заключительные операции)        
                 table.table(id = "block-info")          
                     tbody
                         tr
                             td.info Суммарная трудоёмкость:
-                            td(ng-class="block.totalLabor ? 'success' : 'danger'") {{ block.totalLabor ? block.totalLabor : 'Нет данных' }}
+                            td.success {{ status.currentCalculation.additional.preparationLabor }} (ч/дней)
 
-            pre(ng-show="status.currentCalculation.climatic.blocks.length") 
-                <b> КЛИМАТИКА ВСЕГО: {{ status.currentCalculation.climatic.results.hours }} (часов), {{ status.currentCalculation.climatic.results.pdays }} (ч/дней) </b>
+            div(ng-show="status.currentCalculation.climatic.blocks.length")
+               
+                pre Климатические испытания
 
-        div(ng-show="status.currentCalculation.mechanic.blocks.length")
-           
-            pre Механические испытания
+                #climatic-info(ng-repeat="block in status.currentCalculation.climatic.blocks")
+                    h5 Этап {{$index + 1}} ({{ block.type.name }})        
+                    table.table(id = "block-info")          
+                        tbody
+                            tr
+                                td.info Суммарная трудоёмкость:
+                                td(ng-class="block.totalLabor ? 'success' : 'danger'") {{ block.totalLabor ? block.totalLabor : 'Нет данных' }}
 
-            #mechanic-info(ng-repeat="block in status.currentCalculation.mechanic.blocks")
-                h5 Этап {{$index + 1}} ({{ block.type.name }})        
-                table.table(id = "block-info")          
-                    tbody
-                        tr
-                            td.info Суммарная трудоёмкость (с учётом времени монтажных работ):
-                            td(ng-class="block.totalLabor ? 'success' : 'danger'") {{ block.totalLabor ? block.totalLabor : 'Нет данных' }}
+                pre(ng-show="status.currentCalculation.climatic.blocks.length") 
+                    <b> КЛИМАТИКА ВСЕГО: {{ status.currentCalculation.climatic.results.hours }} (часов), {{ status.currentCalculation.climatic.results.pdays }} (чел/дней), {{ status.current.getReport(status.currentCalculation).report.totalTable.rows[0].labor }} (чел/мес)</b>
 
-            pre(ng-show="status.currentCalculation.mechanic.blocks.length") 
-                <b> МЕХАНИКА ВСЕГО: {{ status.currentCalculation.mechanic.results.hours }} (часов), {{ status.currentCalculation.mechanic.results.pdays }} (ч/дней) </b>
+            div(ng-show="status.currentCalculation.mechanic.blocks.length")
+               
+                pre Механические испытания
 
-        pre 
-            strong СУММАРНАЯ ТРУДОЁМКОСТЬ {{ status.current.getReport(status.currentCalculation).report.detailTable.total }} (чел/дней)
+                #mechanic-info(ng-repeat="block in status.currentCalculation.mechanic.blocks")
+                    h5 Этап {{$index + 1}} ({{ block.type.name }})        
+                    table.table(id = "block-info")          
+                        tbody
+                            tr
+                                td.info Суммарная трудоёмкость (с учётом времени монтажных работ):
+                                td(ng-class="block.totalLabor ? 'success' : 'danger'") {{ block.totalLabor ? block.totalLabor : 'Нет данных' }}
 
+                pre(ng-show="status.currentCalculation.mechanic.blocks.length") 
+                    <b> МЕХАНИКА ВСЕГО: {{ status.currentCalculation.mechanic.results.hours }} (часов), {{ status.currentCalculation.mechanic.results.pdays }} (чел/дней), {{ status.current.getReport(status.currentCalculation).report.totalTable.rows[1].labor }} (чел/мес)</b>
 
-//- Calculation data inputs section
-section#forms-panel
-
-    //- Accordion
-    uib-accordion(close-others="true")
-
-        //- General information inputs host
-        uib-accordion-group(
-            heading="Общая информация",
-            is-open="generalOpen",
-            is-disabled="generalDisabled"
-        )
-            #general-partial(
-                ng-controller="GeneralCtrl as general"
-            )
-                #general-form(
-                    ng-include="'calculation/views/general-partial/general-form.jade'"
-                ) 
-                
-                //- Save general info changes (logic on GeneralCrtl)
-                button(ng-click="general.saveChanges()") Сохранить
-        
-        //- Climatic information inputs host
-        uib-accordion-group(
-            heading="Климатические испытания",
-            is-open="climaticOpen",
-            is-disabled="climaticDisabled"
-        )
-            #climatic-partial(
-                ng-include="'calculation/views/climatic-partial/climatic-partial.jade'"
-            )
-        
-        //- Mechanical tests 
-        uib-accordion-group(
-            heading="Механические испытания",
-            is-open="mechanicalOpen",
-            is-disabled="mechanicalDisabled"
-        )
-            #mechanic-partial(
-                ng-include="'calculation/views/mechanic-partial/mechanic-partial.jade'"
-            )
-
+            pre 
+                strong СУММАРНАЯ ТРУДОЁМКОСТЬ: {{ status.current.getReport(status.currentCalculation).report.detailTable.total }} (чел/дней), {{ status.current.getReport(status.currentCalculation).report.totalTable.total }} (чел/мес)

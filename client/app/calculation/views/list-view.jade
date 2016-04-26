@@ -29,7 +29,7 @@
             td(ng-click="list.showCalculation(calculation)") {{ calculation.general.name }}
             td(ng-click="list.showCalculation(calculation)")  {{ calculation.general.type.label }}
             //- td(ng-click="list.showCalculation(calculation)")  {{ calculation.meta.author || 'Нет данных' }}
-            td(ng-click="list.showCalculation(calculation)")  {{ calculation.meta.edited | date:'MM/dd/yyyy' }}
+            td(ng-click="list.showCalculation(calculation)")  {{ calculation.meta.edited | date:'dd/MM/yyyy' }}
             td 
                 button.btn.btn-success(ng-click='list.createReport(calculation)') Создать отчёт
             td 

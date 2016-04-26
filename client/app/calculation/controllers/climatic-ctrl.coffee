@@ -76,7 +76,7 @@ ClimaticCtrl = (LogicService, Current) ->
         }
         { 
             typeID: 2 
-            formView: 'calculation/views/climatic-partial/sub-partials/temperature-form.jade'
+            formView: 'calculation/views/climatic-partial/sub-partials/temperature-form-minus.jade'
         }
         { 
             typeID: 3 

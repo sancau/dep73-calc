@@ -14,18 +14,16 @@
         model="block.data.values.documentItem",
         submitted="climatic.submitted"
     )
-      
-    lc-numeric-input(
-        required="true",
-        label="Значение влажности",
-        min="10",
-        max="98",
-        step="1",    
-        input-id="humValue",
-        input-object="block.climaticForm.humValue",
-        model="block.data.values.humValue",
+    
+    lc-text-input(
+        required="false", 
+        label="Комментарий", 
+        rows="2", 
+        input-id="phaseComment",
+        input-object="block.climaticForm.phaseComment",
+        model="block.data.values.phaseComment",
         submitted="climatic.submitted"
-    )
+    )  
 
     lc-numeric-input(
         required="true",

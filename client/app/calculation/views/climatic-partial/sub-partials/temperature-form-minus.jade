@@ -5,7 +5,6 @@
     Author: Alexander Tatchin | github.com/sancau
 
 .temperature
-    
     lc-string-input(
         required="true",
         label="Пункт требований ТУ или программы",
@@ -24,32 +23,8 @@
         model="block.data.values.phaseComment",
         submitted="climatic.submitted"
     )  
-
-    lc-numeric-input(
-        required="true",
-        label="Рабочая температура 1",
-        min="-70",
-        max="180",
-        step="1",    
-        input-id="workTemp",
-        input-object="block.climaticForm.workTemp",
-        model="block.data.values.workTemp",
-        submitted="climatic.submitted"
-    )
-
-    lc-numeric-input(
-        required="true",
-        label="Количество часов (рабочая температура 1)",
-        min="0",
-        step="0.1", 
-        input-id="workTime",
-        input-object="block.climaticForm.workTime",
-        model="block.data.values.workTime",
-        submitted="climatic.submitted"
-    )
-
+    
     hr
-
     lc-numeric-input(
         required="true",
         label="Предельная температура",
@@ -74,7 +49,30 @@
     )
 
     hr
+    lc-numeric-input(
+        required="true",
+        label="Рабочая температура 1",
+        min="-70",
+        max="180",
+        step="1",    
+        input-id="workTemp",
+        input-object="block.climaticForm.workTemp",
+        model="block.data.values.workTemp",
+        submitted="climatic.submitted"
+    )
 
+    lc-numeric-input(
+        required="true",
+        label="Количество часов (рабочая температура 1)",
+        min="0",
+        step="0.1", 
+        input-id="workTime",
+        input-object="block.climaticForm.workTime",
+        model="block.data.values.workTime",
+        submitted="climatic.submitted"
+    )
+
+    hr
     lc-numeric-input(
         required="true",
         label="Рабочая температура 2",

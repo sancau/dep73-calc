@@ -12,7 +12,7 @@ angular.module 'app.calculation'
       report:
         name: calculation.general.name
         document: calculation.general.document
-        type: calculation.general.type.label
+        type: calculation.general.type.label.toLowerCase()
 
         totalTable: do () ->
           table = {}
@@ -24,6 +24,7 @@ angular.module 'app.calculation'
               labor: do () ->
                 num = parseFloat(calculation.climatic.results.pdays) / 20 # pm
                 rounded = Math.round( num * 10) / 10
+                if rounded is 0 then rounded = 0.1
                 return rounded
             }
           if calculation.mechanic.blocks.length > 0
@@ -32,6 +33,7 @@ angular.module 'app.calculation'
               labor: do () ->
                 num = parseFloat(calculation.mechanic.results.pdays) / 20 # pm
                 rounded = Math.round( num * 10) / 10
+                if rounded is 0 then rounded = 0.1
                 return rounded
             }
           table.rows.push 
@@ -39,6 +41,7 @@ angular.module 'app.calculation'
             labor: do () ->
               num = calculation.additional.preparationLabor / 20 #pm
               rounded = Math.round( num * 10) / 10
+              if rounded is 0 then rounded = 0.1
               return rounded
 
           table.total = 0
@@ -58,6 +61,10 @@ angular.module 'app.calculation'
             table.rows.push {
               type: block.type.name
               documentItem: block.values.documentItem
+              comment: do () -> 
+                unless block.values.phaseComment? 
+                  return ''
+                return block.values.phaseComment
               labor: Math.round(block.totalLabor * 2 / 8)
             }
 
@@ -66,12 +73,17 @@ angular.module 'app.calculation'
             table.rows.push {
               type: block.type.name
               documentItem: block.values.documentItem
+              comment: do () -> 
+                unless block.values.phaseComment? 
+                  return ''
+                return block.values.phaseComment
               labor: Math.round(block.totalLabor * 2 / 8)
             }
 
           table.rows.push {
             type: 'Подготовительно-заключительные работы'
             documentItem: ''
+            comment: ''
             labor: calculation.additional.preparationLabor
           }
 

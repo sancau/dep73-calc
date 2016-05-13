@@ -24,6 +24,7 @@ module.exports = (app, route) ->
       templateData = {
         'report.name': report.name
         'report.document': report.document
+        'report.type': report.type
         'totalTable.total': report.totalTable.total
         'totalTable.rows': report.totalTable.rows
         'detailTable.total': report.detailTable.total

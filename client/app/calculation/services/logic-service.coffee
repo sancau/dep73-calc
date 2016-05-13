@@ -68,11 +68,11 @@ LogicService = () ->
         labor += calcPhase(current, end, 0, preset, true)
         console.log 'labor after phase 4: ' + labor
 
-        return +((labor / 60).toFixed 2)               
+        return +((labor / 60).toFixed 2) + block.values.nkuTime + block.values.checksTime              
 
       if block.type.name in ['Повышенная влажность', 'Пониженная влажность']
 
-        return block.values.humTime + preset.humExtra
+        return block.values.humTime + preset.humExtra + block.values.nkuTime + block.values.checksTime
 
       if block.type.name is 'Технологическая операция'
 
@@ -101,7 +101,7 @@ LogicService = () ->
           # going to normal conditions
           labor += (positiveEdge - normalConditions) / downSpeed
 
-        return +((labor / 60).toFixed 2) 
+        return +((labor / 60).toFixed 2) + block.values.nkuTime + block.values.checksTime 
 
       if block.type.name in [
         'Резонансные исследования (снятие АЧХ)'

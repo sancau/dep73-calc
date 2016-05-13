@@ -35,3 +35,27 @@
         model="block.data.values.humTime",
         submitted="climatic.submitted"
     )
+
+    lc-numeric-input(
+        required="true",
+        label="Время выдержки в НКУ",
+        min="0",
+        step="0.25",    
+        input-id="nkuTime",
+        input-object="block.climaticForm.nkuTime",
+        model="block.data.values.nkuTime",
+        submitted="climatic.submitted"
+    )
+
+    lc-numeric-input(
+        required="true",
+        label="Общее время проверок",
+        min="0",
+        step="0.25",    
+        input-id="checksTime",
+        input-object="block.climaticForm.checksTime",
+        model="block.data.values.checksTime",
+        submitted="climatic.submitted"
+    )
+
+

@@ -31,7 +31,7 @@ ClimaticCtrl = (LogicService, Current) ->
         }
         { 
             id: 5 
-            name: 'Технологическая операция' 
+            name: 'Проверка функциональности' 
         }
         {
             id: 6

@@ -74,7 +74,7 @@ LogicService = () ->
 
         return block.values.humTime + preset.humExtra + block.values.nkuTime + block.values.checksTime
 
-      if block.type.name is 'Технологическая операция'
+      if block.type.name is 'Проверка функциональности'
 
         return block.values.operationTime
 

@@ -15,17 +15,8 @@
         submitted="climatic.submitted"
     )
 
-    lc-string-input(
-        required="true",
-        label="Описание операции (кратко)",
-        input-id="operationDescription",
-        input-object="block.climaticForm.operationDescription",
-        model="block.data.values.operationDescription",
-        submitted="climatic.submitted"
-    )
-
     lc-text-input(
-        required="false", 
+        required="true", 
         label="Комментарий", 
         rows="2", 
         input-id="phaseComment",
@@ -36,7 +27,7 @@
     
     lc-numeric-input(
         required="true",
-        label="Время на операцию (часов)",
+        label="Время на проверку (часов)",
         min="0",
         step="0.25",    
         input-id="operationTime",

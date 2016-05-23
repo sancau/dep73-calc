@@ -42,8 +42,9 @@ angular.module 'app.calculation'
           for row in table.rows
             table.rows[table.rows.indexOf(row)].index = table.rows.indexOf(row) + 1
             table.total += row.labor
-          table.total = Math.round( table.total * 10) / 10
 
+          table.total = Math.round( table.total * 10) / 10 or 0.1
+          console.info table.total
           return table
 
         detailTable: do () ->
@@ -85,7 +86,7 @@ angular.module 'app.calculation'
           for row in table.rows
             table.rows[table.rows.indexOf(row)].index = table.rows.indexOf(row) + 1
             table.total += row.labor
-
+          table.total = Math.round( table.total * 10) / 10 or 0.1
           return table
 
     calculation: {}

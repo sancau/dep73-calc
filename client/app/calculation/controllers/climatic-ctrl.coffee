@@ -150,16 +150,17 @@ ClimaticCtrl = (LogicService, Current) ->
 
     # Delete block logic
     vm.delete = (block) ->
-        # If form structure changed after submit attempt the state resets
-        vm.submitted = off
+        if window.confirm('Вы действительно хотите удалить блок?')
+            # If form structure changed after submit attempt the state resets
+            vm.submitted = off
 
-        # Delete field group by index
-        index = vm.blocks.indexOf block
-        vm.blocks.splice index, 1
+            # Delete field group by index
+            index = vm.blocks.indexOf block
+            vm.blocks.splice index, 1
 
-        # If 0 blocks remains after deletion 
-        # then a new blank block should be populated after deletion
-        vm.blocks.push {data: ''} if vm.blocks.length is 0
+            # If 0 blocks remains after deletion 
+            # then a new blank block should be populated after deletion
+            vm.blocks.push {data: ''} if vm.blocks.length is 0
 
     # Logic on climatic data submission
     vm.saveChanges = () ->

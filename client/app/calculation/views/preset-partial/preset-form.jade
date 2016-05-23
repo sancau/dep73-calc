@@ -1,0 +1,52 @@
+form(
+    role="form",
+    name="preset.presetForm",
+    novalidate="novalidate",
+    ng-model="model"
+)
+
+  lc-numeric-input(
+      required="true",
+      label="Скорость повышения температуры",
+      min="0",
+      step="1",    
+      input-id="upSpeed",
+      input-object="preset.presetForm.upSpeed",
+      model="preset.formModel.upSpeed",
+      submitted="preset.submitted"
+  )
+
+  lc-numeric-input(
+      required="true",
+      label="Скорость понижения температуры",
+      min="0",
+      step="1",    
+      input-id="downSpeed",
+      input-object="preset.presetForm.downSpeed",
+      model="preset.formModel.downSpeed",
+      submitted="preset.submitted"
+  )
+
+  lc-numeric-input(
+      required="true",
+      label="Нормальные условия (температура)",
+      min="0",
+      step="1",    
+      input-id="nuTemp",
+      input-object="preset.presetForm.nuTemp",
+      model="preset.formModel.nuTemp",
+      submitted="preset.submitted"
+  )
+
+  lc-numeric-input(
+      required="true",
+      label="Нормальные условия (отн. влажность)",
+      min="0",
+      max="99"
+      step="1",    
+      input-id="nuHum",
+      input-object="preset.presetForm.nuHum",
+      model="preset.formModel.nuHum",
+      submitted="preset.submitted"
+  )
+

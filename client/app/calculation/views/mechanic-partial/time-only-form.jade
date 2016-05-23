@@ -27,7 +27,7 @@
 
     lc-numeric-input(
         required="true",
-        label="Время на этап",
+        label="Время (на один блок)",
         min="0",
         step="0.25",    
         input-id="phaseTime",
@@ -35,4 +35,17 @@
         model="block.data.values.phaseTime",
         submitted="mechanic.submitted"
     )
+
+    lc-numeric-input(
+        required="true",
+        label="Количество блоков",
+        min="0",
+        step="0.25",    
+        input-id="blocksNumber",
+        input-object="block.mechanicForm.blocksNumber",
+        model="block.data.values.blocksNumber",
+        submitted="mechanic.submitted"
+    )
+
+
 

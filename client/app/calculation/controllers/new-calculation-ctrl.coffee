@@ -30,6 +30,12 @@ NewCalculationCtrl = ($state, CalculationAPI, TypeOptions) ->
                     created: new Date()
                     edited: new Date()
                     completed: false
+                    preset: {
+                        upSpeed: 1
+                        downSpeed: 1
+                        nuTemp: 22
+                        nuHum: 50
+                    }
                 }
                 general: vm.formModel
                 climatic: {

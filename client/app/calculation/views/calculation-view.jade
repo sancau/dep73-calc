@@ -10,6 +10,23 @@ div.Container
 
         //- Accordion
         uib-accordion(close-others="true")
+
+            //- Settings information inputs host
+            uib-accordion-group(
+                heading="Настройки расчёта",
+                is-open="false",
+                is-disabled="false"
+            )
+                #general-partial(
+                    ng-controller="PresetCtrl as preset"
+                )
+                    #general-form(
+                        ng-include="'calculation/views/preset-partial/preset-form.jade'"
+                    ) 
+                    
+                    //- Save settings changes
+                    button(ng-click="preset.saveChanges()") Сохранить
+
             //- General information inputs host
             uib-accordion-group(
                 heading="Общая информация",

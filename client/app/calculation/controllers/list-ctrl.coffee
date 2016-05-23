@@ -13,22 +13,23 @@ ListCtrl = ($state, $http, allCalculations, CalculationAPI, Current) ->
     vm.showCalculation = (calculation) ->
         $state.go 'calculation', { calculationID: calculation._id }
 
-    vm.delete = (calculation) -> 
-        CalculationAPI.one(calculation._id).get().
-            then(
-                (entity) ->
-                    entity.remove()
-                        .then(                        
-                            # success
-                            (data) ->  
-                                vm.calculationsList.pop calculation
-                            # error
-                            (error) ->
-                                console.log error
-                        )
-                (error) ->
-                    console.log error                    
-            )
+    vm.delete = (calculation) ->
+        if window.confirm('Вы действительно хотите удалить расчёт?') 
+            CalculationAPI.one(calculation._id).get().
+                then(
+                    (entity) ->
+                        entity.remove()
+                            .then(                        
+                                # success
+                                (data) ->  
+                                    vm.calculationsList.pop calculation
+                                # error
+                                (error) ->
+                                    console.log error
+                            )
+                    (error) ->
+                        console.log error                    
+                )
 
     vm.createReport = (calculation) ->
         req = 

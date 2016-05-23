@@ -107,14 +107,16 @@ LogicService = () ->
         'Резонансные исследования (снятие АЧХ)'
         'Вибро-прочность'
         'Вибро-устойчивость'
-        'Ударная прочность'
-        'Ударная устойчивость'
+        'Ударная прочность - однократные удары'
+        'Ударная прочность - многократные удары'
+        'Ударная устойчивость - однократные удары'
+        'Ударная устойчивость - многократные удары'
         'Транспортная тряска'
         'Технологическая вибрация'
       ]
         console.log 'механика'
         console.log block.values
-        return block.values.phaseTime + 1
+        return (block.values.phaseTime + 1) * block.values.blocksNumber
       else 
         console.log 'else'
         console.log block.values
@@ -122,12 +124,12 @@ LogicService = () ->
 
     # Hardcoded default preset for now. Presets UI / API to be implemented
     preset = 
-      upSpeed: 1
-      downSpeed: 1
+      upSpeed: calculation.meta.preset.upSpeed
+      downSpeed: calculation.meta.preset.downSpeed
       humExtra: 2
       normalConditions:
-        temp: 20
-        hum: 50
+        temp: calculation.meta.preset.nuTemp
+        hum: calculation.meta.preset.nuHum
 
     totalClimatic = 0
     for block in calculation.climatic.blocks
@@ -154,6 +156,8 @@ LogicService = () ->
       pdays: (totalMechanic * 2 / 8).toFixed 1
 
     calculation.mechanic.results = results
+
+    calculation.meta.edited = new Date()
 
     return calculation
 

@@ -27,18 +27,26 @@ MechanicCtrl = (LogicService, Current) ->
         }
         { 
             id: 4 
-            name: 'Ударная прочность' 
+            name: 'Ударная прочность - однократные удары' 
         }
         { 
             id: 5 
-            name: 'Ударная устойчивость' 
+            name: 'Ударная прочность - многократные удары' 
+        }
+        { 
+            id: 6 
+            name: 'Ударная устойчивость - однократные удары' 
+        }
+        { 
+            id: 7 
+            name: 'Ударная устойчивость - многократные удары' 
         }
         {
-            id: 6
+            id: 8
             name: 'Транспортная тряска'
         }
         {
-            id: 7
+            id: 9
             name: 'Технологическая вибрация'
         }
     ]
@@ -100,16 +108,17 @@ MechanicCtrl = (LogicService, Current) ->
 
     # Delete block logic
     vm.delete = (block) ->
-        # If form structure changed after submit attempt the state resets
-        vm.submitted = off
+        if window.confirm('Вы действительно хотите удалить блок?')
+            # If form structure changed after submit attempt the state resets
+            vm.submitted = off
 
-        # Delete field group by index
-        index = vm.blocks.indexOf block
-        vm.blocks.splice index, 1
+            # Delete field group by index
+            index = vm.blocks.indexOf block
+            vm.blocks.splice index, 1
 
-        # If 0 blocks remains after deletion 
-        # then a new blank block should be populated after deletion
-        vm.blocks.push {data: ''} if vm.blocks.length is 0
+            # If 0 blocks remains after deletion 
+            # then a new blank block should be populated after deletion
+            vm.blocks.push {data: ''} if vm.blocks.length is 0
 
     # Logic on mechanic data submission
     vm.saveChanges = () ->

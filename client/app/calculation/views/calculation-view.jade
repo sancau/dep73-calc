@@ -67,6 +67,7 @@ div.Container
     section#status-panel.Right
         div(ng-controller="StatusCtrl as status")
             h3 Текущий расчёт
+            div {{ status.currentCalculation | json }}
             hr
             pre Общая информация
             table.table(id = "general-info")            

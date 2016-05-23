@@ -31,6 +31,8 @@ module.exports = (app, route) ->
         'detailTable.rows': report.detailTable.rows
       }
 
+      console.log templateData
+
       # use docx templater to create a MS Word document
       content = fs.readFileSync(__dirname + '/template.docx', 'binary')
       doc = new Docxtemplater(content)

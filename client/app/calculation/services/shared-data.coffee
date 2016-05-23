@@ -23,26 +23,20 @@ angular.module 'app.calculation'
               type: 'Климатические'
               labor: do () ->
                 num = parseFloat(calculation.climatic.results.pdays) / 20 # pm
-                rounded = Math.round( num * 10) / 10
-                if rounded is 0 then rounded = 0.1
-                return rounded
+                return Math.round( num * 10) / 10 or 0.1
             }
           if calculation.mechanic.blocks.length > 0
-            table.rows.push {
+            table.rows.push 
               type: 'Механические'
               labor: do () ->
                 num = parseFloat(calculation.mechanic.results.pdays) / 20 # pm
-                rounded = Math.round( num * 10) / 10
-                if rounded is 0 then rounded = 0.1
-                return rounded
-            }
+                return Math.round( num * 10) / 10 or 0.1
+
           table.rows.push 
             type: 'Подготовительно-заключительные работы'
             labor: do () ->
               num = calculation.additional.preparationLabor / 20 #pm
-              rounded = Math.round( num * 10) / 10
-              if rounded is 0 then rounded = 0.1
-              return rounded
+              return Math.round( num * 10) / 10 or 0.1
 
           table.total = 0
           for row in table.rows
@@ -65,7 +59,7 @@ angular.module 'app.calculation'
                 unless block.values.phaseComment? 
                   return ''
                 return block.values.phaseComment
-              labor: Math.round(block.totalLabor * 2 / 8)
+              labor: Math.round(block.totalLabor * 2 / 8) or 0.1
             }
 
           # mech details
@@ -77,7 +71,7 @@ angular.module 'app.calculation'
                 unless block.values.phaseComment? 
                   return ''
                 return block.values.phaseComment
-              labor: Math.round(block.totalLabor * 2 / 8)
+              labor: Math.round(block.totalLabor * 2 / 8) or 0.1
             }
 
           table.rows.push {

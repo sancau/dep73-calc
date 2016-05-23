@@ -27,8 +27,12 @@ angular.module 'app', [
     '$state'
 
     ($location, $scope, $state) ->
-
         vm = this
+        vm.goList = ->
+            if $state.current.name is 'list' then return
+            else
+                if window.confirm('Закрыть текущий отчет? Все несохраненные изменения будут потеряны!')
+                   $state.go 'list'
 
         vm.uiState = $state
 

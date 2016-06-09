@@ -31,6 +31,17 @@ angular.module 'app.calculation', [
                         resolve: listPreload
                 data:
                     pageTitle: 'История расчётов'
+
+            # Report preview
+            .state 'report',
+                url: '/report/:calculationID'
+                views:
+                    'main':
+                        controller: 'ReportPreviewCtrl as report'
+                        templateUrl: 'calculation/views/report-view.jade'
+                        resolve: calculationPreload
+                data:
+                    pageTitle: 'Просмотр отчёта'
         
             # Existing calculation
             .state 'calculation',

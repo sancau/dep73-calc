@@ -1,0 +1,42 @@
+div.well
+  h4 Изделие: {{ report.report.name }} 
+  hr
+  h4 Тип испытаний: {{ report.report.type }}
+  hr
+  table.table.table-bordered
+    thead
+      th № п/п
+      th Вид испытаний
+      th Трудоёмкость (ч/мес)
+    tbody
+      tr(ng-repeat="row in report.report.totalTable.rows")
+        td {{ row.index }}
+        td {{ row.type }}
+        td {{ row.labor }}
+      tr 
+        td(colspan="2") 
+          strong ВСЕГО: 
+        td {{ report.report.totalTable.total }} 
+div.well
+  h4 Расшифровка трудоемкости в соответствии с {{ report.report.document }}:
+  table.table.table-bordered
+    thead
+      th № 
+      th Вид испытаний
+      th Методика
+      th Комментарий
+      th Трудоёмкость (ч/дн)
+    tbody
+      tr(ng-repeat="row in report.report.detailTable.rows")
+        td {{ row.index }}
+        td {{ row.type }}
+        td {{ row.documentItem }}
+        td {{ row.comment }}
+        td {{ row.labor }}
+      tr 
+        td(colspan="4") 
+          strong ВСЕГО: 
+        td {{ report.report.detailTable.total }} 
+
+
+

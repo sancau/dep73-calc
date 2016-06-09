@@ -3,6 +3,12 @@
   outline: 0 !important;
 }
 
+#application {
+  min-width:800px;
+  width: auto !important;
+  width:800px;
+}
+
 a {
   color: inherit;
 }
@@ -64,7 +70,7 @@ p {
 }
 /*This just stops me getting horizontal scrolling if anything overflows the width*/
 body {
-    overflow-x: hidden;
+    overflow-x: auto;
 }
 
 /*This is our main wrapping element, it's made 100vh high to ensure it is always the correct size and then moved into place and padded with negative margin and padding*/

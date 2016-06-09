@@ -30,8 +30,10 @@
             td(ng-click="list.showCalculation(calculation)")  {{ calculation.general.type.label }}
             //- td(ng-click="list.showCalculation(calculation)")  {{ calculation.meta.author || 'Нет данных' }}
             td(ng-click="list.showCalculation(calculation)")  {{ calculation.meta.edited | date:'dd/MM/yyyy' }}
+            td
+                button.btn.btn-primary(ui-sref='report({calculationID: calculation._id})') Просмотр отчёта
             td 
-                button.btn.btn-success(ng-click='list.createReport(calculation)') Создать отчёт
+                button.btn.btn-primary(ng-click='list.createReport(calculation)') Экспорт в Word
             td 
                 button.btn.btn-danger(ng-click='list.delete(calculation)') Удалить расчёт
 

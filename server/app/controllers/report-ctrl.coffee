@@ -1,30 +1,31 @@
 
 ###
-  Source: app/controllers/report-ctrl.coffee 
+  Source: app/controllers/report-ctrl.coffee
   Project: dep73-calc
-  Description: 
+  Description:
       Handles docx templating to create a calculation report
       Using docxtemplater module from npm
   Author: Alexander Tatchin | github.com/sancau
 ###
 
-fs = require 'fs' 
+fs = require 'fs'
 Docxtemplater = require 'docxtemplater'
 
 module.exports = (app, route) ->
-  (req, res) -> 
+  (req, res) ->
     if req.method isnt 'POST'
-      res.json { 
+      res.json {
         success: false
-        message: "Accepts POST requests only, #{req.method} received." 
-      } 
-    else        
+        message: "Accepts POST requests only, #{req.method} received."
+      }
+    else
       report = req.body.report
       # build template data object
       templateData = {
         'report.name': report.name
         'report.document': report.document
         'report.type': report.type
+        'report.specialist': report.specialist
         'totalTable.total': report.totalTable.total
         'totalTable.rows': report.totalTable.rows
         'detailTable.total': report.detailTable.total
@@ -44,5 +45,5 @@ module.exports = (app, route) ->
 
       buf = doc.getZip().generate { type: 'nodebuffer'}
       fs.writeFileSync(__dirname + '/reports' + fileName, buf)
-      
+
       res.json { success: true }

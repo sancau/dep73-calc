@@ -38,6 +38,15 @@ form(
         model="general.formModel.document",
         submitted="general.submitted"
     )
+    
+    lc-string-input(
+        required="true",
+        label="Расчёт произвёл", 
+        input-id="spec", 
+        input-object="general.generalInfoForm.spec",
+        model="general.formModel.specialist",
+        submitted="general.submitted"
+    )
 
     lc-text-input(
         required="false", 

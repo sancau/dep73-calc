@@ -1,12 +1,12 @@
 ###
-    Source: list/controllers/list-ctrl.coffee 
+    Source: list/controllers/list-ctrl.coffee
     Project: dep73-calc
     Description: Controller for the listview
     Author: Alexander Tatchin | github.com/sancau
 ###
 
 ListCtrl = ($state, $http, allCalculations, CalculationAPI, Current) ->
-    
+
     vm = this
     vm.calculationsList = allCalculations
 
@@ -14,26 +14,26 @@ ListCtrl = ($state, $http, allCalculations, CalculationAPI, Current) ->
         $state.go 'calculation', { calculationID: calculation._id }
 
     vm.delete = (calculation) ->
-        if window.confirm('Вы действительно хотите удалить расчёт?') 
+        if window.confirm('Вы действительно хотите удалить расчёт?')
             CalculationAPI.one(calculation._id).get().
                 then(
                     (entity) ->
                         entity.remove()
-                            .then(                        
+                            .then(
                                 # success
-                                (data) ->  
+                                (data) ->
                                     vm.calculationsList.pop calculation
                                 # error
                                 (error) ->
                                     console.log error
                             )
                     (error) ->
-                        console.log error                    
+                        console.log error
                 )
 
     vm.createReport = (calculation) ->
-        req = 
-            url: 'http://sqlisp.rtc.local:3000/api/v1/report'
+        req =
+            url: 'http://sqlisp:3000/api/v1/report'
             method: 'POST'
             data: Current.getReport(calculation)
 
@@ -43,7 +43,7 @@ ListCtrl = ($state, $http, allCalculations, CalculationAPI, Current) ->
 
         $http(req)
             .then(
-                (data) -> 
+                (data) ->
                     window.alert 'Отчёт успешно создан и сохранен в папку ТРУДОЁМКОСТЬ РАСЧЁТЫ, которая находится в общей папке документов отдела.'
                     console.log data
 

@@ -1,8 +1,8 @@
 ###
-  Source: calculation/services/active-calculation.coffee 
+  Source: calculation/services/active-calculation.coffee
   Project: dep73-calc
   Description: A singleton object to store current culculation data
-         This data is to be shared between Ctrls of app.calculation                  
+         This data is to be shared between Ctrls of app.calculation
   Author: Alexander Tatchin | github.com/sancau
 ###
 
@@ -12,11 +12,12 @@ angular.module 'app.calculation'
       report:
         name: calculation.general.name
         document: calculation.general.document
-        type: calculation.general.type.label.toLowerCase()
+        type: calculation.general.type.forReport.toLowerCase()
+        specialist:  calculation?.general?.specialist or 'Б.А. Ксенофонтов'
 
         totalTable: do () ->
           table = {}
-          table.rows = [] 
+          table.rows = []
 
           if calculation.climatic.blocks.length > 0
             table.rows.push {
@@ -26,13 +27,13 @@ angular.module 'app.calculation'
                 return Math.round( num * 10) / 10 or 0.1
             }
           if calculation.mechanic.blocks.length > 0
-            table.rows.push 
+            table.rows.push
               type: 'Механические'
               labor: do () ->
                 num = parseFloat(calculation.mechanic.results.pdays) / 20 # pm
                 return Math.round( num * 10) / 10 or 0.1
 
-          table.rows.push 
+          table.rows.push
             type: 'Подготовительно-заключительные работы'
             labor: do () ->
               num = calculation.additional.preparationLabor / 20 #pm
@@ -44,7 +45,6 @@ angular.module 'app.calculation'
             table.total += row.labor
 
           table.total = Math.round( table.total * 10) / 10 or 0.1
-          console.info table.total
           return table
 
         detailTable: do () ->
@@ -56,8 +56,8 @@ angular.module 'app.calculation'
             table.rows.push {
               type: block.type.name
               documentItem: block.values.documentItem
-              comment: do () -> 
-                unless block.values.phaseComment? 
+              comment: do () ->
+                unless block.values.phaseComment?
                   return ''
                 return block.values.phaseComment
               labor: Math.round(block.totalLabor * 2 / 8) or 0.1
@@ -68,8 +68,8 @@ angular.module 'app.calculation'
             table.rows.push {
               type: block.type.name
               documentItem: block.values.documentItem
-              comment: do () -> 
-                unless block.values.phaseComment? 
+              comment: do () ->
+                unless block.values.phaseComment?
                   return ''
                 return block.values.phaseComment
               labor: Math.round(block.totalLabor * 2 / 8) or 0.1
@@ -90,6 +90,3 @@ angular.module 'app.calculation'
           return table
 
     calculation: {}
-
-
-

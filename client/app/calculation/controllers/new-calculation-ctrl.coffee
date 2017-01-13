@@ -1,5 +1,5 @@
 ###
-    Source: calculation/controllers/new-calculation-ctrl.coffee 
+    Source: calculation/controllers/new-calculation-ctrl.coffee
     Project: dep73-calc
     Description: Controller for a new calculation initial form
     Author: Alexander Tatchin | github.com/sancau
@@ -20,11 +20,14 @@ NewCalculationCtrl = ($state, CalculationAPI, TypeOptions) ->
         if vm.generalInfoForm.$valid
 
             # Adds type label and preset label to data objects
-            vm.formModel.type.label = 
+            vm.formModel.type.label =
                 (i.label for i in vm.typeOptions when i.value is vm.formModel.type.code)[0]
-        
+
+            vm.formModel.type.forReport =
+                (i.forReport for i in vm.typeOptions when i.value is vm.formModel.type.code)[0]
+
             # Populates data object using entered data from fromModel
-            data = 
+            data =
                 meta: {
                     author: 'USER AUTHORIZATION NOT IMPLEMENTED'
                     created: new Date()
@@ -47,7 +50,7 @@ NewCalculationCtrl = ($state, CalculationAPI, TypeOptions) ->
                 additional: {
                     preparationLabor: 4
                 }
-                
+
             CalculationAPI.post(data)
                 .then(
                         # success

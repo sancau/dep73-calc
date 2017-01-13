@@ -9,6 +9,18 @@
   width:800px;
 }
 
+/* global dep73 styles */
+/*body {
+  font-family: sans-serif;
+  background-color: #336699;
+}
+
+button {
+  border-radius: 15px !important;
+  font-size: 12pt;
+}*/
+/* end of global dep73 styles */
+
 a {
   color: inherit;
 }
@@ -50,7 +62,7 @@ p {
 /* List view styles */
 
 #list-view tr:hover {
-  background-color: #efefef; 
+  background-color: #efefef;
 }
 
 /* Header styles */

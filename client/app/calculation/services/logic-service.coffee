@@ -1,6 +1,6 @@
 
 ###
-  Source: calculation/services/logic.coffee 
+  Source: calculation/services/logic.coffee
   Project: dep73-calc
   Description: Holds the domain specific logic of app.calculation
   Author: Alexander Tatchin | github.com/sancau
@@ -11,20 +11,20 @@ LogicService = () ->
   logicService = {}
 
   # Performs calculation evaluation
-  logicService.evaluate = (calculation) -> 
+  logicService.evaluate = (calculation) ->
 
     evalBlock = (block, preset) ->
 
       if block.type.name in ['Повышенная температура', 'Пониженная температура']
-        
+
         labor = 0
         start = end = preset.normalConditions.temp
-        
+
         if block.type.name is 'Повышенная температура'
           temp1 = block.values.workTemp
           time1 = block.values.workTime
           temp2 = block.values.edgeTemp
-          time2 = block.values.edgeTime       
+          time2 = block.values.edgeTime
           temp3 = block.values.workTemp2
           time3 = block.values.workTime2
         else
@@ -34,26 +34,26 @@ LogicService = () ->
           time2 = block.values.workTime
           temp3 = block.values.workTemp2
           time3 = block.values.workTime2
-       
+
         current = start
         calcPhase = (current, temp, time, preset, ignoreZero=false) ->
           if time is 0 and not ignoreZero then return 0
           result = 0
           if temp >= current
-            result += (temp - current) / preset.upSpeed 
-          else 
+            result += (temp - current) / preset.upSpeed
+          else
             result += (current - temp) / preset.downSpeed
           result += time * 60
 
           return result
 
         # PHASE 1
-        labor += calcPhase(current, temp1, time1, preset)                
+        labor += calcPhase(current, temp1, time1, preset)
         console.log 'labor after phase 1: ' + labor
         current = temp1
-        
+
         # PHASE 2
-        labor += calcPhase(current, temp2, time2, preset)                
+        labor += calcPhase(current, temp2, time2, preset)
         console.log 'labor after phase 2: ' + labor
         if time2 isnt 0
           current = temp2
@@ -68,7 +68,7 @@ LogicService = () ->
         labor += calcPhase(current, end, 0, preset, true)
         console.log 'labor after phase 4: ' + labor
 
-        return +((labor / 60).toFixed 2) + block.values.nkuTime + block.values.checksTime              
+        return +((labor / 60).toFixed 2) + block.values.nkuTime + block.values.checksTime
 
       if block.type.name in ['Повышенная влажность', 'Пониженная влажность']
 
@@ -101,7 +101,7 @@ LogicService = () ->
           # going to normal conditions
           labor += (positiveEdge - normalConditions) / downSpeed
 
-        return +((labor / 60).toFixed 2) + block.values.nkuTime + block.values.checksTime 
+        return +((labor / 60).toFixed 2) + block.values.nkuTime + block.values.checksTime
 
       if block.type.name in [
         'Резонансные исследования (снятие АЧХ)'
@@ -117,13 +117,18 @@ LogicService = () ->
         console.log 'механика'
         console.log block.values
         return (block.values.phaseTime + 1) * block.values.blocksNumber
-      else 
+      if block.type.name in [
+        'Проверка основных параметров'
+      ]
+        console.log block.type.name
+        return block.values.operationTime
+      else
         console.log 'else'
-        console.log block.values
+        console.log block.type.name
         return block.values.phaseTime
 
     # Hardcoded default preset for now. Presets UI / API to be implemented
-    preset = 
+    preset =
       upSpeed: calculation.meta.preset.upSpeed
       downSpeed: calculation.meta.preset.downSpeed
       humExtra: 2
@@ -137,8 +142,8 @@ LogicService = () ->
       block.totalLabor = Math.round evalBlock block, preset
       console.log block.totalLabor
       totalClimatic += block.totalLabor
-    
-    results = 
+
+    results =
       hours: totalClimatic
       pdays: (totalClimatic * 2 / 8).toFixed 1
 
@@ -150,8 +155,8 @@ LogicService = () ->
       block.totalLabor = Math.round evalBlock block, preset
       console.log block.totalLabor
       totalMechanic += block.totalLabor
-    
-    results = 
+
+    results =
       hours: totalMechanic
       pdays: (totalMechanic * 2 / 8).toFixed 1
 
@@ -161,7 +166,7 @@ LogicService = () ->
 
     return calculation
 
-  return logicService 
+  return logicService
 
 
 angular.module 'app.calculation'

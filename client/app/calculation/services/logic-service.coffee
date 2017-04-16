@@ -13,6 +13,12 @@ LogicService = () ->
   # Performs calculation evaluation
   logicService.evaluate = (calculation) ->
 
+    withIterations = (value, iterations) ->
+      if iterations
+        return value * iterations
+      else
+        return value
+
     evalBlock = (block, preset) ->
 
       if block.type.name in ['Повышенная температура', 'Пониженная температура']
@@ -139,7 +145,8 @@ LogicService = () ->
     totalClimatic = 0
     for block in calculation.climatic.blocks
 
-      block.totalLabor = Math.round evalBlock block, preset
+      labor = Math.round evalBlock block, preset
+      block.totalLabor = withIterations(labor, block.values.iterations)
       console.log block.totalLabor
       totalClimatic += block.totalLabor
 

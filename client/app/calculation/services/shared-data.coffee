@@ -14,6 +14,7 @@ angular.module 'app.calculation'
         document: calculation.general.document
         type: calculation.general.type.forReport.toLowerCase()
         specialist:  calculation?.general?.specialist or 'Б.А. Ксенофонтов'
+        comment: calculation?.general?.comment or ''
 
         totalTable: do () ->
           table = {}

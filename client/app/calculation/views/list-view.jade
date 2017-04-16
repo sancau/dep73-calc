@@ -17,17 +17,28 @@
     table#list-view.table.table-striped(ng-hide="list.calculationsList.length == 0")
         thead
             tr
-                th Изделие
-                th Вид испытаний
+                th(ng-click="list.sortingClicked('general.name')") Изделие &nbsp;
+                    span(class="fa fa-sort-desc", ng-show="list.faDown('general.name')")
+                    span(class="fa fa-sort-asc", ng-show="list.faUp('general.name')")
+
+                th(ng-click="list.sortingClicked('general.type.label')") Вид испытаний &nbsp;
+                    span(class="fa fa-sort-desc", ng-show="list.faDown('general.type.label')")
+                    span(class="fa fa-sort-asc", ng-show="list.faUp('general.type.label')")
+                   
                 //- th Составитель
-                th Последнее изменение
+                th(ng-click="list.sortingClicked('meta.edited')") Последнее изменение &nbsp;
+                    span(class="fa fa-sort-desc", ng-show="list.faDown('meta.edited')")
+                    span(class="fa fa-sort-asc", ng-show="list.faUp('meta.edited')")
         tbody
 
         tr(
-            ng-repeat="calculation in list.calculationsList",
+            ng-repeat="calculation in list.calculationsList | orderBy:list.sortField:list.sortReverse",
+
         )
             td(ng-click="list.showCalculation(calculation)") {{ calculation.general.name }}
+
             td(ng-click="list.showCalculation(calculation)")  {{ calculation.general.type.label }}
+
             //- td(ng-click="list.showCalculation(calculation)")  {{ calculation.meta.author || 'Нет данных' }}
             td(ng-click="list.showCalculation(calculation)")  {{ calculation.meta.edited | date:'dd/MM/yyyy' }}
             td

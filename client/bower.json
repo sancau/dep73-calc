@@ -21,7 +21,8 @@
     "angular-ui-router": "^0.2.18",
     "restangular": "^1.5.2",
     "bootstrap": "3.3.6",
-    "components-font-awesome": "4.4.0"
+    "components-font-awesome": "4.4.0",
+    "font-awesome": "fontawesome#^4.7.0"
   },
   "private": true
 }

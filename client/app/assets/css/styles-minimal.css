@@ -118,3 +118,11 @@ WebKit inertia scrolling is being added here for any present/future devices that
 .Right {
     width: 12.5rem;
 }
+
+.sortorder:after {
+  content: '\25b2';   // BLACK UP-POINTING TRIANGLE
+}
+
+.sortorder.reverse:after {
+  content: '\25bc';   // BLACK DOWN-POINTING TRIANGLE
+}

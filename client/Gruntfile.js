@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-    
+
     grunt.initConfig({
         watch: {
             options: {
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
                     'js/list.js',
                     'js/preset.js',
                     'js/auth.js',
-                    'js/views.js', 
+                    'js/views.js',
                     'js/*.js',
                 ],
                 dest: 'dist/js/all.js'
@@ -64,12 +64,12 @@ module.exports = function(grunt) {
             all: {
                 options: {
                     port: 9000,
-                    hostname: 'sqlisp',
+                    hostname: 'localhost',
                     bases: ['.'],
                     livereload: true
                 }
             }
-        }       
+        }
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -79,9 +79,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-express');
     grunt.loadNpmTasks('grunt-html2js');
-    
+
     grunt.registerTask(
-        'process', 
+        'process',
 
         ['newer:coffee', 'newer:html2js', 'concat', 'uglify']);
 

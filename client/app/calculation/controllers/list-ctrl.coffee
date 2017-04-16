@@ -52,6 +52,22 @@ ListCtrl = ($state, $http, allCalculations, CalculationAPI, Current) ->
                     console.log error
             )
 
+    vm.sortField = null
+    vm.sortReverse = false
+
+    vm.sortingClicked = (value) ->
+        if value == vm.sortField and vm.sortReverse
+            vm.sortField = null
+            vm.sortReverse = false
+        else if value == vm.sortField
+            vm.sortReverse = !vm.sortReverse
+        else
+            vm.sortField = value
+            vm.sortReverse = false
+
+    vm.faDown = (value) -> vm.sortField == value and !vm.sortReverse 
+    vm.faUp = (value) -> vm.sortField == value and vm.sortReverse
+
     return vm
 
 # controller registration

@@ -13,6 +13,7 @@ angular.module 'app.calculation'
         name: calculation.general.name
         document: calculation.general.document
         type: calculation.general.type.forReport.toLowerCase()
+        typeForFile: calculation.general.type.label
         specialist:  calculation?.general?.specialist or 'Б.А. Ксенофонтов'
         comment: calculation?.general?.comment or ''
 

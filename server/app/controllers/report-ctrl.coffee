@@ -42,7 +42,7 @@ module.exports = (app, route) ->
       doc.render()
 
       date = new Date().toISOString().slice(0,10).replace(/-/g,"")
-      fileName = "/#{report.name}_#{date}.docx"
+      fileName = "/#{report.name}_(#{report.typeForFile})_#{date}.docx"
 
       buf = doc.getZip().generate { type: 'nodebuffer'}
       fs.writeFileSync(__dirname + '/reports' + fileName, buf)

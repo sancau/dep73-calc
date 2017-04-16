@@ -31,6 +31,32 @@ ListCtrl = ($state, $http, allCalculations, CalculationAPI, Current) ->
                         console.log error
                 )
 
+    vm.clone = (calculation) ->
+        console.log calculation
+
+        data =
+            meta: calculation.meta
+            general: calculation.general
+            climatic: calculation.climatic
+            mechanic: calculation.mechanic
+            additional: calculation.additional
+
+        timestamp = new Date()
+        timestamp = timestamp.toLocaleString('ru')
+        initialName = data.general.name
+        data.general.name = "[КЛОНИРОВАНИЕ #{initialName}] (#{timestamp})"
+
+        CalculationAPI.post(data)
+            .then(
+                    # success
+                    (newEntity) ->
+                        console.log newEntity
+                        $state.go 'calculation', { calculationID: newEntity._id }
+                    # error
+                    (error) ->
+                        console.log error
+            )
+
     vm.createReport = (calculation) ->
         req =
             url: 'http://sqlisp:3000/api/v1/report'

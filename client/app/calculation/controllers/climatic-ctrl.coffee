@@ -65,6 +65,10 @@ ClimaticCtrl = (LogicService, Current) ->
             id: 13
             name: 'Изменение температуры'
         }
+        {
+            id: 14
+            name: 'Испытание на воздействие атмосферных осадков (дождь)'
+        }
     ]
 
     # Forms views urls depending on block type
@@ -96,7 +100,7 @@ ClimaticCtrl = (LogicService, Current) ->
         }        
     ]
 
-    for i in [6,7,8,9,10,11,12]
+    for i in [6,7,8,9,10,11,12,14]
         formsUrls.push {
             typeID: i
             formView: 'calculation/views/climatic-partial/sub-partials/time-only-form.jade' 

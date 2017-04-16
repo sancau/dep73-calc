@@ -50,3 +50,14 @@ form(
       submitted="preset.submitted"
   )
 
+  lc-numeric-input(
+      required="true",
+      label="Подготовительно-заключительные операции (ч/д)",
+      min="0",
+      max="99"
+      step="1",    
+      input-id="preparationLabor",
+      input-object="preset.presetForm.preparationLabor",
+      model="preset.formModel.preparationLabor",
+      submitted="preset.submitted"
+  )

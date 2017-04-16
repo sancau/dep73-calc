@@ -59,7 +59,7 @@ ListCtrl = ($state, $http, allCalculations, CalculationAPI, Current) ->
 
     vm.createReport = (calculation) ->
         req =
-            url: 'http://sqlisp:3000/api/v1/report'
+            url: 'http://localhost:3000/api/v1/report'
             method: 'POST'
             data: Current.getReport(calculation)
 

@@ -9,11 +9,13 @@ PresetCtrl = (Current, LogicService) ->
             nuTemp: 22
             nuHum: 50
     vm.formModel = JSON.parse JSON.stringify(Current.calculation.meta.preset)
+    vm.formModel.preparationLabor = Current.calculation.additional.preparationLabor
     # Save changes logic
     vm.saveChanges = () ->
         vm.submitted = on
         if vm.presetForm.$valid
             Current.calculation.meta.preset = JSON.parse JSON.stringify(vm.formModel)
+            Current.calculation.additional.preparationLabor = vm.formModel.preparationLabor
             Current.calculation = LogicService.evaluate(Current.calculation)
             Current.calculation.save()
                 .then(

@@ -1,6 +1,6 @@
 
 ###
-    Source: api/api.coffee 
+    Source: api/api.coffee
     Project: dep73-calc
     Description: Defines server API interaction services
     Author: Alexander Tatchin | github.com/sancau
@@ -15,7 +15,7 @@ angular.module 'api', [
 
     (RestangularProvider, APIBaseURL) ->
         RestangularProvider
-            .setBaseUrl 'http://localhost:3000/api/v1'
+            .setBaseUrl 'http://sqlisp:3000/api/v1'
 ]
 
 .factory 'ConfiguredRestangular', [

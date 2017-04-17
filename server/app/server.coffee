@@ -1,5 +1,5 @@
 ###
-    Source: app/server.coffee 
+    Source: app/server.coffee
     Project: dep73-calc
     Description: Server API main script
     Author: Alexander Tatchin | github.com/sancau
@@ -14,7 +14,7 @@ morgan = require 'morgan'
 # Create the application
 app = do express
 
-# Add some Middleware 
+# Add some Middleware
 app.use bodyParser.urlencoded({extended: true})
 app.use bodyParser.json()
 app.use methodOverride('X-HTTP-Method-Override')
@@ -30,19 +30,19 @@ app.use (req, res, next) ->
 # Connect to MongoDB
 mongoose.connect 'mongodb://localhost/dep73-calc'
 mongoose.connection.once(
-    'open' 
-    () -> 
+    'open'
+    () ->
         # Load the models
         app.models = require './models'
 
-        # Load the middleware 
+        # Load the middleware
         app.middleware = require './middleware'
 
         # Load the routes
         routes = require './routes'
-        for route, controller of routes 
+        for route, controller of routes
             app.use route, controller app, route
 
         app.listen 3000
-        console.log 'Listening on port 3000...' 
+        console.log 'Listening on port 3000...'
 )

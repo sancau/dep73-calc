@@ -59,7 +59,7 @@ ListCtrl = ($state, $http, allCalculations, CalculationAPI, Current) ->
 
     vm.createReport = (calculation) ->
         req =
-            url: 'http://localhost:3000/api/v1/report'
+            url: 'http://sqlisp:3000/api/v1/report'
             method: 'POST'
             data: Current.getReport(calculation)
 
@@ -91,7 +91,7 @@ ListCtrl = ($state, $http, allCalculations, CalculationAPI, Current) ->
             vm.sortField = value
             vm.sortReverse = false
 
-    vm.faDown = (value) -> vm.sortField == value and !vm.sortReverse 
+    vm.faDown = (value) -> vm.sortField == value and !vm.sortReverse
     vm.faUp = (value) -> vm.sortField == value and vm.sortReverse
 
     return vm

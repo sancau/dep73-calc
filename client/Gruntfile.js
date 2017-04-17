@@ -64,7 +64,7 @@ module.exports = function(grunt) {
             all: {
                 options: {
                     port: 9000,
-                    hostname: 'localhost',
+                    hostname: 'sqlisp',
                     bases: ['.'],
                     livereload: true
                 }

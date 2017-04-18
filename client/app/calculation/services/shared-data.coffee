@@ -19,10 +19,11 @@ angular.module 'app.calculation'
 
         commentRows: do () ->
           data = []
-          for row in calculation?.general?.comment.split('\n')
-            data.push {
-              text: row
-            }
+          if calculation?.general?.comment
+            for row in calculation?.general?.comment.split('\n')
+              data.push {
+                text: row
+              }
           return data
 
         totalTable: do () ->

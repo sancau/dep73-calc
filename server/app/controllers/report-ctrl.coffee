@@ -27,6 +27,7 @@ module.exports = (app, route) ->
         'report.type': report.type
         'report.specialist': report.specialist
         'report.comment': report.comment
+        'commentRows': report.commentRows
         'totalTable.total': report.totalTable.total
         'totalTable.totalNh': report.totalTable.totalNh
         'totalTable.rows': report.totalTable.rows

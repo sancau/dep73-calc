@@ -17,6 +17,14 @@ angular.module 'app.calculation'
         specialist:  calculation?.general?.specialist or 'Б.А. Ксенофонтов'
         comment: calculation?.general?.comment or ''
 
+        commentRows: do () ->
+          data = []
+          for row in calculation?.general?.comment.split('\n')
+            data.push {
+              text: row
+            }
+          return data
+
         totalTable: do () ->
           table = {}
           table.rows = []

@@ -1,5 +1,5 @@
 ###
-    Source: calculation/controllers/climatic-ctrl.coffee 
+    Source: calculation/controllers/climatic-ctrl.coffee
     Project: dep73-calc
     Description: Controller for climatic tests inputs section
     Author: Alexander Tatchin | github.com/sancau
@@ -11,27 +11,27 @@ ClimaticCtrl = (LogicService, Current) ->
     vm = this
 
     # Form block type options
-    vm.options = 
+    vm.options =
     [
-        {   
+        {
             id: 1
-            name: 'Повышенная температура' 
+            name: 'Повышенная температура'
         }
-        { 
-            id: 2 
-            name: 'Пониженная температура' 
+        {
+            id: 2
+            name: 'Пониженная температура'
         }
-        { 
-            id: 3 
-            name: 'Пониженная влажность' 
+        {
+            id: 3
+            name: 'Пониженная влажность'
         }
-        { 
-            id: 4 
-            name: 'Повышенная влажность' 
+        {
+            id: 4
+            name: 'Повышенная влажность'
         }
-        { 
-            id: 5 
-            name: 'Проверка основных параметров' 
+        {
+            id: 5
+            name: 'Проверка основных параметров'
         }
         {
             id: 6
@@ -72,57 +72,57 @@ ClimaticCtrl = (LogicService, Current) ->
     ]
 
     # Forms views urls depending on block type
-    formsUrls = 
+    formsUrls =
     [
-        {   
-            typeID: 1 
+        {
+            typeID: 1
             formView: 'calculation/views/climatic-partial/sub-partials/temperature-form.jade'
         }
-        { 
-            typeID: 2 
+        {
+            typeID: 2
             formView: 'calculation/views/climatic-partial/sub-partials/temperature-form-minus.jade'
         }
-        { 
-            typeID: 3 
+        {
+            typeID: 3
             formView: 'calculation/views/climatic-partial/sub-partials/humidity-form.jade'
         }
-        { 
-            typeID: 4 
-            formView: 'calculation/views/climatic-partial/sub-partials/humidity-form.jade' 
+        {
+            typeID: 4
+            formView: 'calculation/views/climatic-partial/sub-partials/humidity-form.jade'
         }
-        { 
-            typeID: 5  
-            formView: 'calculation/views/climatic-partial/sub-partials/operation-form.jade' 
+        {
+            typeID: 5
+            formView: 'calculation/views/climatic-partial/sub-partials/operation-form.jade'
         }
         {
             typeID: 13
-            formView: 'calculation/views/climatic-partial/sub-partials/temperature-change-form.jade' 
-        }        
+            formView: 'calculation/views/climatic-partial/sub-partials/temperature-change-form.jade'
+        }
     ]
 
     for i in [6,7,8,9,10,11,12,14]
         formsUrls.push {
             typeID: i
-            formView: 'calculation/views/climatic-partial/sub-partials/time-only-form.jade' 
+            formView: 'calculation/views/climatic-partial/sub-partials/time-only-form.jade'
         }
 
 
     # Populates blocks array based on calculation data
     getBlocks = (climaticData) ->
-        blocks = []        
+        blocks = []
         # if there's no climatic data -> populate 1 empty block
         if climaticData.blocks.length is 0
             blocks = [{data: ''}]
         else
             # parse object and populate blocks
             for item in climaticData.blocks
-                thisBlock = 
+                thisBlock =
                     # clone the object to prevent unexprected bindings
                     data: JSON.parse JSON.stringify(item)
 
                 blocks.push thisBlock
 
-        return blocks 
+        return blocks
 
     # Returns a verbose name for a block to display
     vm.getName = (index) ->
@@ -140,12 +140,12 @@ ClimaticCtrl = (LogicService, Current) ->
     # Add block logic
     vm.clone = () ->
 
-        # if no data entered in existing block user cant add another 
+        # if no data entered in existing block user cant add another
         hasEmptyBlock = no
         for block in vm.blocks
             if not block.data.type
                 hasEmptyBlock = yes
-        if hasEmptyBlock 
+        if hasEmptyBlock
             return console.log "there's an empty block to use | ClimaticCtrl clone()"
 
         # If form structure changed after submit attempt so the state resets
@@ -162,7 +162,7 @@ ClimaticCtrl = (LogicService, Current) ->
             index = vm.blocks.indexOf block
             vm.blocks.splice index, 1
 
-            # If 0 blocks remains after deletion 
+            # If 0 blocks remains after deletion
             # then a new blank block should be populated after deletion
             vm.blocks.push {data: ''} if vm.blocks.length is 0
 
@@ -172,18 +172,18 @@ ClimaticCtrl = (LogicService, Current) ->
         # flag signals that form was submitted by the user
         vm.submitted = on
 
-        # check each block of form to be valid 
+        # check each block of form to be valid
         dataValid = yes
-        for block in vm.blocks 
+        for block in vm.blocks
             if not block.climaticForm.$valid
                 dataValid = no
 
         # depending on the validation status perform proper logic
         if dataValid
             data = []
-            for block in vm.blocks              
+            for block in vm.blocks
                 if block.data isnt ''
-                    data.push JSON.parse JSON.stringify(block.data)  
+                    data.push JSON.parse JSON.stringify(block.data)
 
             Current.calculation.climatic.blocks = data
 
@@ -191,10 +191,12 @@ ClimaticCtrl = (LogicService, Current) ->
 
             Current.calculation.save()
                 .then(
-                        (data) ->   
+                        (data) ->
                             console.log 'Update successfull'
+                            window.alert('Изменения сохранены')
                         (error) ->
                             console.log error
+                            window.alert('Изменения НЕ сохранены (ошибка)')
                     )
         else
             console.log "Invalid Form"
@@ -202,7 +204,7 @@ ClimaticCtrl = (LogicService, Current) ->
     # Initial array of field groups contains 1 blank block
     vm.blocks = getBlocks Current.calculation.climatic
 
-    return vm   
+    return vm
 
 # controller registration
 angular.module 'app.calculation'

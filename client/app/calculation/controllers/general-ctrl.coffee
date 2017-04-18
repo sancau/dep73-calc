@@ -31,13 +31,17 @@ GeneralCtrl = (TypeOptions, Current) ->
 
             Current.calculation.general = JSON.parse JSON.stringify(vm.formModel)
 
+            Current.calculation.meta.edited = new Date()
+
             Current.calculation.save()
                 .then(
-                    (data) ->
-                        console.log data
-                    (error) ->
-                        console.log error
-                )
+                        (data) ->
+                            console.log 'Update successfull'
+                            window.alert('Изменения сохранены')
+                        (error) ->
+                            console.log error
+                            window.alert('Изменения НЕ сохранены (ошибка)')
+                    )
 
     return vm
 

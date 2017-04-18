@@ -1,5 +1,5 @@
 //-
-    Source: calculation/views/climatic-partials/sub-partials/time-only-form.jade 
+    Source: calculation/views/climatic-partials/sub-partials/time-only-form.jade
     Project: dep73-calc
     Description: A generic form for those cases where only time is mentioned
     Author: Alexander Tatchin | github.com/sancau
@@ -16,20 +16,20 @@
     )
 
     lc-text-input(
-        required="false", 
-        label="Комментарий", 
-        rows="2", 
+        required="false",
+        label="Комментарий",
+        rows="2",
         input-id="phaseComment",
         input-object="block.climaticForm.phaseComment",
         model="block.data.values.phaseComment",
         submitted="climatic.submitted"
-    )  
+    )
 
     lc-numeric-input(
         required="true",
         label="Время на этап",
         min="0",
-        step="0.25",    
+        step="0.25",
         input-id="phaseTime",
         input-object="block.climaticForm.phaseTime",
         model="block.data.values.phaseTime",
@@ -38,9 +38,20 @@
 
     lc-numeric-input(
         required="true",
+        label="Общее время проверок",
+        min="0",
+        step="0.25",
+        input-id="checksTime",
+        input-object="block.climaticForm.checksTime",
+        model="block.data.values.checksTime",
+        submitted="climatic.submitted"
+    )
+
+    lc-numeric-input(
+        required="true",
         label="Количество закладок",
         min="1",
-        step="1",    
+        step="1",
         input-id="iterations",
         input-object="block.climaticForm.iterations",
         model="block.data.values.iterations",

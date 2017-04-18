@@ -41,8 +41,11 @@ ListCtrl = ($state, $http, allCalculations, CalculationAPI, Current) ->
             mechanic: calculation.mechanic
             additional: calculation.additional
 
-        timestamp = new Date()
-        timestamp = timestamp.toLocaleString('ru')
+        data.meta.created = new Date()
+        data.meta.edited = new Date()
+
+        timestamp = data.meta.created
+        timestamp = timestamp.toLocaleString('ru').replace(':', '_').replace(':', '_')
         initialName = data.general.name
         data.general.name = "[КЛОНИРОВАНИЕ #{initialName}] (#{timestamp})"
 

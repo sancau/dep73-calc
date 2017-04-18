@@ -19,11 +19,13 @@ PresetCtrl = (Current, LogicService) ->
             Current.calculation = LogicService.evaluate(Current.calculation)
             Current.calculation.save()
                 .then(
-                    (data) ->
-                        console.log data
-                    (error) ->
-                        console.log error
-                )
+                        (data) ->
+                            console.log 'Update successfull'
+                            window.alert('Изменения сохранены')
+                        (error) ->
+                            console.log error
+                            window.alert('Изменения НЕ сохранены (ошибка)')
+                    )
     return vm
 
 # controller registration

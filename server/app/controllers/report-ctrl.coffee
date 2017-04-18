@@ -28,6 +28,7 @@ module.exports = (app, route) ->
         'report.specialist': report.specialist
         'report.comment': report.comment
         'totalTable.total': report.totalTable.total
+        'totalTable.totalNh': report.totalTable.totalNh
         'totalTable.rows': report.totalTable.rows
         'detailTable.total': report.detailTable.total
         'detailTable.rows': report.detailTable.rows

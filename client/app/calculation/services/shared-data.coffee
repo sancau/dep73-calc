@@ -22,31 +22,42 @@ angular.module 'app.calculation'
           table.rows = []
 
           if calculation.climatic.blocks.length > 0
+            tmp = do () ->
+              num = parseFloat(calculation.climatic.results.pdays) / 20  # pm
+              return Math.round( num * 10) / 10 or 0.1
             table.rows.push {
               type: 'Климатические'
-              labor: do () ->
-                num = parseFloat(calculation.climatic.results.pdays) / 20 # pm
-                return Math.round( num * 10) / 10 or 0.1
+              labor: tmp
+              laborNh: Math.round( tmp * 164.42 * 10) / 10 or 0.1  # nh
             }
+
           if calculation.mechanic.blocks.length > 0
+            tmp = do () ->
+              num = parseFloat(calculation.mechanic.results.pdays) / 20  # pm
+              return Math.round( num * 10) / 10 or 0.1
             table.rows.push
               type: 'Механические'
-              labor: do () ->
-                num = parseFloat(calculation.mechanic.results.pdays) / 20 # pm
-                return Math.round( num * 10) / 10 or 0.1
+              labor: tmp
+              laborNh: Math.round( tmp * 164.42 * 10) / 10 or 0.1  # nh
+
+          tmp = do () ->
+            num = calculation.additional.preparationLabor / 20  # pm
+            return Math.round( num * 10) / 10 or 0.1
 
           table.rows.push
             type: 'Подготовительно-заключительные работы'
-            labor: do () ->
-              num = calculation.additional.preparationLabor / 20 #pm
-              return Math.round( num * 10) / 10 or 0.1
+            labor: tmp
+            laborNh: Math.round( tmp * 164.42 * 10) / 10 or 0.1  # nh
 
           table.total = 0
+          table.totalNh = 0
           for row in table.rows
             table.rows[table.rows.indexOf(row)].index = table.rows.indexOf(row) + 1
             table.total += row.labor
+            table.totalNh += row.laborNh
 
           table.total = Math.round( table.total * 10) / 10 or 0.1
+          table.totalNh = Math.round( table.totalNh * 10) / 10 or 0.1  # nh
           return table
 
         detailTable: do () ->

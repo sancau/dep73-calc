@@ -1,7 +1,7 @@
 //-
-    Source: calculation/views/calculation-view.jade 
+    Source: calculation/views/calculation-view.jade
     Project: dep73-calc
-    Description: View for the calculation module / state: calculation 
+    Description: View for the calculation module / state: calculation
     Author: Alexander Tatchin | github.com/sancau
 
 div.Container
@@ -22,8 +22,8 @@ div.Container
                 )
                     #general-form(
                         ng-include="'calculation/views/preset-partial/preset-form.jade'"
-                    ) 
-                    
+                    )
+
                     //- Save settings changes
                     button(ng-click="preset.saveChanges()") Сохранить
 
@@ -38,11 +38,11 @@ div.Container
                 )
                     #general-form(
                         ng-include="'calculation/views/general-partial/general-form.jade'"
-                    ) 
-                    
+                    )
+
                     //- Save general info changes (logic on GeneralCrtl)
                     button(ng-click="general.saveChanges()") Сохранить
-            
+
             //- Climatic information inputs host
             uib-accordion-group(
                 heading="Климатические испытания",
@@ -52,8 +52,8 @@ div.Container
                 #climatic-partial(
                     ng-include="'calculation/views/climatic-partial/climatic-partial.jade'"
                 )
-            
-            //- Mechanical tests 
+
+            //- Mechanical tests
             uib-accordion-group(
                 heading="Механические испытания",
                 is-open="mechanicalOpen",
@@ -69,7 +69,7 @@ div.Container
             h3 Текущий расчёт
             hr
             pre Общая информация
-            table.table(id = "general-info")            
+            table.table(id = "general-info")
                 tbody
                     tr
                         td.info Изделие:
@@ -83,46 +83,46 @@ div.Container
                     tr
                         td.info Комментарий:
                         td(ng-class="status.currentCalculation.general.comment ? 'success' : 'warning'") {{ status.currentCalculation.general.comment }}
-        
+
             hr
             div
                 pre Дополнительные временные затраты
-                h5 Этап 0 (Подготовительно-заключительные операции)        
-                table.table(id = "block-info")          
+                h5 Этап 0 (Подготовительно-заключительные операции)
+                table.table(id = "block-info")
                     tbody
                         tr
                             td.info Суммарная трудоёмкость:
                             td.success {{ status.currentCalculation.additional.preparationLabor }} (ч/дней)
 
             div(ng-show="status.currentCalculation.climatic.blocks.length")
-               
+
                 pre Климатические испытания
 
                 #climatic-info(ng-repeat="block in status.currentCalculation.climatic.blocks")
-                    h5 Этап {{$index + 1}} ({{ block.type.name }})        
-                    table.table(id = "block-info")          
+                    h5 Этап {{$index + 1}} ({{ block.type.name }})
+                    table.table(id = "block-info")
                         tbody
                             tr
                                 td.info Суммарная трудоёмкость:
                                 td(ng-class="block.totalLabor ? 'success' : 'danger'") {{ block.totalLabor ? block.totalLabor : 'Нет данных' }}
 
-                pre(ng-show="status.currentCalculation.climatic.blocks.length") 
-                    <b> КЛИМАТИКА ВСЕГО: {{ status.currentCalculation.climatic.results.hours }} (часов), {{ status.currentCalculation.climatic.results.pdays }} (чел/дней), {{ status.current.getReport(status.currentCalculation).report.totalTable.rows[0].labor }} (чел/мес)</b>
+                pre(ng-show="status.currentCalculation.climatic.blocks.length")
+                    <b> КЛИМАТИКА ВСЕГО: {{ status.currentCalculation.climatic.results.hours }} (часов), {{ status.currentCalculation.climatic.results.pdays }} (чел/дней), {{ status.current.getReport(status.currentCalculation).report.totalTable.rows[0].labor }} (чел/мес), {{ status.current.getReport(status.currentCalculation).report.totalTable.rows[0].laborNh }} (н/ч)</b>
 
             div(ng-show="status.currentCalculation.mechanic.blocks.length")
-               
+
                 pre Механические испытания
 
                 #mechanic-info(ng-repeat="block in status.currentCalculation.mechanic.blocks")
-                    h5 Этап {{$index + 1}} ({{ block.type.name }})        
-                    table.table(id = "block-info")          
+                    h5 Этап {{$index + 1}} ({{ block.type.name }})
+                    table.table(id = "block-info")
                         tbody
                             tr
                                 td.info Суммарная трудоёмкость (с учётом времени монтажных работ):
                                 td(ng-class="block.totalLabor ? 'success' : 'danger'") {{ block.totalLabor ? block.totalLabor : 'Нет данных' }}
 
-                pre(ng-show="status.currentCalculation.mechanic.blocks.length") 
-                    <b> МЕХАНИКА ВСЕГО: {{ status.currentCalculation.mechanic.results.hours }} (часов), {{ status.currentCalculation.mechanic.results.pdays }} (чел/дней), {{ status.current.getReport(status.currentCalculation).report.totalTable.rows[1].labor }} (чел/мес)</b>
+                pre(ng-show="status.currentCalculation.mechanic.blocks.length")
+                    <b> МЕХАНИКА ВСЕГО: {{ status.currentCalculation.mechanic.results.hours }} (часов), {{ status.currentCalculation.mechanic.results.pdays }} (чел/дней), {{ status.current.getReport(status.currentCalculation).report.totalTable.rows[1].labor }} (чел/мес), {{ status.current.getReport(status.currentCalculation).report.totalTable.rows[1].laborNh }} (н/ч)</b></b>
 
-            pre 
-                strong СУММАРНАЯ ТРУДОЁМКОСТЬ: {{ status.current.getReport(status.currentCalculation).report.detailTable.total }} (чел/дней), {{ status.current.getReport(status.currentCalculation).report.totalTable.total }} (чел/мес)
+            pre
+                strong СУММАРНАЯ ТРУДОЁМКОСТЬ: {{ status.current.getReport(status.currentCalculation).report.detailTable.total }} (чел/дней), {{ status.current.getReport(status.currentCalculation).report.totalTable.total }} (чел/мес), {{ status.current.getReport(status.currentCalculation).report.totalTable.totalNh }} (н/ч)

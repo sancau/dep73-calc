@@ -131,7 +131,7 @@ LogicService = () ->
       else
         console.log 'else'
         console.log block.type.name
-        return block.values.phaseTime
+        return block.values.phaseTime + block.values.checksTime
 
     # Hardcoded default preset for now. Presets UI / API to be implemented
     preset =
